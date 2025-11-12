@@ -867,6 +867,20 @@
 
         // --- التعديلات الجديدة هنا ---
 
+        // Utility function for throttling
+        function throttle(func, limit) {
+            let inThrottle;
+            return function() {
+                const context = this;
+                const args = arguments;
+                if (!inThrottle) {
+                    func.apply(context, args);
+                    inThrottle = true;
+                    setTimeout(() => inThrottle = false, limit);
+                }
+            }
+        }
+
         // 1. قائمة بجميع الأقسام التي يجب تتبعها
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('.nav-links a');
@@ -924,8 +938,8 @@
             });
         });
 
-        // 5. إضافة مستمع حدث التمرير لتحديث الـ URL تلقائيًا
-        window.addEventListener('scroll', updateUrlOnScroll);
+        // 5. إضافة مستمع حدث التمرير لتحديث الـ URL تلقائيًا (مع تطبيق Throttling لتحسين الأداء)
+        window.addEventListener('scroll', throttle(updateUrlOnScroll, 100)); // يتم التنفيذ مرة واحدة كل 100 مللي ثانية كحد أقصى
 
         // 6. تشغيل تحديث الـ URL عند تحميل الصفحة
         window.addEventListener('load', updateUrlOnScroll);
