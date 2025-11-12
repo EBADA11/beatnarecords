@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beatna Records | بوابتك لعالم الموسيقى الرقمي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- Global Styles & Variables --- */
+        :root {
+            --primary-color: #6f42c1; /* Purple */
+            --secondary-color: #007bff; /* Blue */
+            --dark-bg: #0c0a18; /* Dark Blue/Purple Background */
+            --card-bg: #1a1633;
+            --text-color: #f0f0f0;
+            --heading-color: #ffffff;
+            --font-family: 'Tajawal', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            margin: 0;
+            padding: 0;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            text-align: right;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 800;
+            color: var(--heading-color);
+        }
+
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.8rem; text-align: center; margin-bottom: 50px; }
+        p { font-size: 1.1rem; }
+        section { padding: 80px 0; }
+
+        /* --- Navbar --- */
+        .navbar {
+            background-color: transparent;
+            padding: 20px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(12, 10, 24, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+            padding: 15px 0;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--heading-color);
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .main-nav ul {
+            list-style: none; 
+            margin: 0; 
+            padding: 0; 
+            display: flex;
+        }
+        .main-nav ul li { 
+            margin-right: 30px; 
+            position: relative;
+        }
+        .main-nav a {
+            color: var(--heading-color);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: all 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+        .main-nav a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            right: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+        .main-nav a:hover {
+            color: var(--primary-color);
+        }
+        .main-nav a:hover:after {
+            width: 100%;
+        }
+
+        /* --- Language Switcher --- */
+        .language-switcher {
+            display: flex;
+            margin-left: 20px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--text-color);
+            padding: 8px 18px;
+            margin: 0 5px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: var(--font-family);
+            font-weight: 700;
+        }
+
+        .lang-btn.active {
+            background: var(--primary-color);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .lang-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            background: url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&q=80&w=1974&ixlib=rb-4.0.3') no-repeat center center/cover;
+            position: relative;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(45deg, rgba(111, 66, 193, 0.7), rgba(0, 123, 255, 0.7));
+        }
+        .hero-content { 
+            position: relative; 
+            z-index: 2; 
+            animation: fadeInUp 1s ease-out;
+        }
+        .hero h1 { 
+            margin-bottom: 20px; 
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+        .hero p { 
+            font-size: 1.3rem; 
+            max-width: 700px; 
+            margin: 0 auto 40px; 
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+        .cta-button {
+            background: var(--heading-color);
+            color: var(--primary-color);
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: inline-block;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255,255,255,0.2);
+        }
+
+        /* --- About Us & Services --- */
+        #about { 
+            background-color: var(--dark-bg); 
+            text-align: center; 
+        }
+        #about p { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            animation: fadeIn 1s ease-out;
+        }
+
+        #services { 
+            background-color: var(--card-bg); 
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .service-card {
+            background: var(--dark-bg);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid var(--primary-color);
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary-color);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s;
+        }
+        .service-card:hover { 
+            transform: translateY(-10px); 
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+        .service-card:hover:before {
+            transform: scaleX(1);
+        }
+        .service-card h3 { 
+            margin-bottom: 15px; 
+            font-size: 1.5rem; 
+        }
+
+        /* --- Platforms Section --- */
+        .platforms { 
+            text-align: center; 
+        }
+        .platform-icons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .platform-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .platform-icon i {
+            font-size: 3.5rem;
+            color: var(--text-color);
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .platform-icon span {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .platform-icon:hover {
+            background: rgba(111, 66, 193, 0.1);
+        }
+
+        .platform-icon:hover i {
+            color: var(--primary-color);
+            transform: scale(1.2);
+        }
+
+        .platform-icon:hover span {
+            color: var(--primary-color);
+        }
+
+        /* --- Clients Section --- */
+        .clients {
+            background-color: var(--dark-bg);
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .clients-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .clients-number {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        .clients-text {
+            font-size: 1.5rem;
+            max-width: 600px;
+        }
+
+        /* --- Contact Section --- */
+        .contact {
+            background-color: var(--card-bg);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+            background: var(--dark-bg);
+            border-radius: 15px;
+            border: 1px solid var(--primary-color);
+            transition: all 0.3s;
+            min-width: 250px;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .contact-item i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .contact-item h4 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .contact-item a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- Fix for phone numbers in RTL --- */
+        .phone-number {
+            direction: ltr;
+            unicode-bidi: embed;
+            display: inline-block;
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background-color: #07060f;
+            text-align: center;
+            padding: 40px 0;
+        }
+        .footer h3 { margin-bottom: 20px; }
+        .footer a { 
+            color: var(--primary-color); 
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer a:hover {
+            color: var(--secondary-color);
+        }
+        .copyright { margin-top: 30px; opacity: 0.6; }
+
+        /* --- WhatsApp Button --- */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            left: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite, float 3s ease-in-out infinite;
+            transition: all 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            animation: none;
+            box-shadow: 2px 2px 15px rgba(37, 211, 102, 0.7);
+        }
+
+        /* --- Animations --- */
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 1024px) {
+            h1 { font-size: 3rem; }
+            h2 { font-size: 2.5rem; }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            
+            .platform-icons {
+                gap: 25px;
+            }
+            
+            .platform-icon i {
+                font-size: 2.5rem;
+            }
+            
+            .platform-icon span {
+                font-size: 0.9rem;
+            }
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                left: 20px;
+                font-size: 25px;
+            }
+            
+            .clients-number {
+                font-size: 3rem;
+            }
+            
+            .clients-text {
+                font-size: 1.2rem;
+            }
+
+            .navbar .container {
+                flex-direction: column;
+            }
+            
+            .main-nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .main-nav ul li {
+                margin: 0 10px 10px;
+            }
+            
+            .language-switcher {
+                margin: 10px 0 0 0;
+            }
+
+            .hero {
+                height: 80vh;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.8rem; }
+            
+            .platform-icons {
+                gap: 15px;
+            }
+            
+            .platform-icon i {
+                font-size: 2rem;
+            }
+            
+            .platform-icon span {
+                font-size: 0.8rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                padding: 25px;
+            }
+
+            .contact-item {
+                min-width: 200px;
+                padding: 20px;
+            }
+        }
+
+        /* --- Content for English --- */
+        .english-content {
+            display: none;
+            text-align: left;
+            direction: ltr;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/201050093361?text=مرحباً%20أرغب%20في%20معرفة%20المزيد%20عن%20خدماتكم" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <header class="navbar">
+        <div class="container">
+            <a href="#" class="logo">Beatna Records</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#about" data-ar="من نحن" data-en="About">من نحن</a></li>
+                    <li><a href="#services" data-ar="خدماتنا" data-en="Services">خدماتنا</a></li>
+                    <li><a href="#contact" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a></li>
+                </ul>
+            </nav>
+            <div class="language-switcher">
+                <button class="lang-btn active" data-lang="ar">العربية</button>
+                <button class="lang-btn" data-lang="en">English</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Arabic Content -->
+        <section class="hero">
+            <div class="hero-overlay"></div>
+            <div class="container hero-content">
+                <h1 data-ar="حوّل شغفك الموسيقي إلى نجاح عالمي" data-en="Transform Your Musical Passion into Global Success">حوّل شغفك الموسيقي إلى نجاح عالمي</h1>
+                <p data-ar="نوزع موسيقاك على أهم المنصات العالمية ونضمن لك حقوقك وأرباحك الكاملة." data-en="We distribute your music to the most important global platforms and guarantee your full rights and profits.">نوزع موسيقاك على أهم المنصات العالمية ونضمن لك حقوقك وأرباحك الكاملة.</p>
+                <a href="#contact" class="cta-button" data-ar="تواصل معنا الآن" data-en="Contact Us Now">تواصل معنا الآن</a>
+            </div>
+        </section>
+
+        <section id="about" class="about-us">
+            <div class="container">
+                <h2 data-ar="من نحن؟" data-en="Who Are We?">من نحن؟</h2>
+                <p data-ar="Beatna Records هي شريكك الرقمي في عالم الموسيقى. تأسسنا لمساعدة الفنانين المستقلين والمبدعين على إيصال أعمالهم الفنية إلى جمهور عالمي بسهولة وشفافية، مع الحفاظ على كامل حقوقهم الإبداعية والمادية." data-en="Beatna Records is your digital partner in the music world. We were founded to help independent artists and creators deliver their artistic works to a global audience easily and transparently, while preserving their full creative and material rights.">Beatna Records هي شريكك الرقمي في عالم الموسيقى. تأسسنا لمساعدة الفنانين المستقلين والمبدعين على إيصال أعمالهم الفنية إلى جمهور عالمي بسهولة وشفافية، مع الحفاظ على كامل حقوقهم الإبداعية والمادية.</p>
+            </div>
+        </section>
+
+        <section id="services" class="services">
+            <div class="container">
+                <h2 data-ar="خدماتنا المتكاملة" data-en="Our Integrated Services">خدماتنا المتكاملة</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3 data-ar="التوزيع الرقمي" data-en="Digital Distribution">التوزيع الرقمي</h3>
+                        <p data-ar="نشر أغانيك على أكثر من 150 منصة عالمية ومحلية، بما في ذلك Spotify, Apple Music, Anghami, Deezer والمزيد." data-en="Publish your songs on more than 150 global and local platforms, including Spotify, Apple Music, Anghami, Deezer and more.">نشر أغانيك على أكثر من 150 منصة عالمية ومحلية، بما في ذلك Spotify, Apple Music, Anghami, Deezer والمزيد.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3 data-ar="إدارة حقوق النشر" data-en="Copyright Management">إدارة حقوق النشر</h3>
+                        <p data-ar="نضمن تحصيل كافة أرباحك من حقوق الأداء العلني والميكانيكية والبث الرقمي حول العالم." data-en="We guarantee the collection of all your earnings from public performance, mechanical, and digital broadcasting rights worldwide.">نضمن تحصيل كافة أرباحك من حقوق الأداء العلني والميكانيكية والبث الرقمي حول العالم.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3 data-ar="التسويق الفني" data-en="Artistic Marketing">التسويق الفني</h3>
+                        <p data-ar="نساعدك في بناء خطط تسويقية فعالة للوصول إلى جمهور أكبر وزيادة عدد المستمعين." data-en="We help you build effective marketing plans to reach a larger audience and increase the number of listeners.">نساعدك في بناء خطط تسويقية فعالة للوصول إلى جمهور أكبر وزيادة عدد المستمعين.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="clients">
+            <div class="container">
+                <div class="clients-content">
+                    <div class="clients-number">+500</div>
+                    <div class="clients-text" data-ar="عميل يثقون بخدماتنا ويحققون نجاحات موسيقية مذهلة" data-en="Clients trust our services and achieve amazing musical successes">عميل يثقون بخدماتنا ويحققون نجاحات موسيقية مذهلة</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="platforms">
+            <div class="container">
+                <h2 data-ar="نوزع على جميع المنصات التي تحبها" data-en="We Distribute on All Your Favorite Platforms">نوزع على جميع المنصات التي تحبها</h2>
+                <div class="platform-icons">
+                    <div class="platform-icon">
+                        <i class="fab fa-spotify"></i>
+                        <span>Spotify</span>
+                    </div>
+                    <div class="platform-icon">
+                        <i class="fab fa-apple"></i>
+                        <span>Apple Music</span>
+                    </div>
+                    <div class="platform-icon">
+                        <i class="fas fa-music"></i>
+                        <span>Anghami</span>
+                    </div>
+                    <div class="platform-icon">
+                        <i class="fab fa-deezer"></i>
+                        <span>Deezer</span>
+                    </div>
+                    <div class="platform-icon">
+                        <i class="fab fa-youtube"></i>
+                        <span>YouTube Music</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</h2>
+                <p data-ar="نحن هنا لمساعدتك في رحلتك الموسيقية. تواصل معنا عبر أي من الطرق التالية:" data-en="We're here to help you on your musical journey. Contact us through any of the following methods:">نحن هنا لمساعدتك في رحلتك الموسيقية. تواصل معنا عبر أي من الطرق التالية:</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <h4 data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</h4>
+                        <a href="mailto:contact@beatnarecords.store">contact@beatnarecords.store</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <h4 data-ar="واتساب" data-en="WhatsApp">واتساب</h4>
+                        <span class="phone-number" data-ar="+20 105 009 3361" data-en="+20 105 009 3361">+20 105 009 3361</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="copyright">
+                <p data-ar="Beatna Records &copy; 2025. كل الحقوق محفوظة." data-en="Beatna Records &copy; 2025. All rights reserved.">Beatna Records &copy; 2025. كل الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar Scroll Effect
+        const nav = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Language Switcher
+        const langButtons = document.querySelectorAll('.lang-btn');
+        
+        function switchLanguage(lang) {
+            // Update all elements with data attributes
+            document.querySelectorAll('[data-ar], [data-en]').forEach(element => {
+                if (lang === 'ar') {
+                    if (element.hasAttribute('data-ar')) {
+                        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                            element.value = element.getAttribute('data-ar');
+                        } else {
+                            element.textContent = element.getAttribute('data-ar');
+                        }
+                    }
+                } else {
+                    if (element.hasAttribute('data-en')) {
+                        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                            element.value = element.getAttribute('data-en');
+                        } else {
+                            element.textContent = element.getAttribute('data-en');
+                        }
+                    }
+                }
+            });
+            
+            // Update HTML direction and lang attribute
+            if (lang === 'ar') {
+                document.documentElement.setAttribute('dir', 'rtl');
+                document.documentElement.setAttribute('lang', 'ar');
+                document.title = "Beatna Records | بوابتك لعالم الموسيقى الرقمي";
+            } else {
+                document.documentElement.setAttribute('dir', 'ltr');
+                document.documentElement.setAttribute('lang', 'en');
+                document.title = "Beatna Records | Your Gateway to the Digital Music World";
+            }
+            
+            // Update active button
+            langButtons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+        
+        langButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const lang = button.getAttribute('data-lang');
+                switchLanguage(lang);
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 1s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.service-card, .clients-content, .platforms .container, .contact-info').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>
