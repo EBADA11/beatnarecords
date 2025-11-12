@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Page Not Found - Redirecting</title>
+    <script type="text/javascript">
+        // Function to redirect the clean URL path to the hash-based URL
+        (function() {
+            var path = window.location.pathname;
+            // Check if the path is not the root path "/"
+            if (path !== '/') {
+                // Remove leading slash and redirect to the hash-based URL
+                var hash = path.substring(1);
+                window.location.replace('/#' + hash);
+            } else {
+                // If it's the root path, redirect to the root
+                window.location.replace('/');
+            }
+        })();
+    </script>
+</head>
+<body>
+    <!-- This page is used by GitHub Pages to handle 404 errors and redirect clean URLs to hash URLs -->
+    <p>Redirecting...</p>
+</body>
+</html>
