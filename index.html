@@ -6,7 +6,7 @@
     <title>Beatna Records | بوابتك لعالم الموسيقى الرقمي</title>
     <meta name="description" content="Beatna Records: Your digital partner for music distribution, copyright management, and artistic marketing. Reach a global audience with ease.">
     <meta name="keywords" content="music distribution, Beatna Records, digital music, artists, Spotify, Apple Music">
-    <link rel="icon" type="image/png" href="https://i.ibb.co/C3z1LDXm/logo.png"> <!-- Updated to GitHub-hosted image -->
+    <link rel="icon" type="image/png" href="https://i.ibb.co/C3z1LDXm/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -875,15 +875,16 @@
             retina_detect: true
         });
 
-        // Smooth Scroll with No Hash
+        // Smooth Scroll with URL Update
         document.querySelectorAll('a[href^="#"]').forEach(link => {
             link.addEventListener('click', e => {
                 e.preventDefault();
-                const target = document.querySelector(link.getAttribute('href'));
+                const href = link.getAttribute('href');
+                const target = document.querySelector(href);
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth' });
+                    history.pushState(null, null, href); // Updates URL with the section ID
                 }
-                history.replaceState(null, null, ' '); // Prevents # in URL
             });
         });
     </script>
