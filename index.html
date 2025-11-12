@@ -6,7 +6,7 @@
     <title>Beatna Records | بوابتك لعالم الموسيقى الرقمي</title>
     <meta name="description" content="Beatna Records: Your digital partner for music distribution, copyright management, and artistic marketing. Reach a global audience with ease.">
     <meta name="keywords" content="music distribution, Beatna Records, digital music, artists, Spotify, Apple Music">
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="https://i.ibb.co/C3z1LDXm/logo.png"> <!-- Updated to GitHub-hosted image -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -840,23 +840,6 @@
             });
         });
 
-        // Smooth Scroll for All Links
-        document.querySelectorAll('a[href^="#"]').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                } else {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                }
-            });
-        });
-
         // Scroll Animations
         const observerOptions = {
             threshold: 0.2,
@@ -890,6 +873,18 @@
                 modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
             },
             retina_detect: true
+        });
+
+        // Smooth Scroll with No Hash
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+                history.replaceState(null, null, ' '); // Prevents # in URL
+            });
         });
     </script>
 </body>
