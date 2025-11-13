@@ -1033,6 +1033,7 @@
             height: 100%;
             z-index: -1;
             overflow: hidden;
+            pointer-events: none;
         }
         .gfx-particle {
             position: absolute;
@@ -1040,9 +1041,18 @@
             background: rgba(139, 92, 246, 0.1);
             animation: float 15s infinite linear;
         }
+        .gfx-dot {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            animation: pulse 2s infinite ease-in-out;
+            box-shadow: 0 0 10px var(--primary-light);
+        }
         @keyframes float {
             0% {
-                transform: translateY(0) translateX(0) rotate(0deg);
+                transform: translateY(100vh) translateX(0) rotate(0deg);
                 opacity: 0;
             }
             10% {
@@ -1052,8 +1062,18 @@
                 opacity: 1;
             }
             100% {
-                transform: translateY(-100vh) translateX(100px) rotate(360deg);
+                transform: translateY(-100px) translateX(100px) rotate(360deg);
                 opacity: 0;
+            }
+        }
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 1;
             }
         }
         /* Responsive */
@@ -1651,6 +1671,89 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Animated Counter
+            function animateCounter(elementId, targetValue, suffix = '') {
+                const element = document.getElementById(elementId);
+                let currentValue = 0;
+                const increment = targetValue / 50;
+                const duration = 2000;
+                const stepTime = duration / 50;
+                
+                const timer = setInterval(() => {
+                    currentValue += increment;
+                    if (currentValue >= targetValue) {
+                        currentValue = targetValue;
+                        clearInterval(timer);
+                    }
+                    
+                    if (suffix === '%') {
+                        element.textContent = Math.floor(currentValue) + suffix;
+                    } else {
+                        element.textContent = Math.floor(currentValue) + suffix;
+                    }
+                }, stepTime);
+            }
+            
+            // Start counters immediately when page loads
+            setTimeout(() => {
+                animateCounter('platforms-counter', 150, '+');
+                animateCounter('artists-counter', 500, '+');
+                animateCounter('satisfaction-counter', 98, '%');
+            }, 500);
+            
+            // GFX Background Effects
+            function createGFXBackground() {
+                const gfxBackground = document.getElementById('gfx-background');
+                const colors = [
+                    'rgba(139, 92, 246, 0.1)', 
+                    'rgba(236, 72, 153, 0.1)', 
+                    'rgba(249, 115, 22, 0.1)',
+                    'rgba(16, 185, 129, 0.1)'
+                ];
+                
+                // Create floating particles
+                for (let i = 0; i < 15; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('gfx-particle');
+                    
+                    const size = Math.random() * 100 + 50;
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    const left = Math.random() * 100;
+                    const animationDelay = Math.random() * 15;
+                    const animationDuration = Math.random() * 10 + 15;
+                    
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.background = color;
+                    particle.style.left = `${left}%`;
+                    particle.style.animationDelay = `${animationDelay}s`;
+                    particle.style.animationDuration = `${animationDuration}s`;
+                    
+                    gfxBackground.appendChild(particle);
+                }
+                
+                // Create pulsing dots
+                for (let i = 0; i < 20; i++) {
+                    const dot = document.createElement('div');
+                    dot.classList.add('gfx-dot');
+                    
+                    const top = Math.random() * 100;
+                    const left = Math.random() * 100;
+                    const animationDelay = Math.random() * 2;
+                    const animationDuration = Math.random() * 1 + 2;
+                    
+                    dot.style.top = `${top}%`;
+                    dot.style.left = `${left}%`;
+                    dot.style.animationDelay = `${animationDelay}s`;
+                    dot.style.animationDuration = `${animationDuration}s`;
+                    
+                    gfxBackground.appendChild(dot);
+                }
+            }
+            
+            // Initialize GFX background
+            createGFXBackground();
+            
             // Language switching functionality
             const langBtns = document.querySelectorAll('.lang-btn');
             const currentLang = localStorage.getItem('selectedLang') || 'ar';
@@ -1831,79 +1934,6 @@
             
             checkNavOverflow();
             window.addEventListener('resize', checkNavOverflow);
-            
-            // Animated Counter
-            function animateCounter(elementId, targetValue, suffix = '') {
-                const element = document.getElementById(elementId);
-                let currentValue = 0;
-                const increment = targetValue / 100;
-                const duration = 2000; // 2 seconds
-                const stepTime = duration / 100;
-                
-                const timer = setInterval(() => {
-                    currentValue += increment;
-                    if (currentValue >= targetValue) {
-                        currentValue = targetValue;
-                        clearInterval(timer);
-                    }
-                    element.textContent = Math.floor(currentValue) + suffix;
-                }, stepTime);
-            }
-            
-            // Start counters when they come into view
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // Start counters
-                        animateCounter('platforms-counter', 150, '+');
-                        animateCounter('artists-counter', 500, '+');
-                        animateCounter('satisfaction-counter', 98, '%');
-                        
-                        // Stop observing after animation starts
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.5 });
-            
-            // Observe the hero stats section
-            const heroStats = document.querySelector('.hero-stats');
-            if (heroStats) {
-                observer.observe(heroStats);
-            }
-            
-            // GFX Background Effects
-            function createGFXBackground() {
-                const gfxBackground = document.getElementById('gfx-background');
-                const colors = [
-                    'rgba(139, 92, 246, 0.1)', 
-                    'rgba(236, 72, 153, 0.1)', 
-                    'rgba(249, 115, 22, 0.1)',
-                    'rgba(16, 185, 129, 0.1)'
-                ];
-                
-                // Create particles
-                for (let i = 0; i < 20; i++) {
-                    const particle = document.createElement('div');
-                    particle.classList.add('gfx-particle');
-                    
-                    // Random properties
-                    const size = Math.random() * 100 + 50;
-                    const color = colors[Math.floor(Math.random() * colors.length)];
-                    const left = Math.random() * 100;
-                    const animationDelay = Math.random() * 15;
-                    
-                    particle.style.width = `${size}px`;
-                    particle.style.height = `${size}px`;
-                    particle.style.background = color;
-                    particle.style.left = `${left}%`;
-                    particle.style.animationDelay = `${animationDelay}s`;
-                    
-                    gfxBackground.appendChild(particle);
-                }
-            }
-            
-            // Initialize GFX background
-            createGFXBackground();
         });
     </script>
 </body>
