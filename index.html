@@ -46,10 +46,16 @@
             scroll-behavior: smooth;
             scroll-padding-top: 80px;
         }
-        body {
-            font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--dark-bg);
-            color: var(--text-light);
+body {
+	            font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	            background-color: var(--dark-bg);
+	            color: var(--text-light);
+	            /* New Background Image for the entire body */
+	            background-image: url('https://i.ibb.co/6803700/sound-waves-abstract-background.jpg'); /* Placeholder for sound waves image */
+	            background-attachment: fixed;
+	            background-size: cover;
+	            background-repeat: no-repeat;
+	            background-position: center center;
             line-height: 1.7;
             overflow-x: hidden;
             font-weight: 400;
@@ -251,13 +257,6 @@
         .nav-links a:hover:after {
             width: 100%;
         }
-        .nav-links a.active {
-            color: var(--primary-color);
-            text-shadow: 0 0 10px rgba(124, 58, 237, 0.5);
-        }
-        .nav-links a.active:after {
-            width: 100%;
-        }
         /* --- Language Switcher --- */
         .language-switcher {
             display: flex;
@@ -295,13 +294,18 @@
             box-shadow: var(--glow-shadow);
         }
         /* --- Hero Section with Particles --- */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(135deg, rgba(10, 7, 21, 0.9), rgba(31, 26, 68, 0.7)),
+.hero {
+	            min-height: 100vh;
+	            display: flex;
+	            align-items: center;
+	            position: relative;
+	            overflow: hidden;
+	            /* New Background Image for Hero Section */
+	            background-image: url('https://i.ibb.co/3YkYBKGHa2cf/studio-music-room.jpg'); /* Placeholder for studio image */
+	            background-size: cover;
+	            background-position: center center;
+	            background-blend-mode: overlay;
+	            background: linear-gradient(135deg, rgba(10, 7, 21, 0.9), rgba(31, 26, 68, 0.7)),
                         url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
             background-attachment: fixed;
         }
@@ -706,7 +710,97 @@
                 transform: translateY(0);
             }
         }
-        /* --- Responsive Design --- */
+        /* --- Accordion Styles --- */
+	        .accordion-container {
+	            display: flex;
+	            flex-direction: column;
+	            gap: 20px;
+	            margin-top: 50px;
+	        }
+	        .accordion-item {
+	            background: var(--dark-card);
+	            border-radius: var(--border-radius);
+	            box-shadow: var(--shadow);
+	            overflow: hidden;
+	            border: 1px solid rgba(124, 58, 237, 0.2);
+	            transition: border-color 0.3s;
+	        }
+	        .accordion-item.open {
+	            border-color: var(--primary-color);
+	        }
+	        .accordion-header {
+	            display: flex;
+	            justify-content: space-between;
+	            align-items: center;
+	            padding: 25px 30px;
+	            cursor: pointer;
+	            background: rgba(124, 58, 237, 0.1);
+	            transition: background 0.3s;
+	        }
+	        .accordion-header:hover {
+	            background: rgba(124, 58, 237, 0.2);
+	        }
+	        .accordion-header h2 {
+	            margin: 0;
+	            font-size: 1.8rem;
+	            text-align: right;
+	            background: none;
+	            -webkit-background-clip: unset;
+	            -webkit-text-fill-color: unset;
+	            color: var(--text-light);
+	            text-shadow: none;
+	        }
+	        .accordion-header h2:after {
+	            content: none;
+	        }
+	        .accordion-header i {
+	            font-size: 1.2rem;
+	            color: var(--primary-color);
+	            transition: transform 0.3s;
+	        }
+	        .accordion-item.open .accordion-header i {
+	            transform: rotate(180deg);
+	        }
+	        .accordion-content {
+	            padding: 0 30px;
+	            max-height: 0;
+	            overflow: hidden;
+	            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+	        }
+	        .accordion-item.open .accordion-content {
+	            padding: 20px 30px 30px;
+	            overflow: visible; /* Allow content to be visible */
+	        }
+	        .accordion-content p {
+	            white-space: pre-wrap; /* To respect the newlines in the content */
+	            margin-bottom: 0;
+	            overflow: auto; /* Add scrollbar if content overflows */
+	            max-height: 400px; /* Set a max height for the content area to enable scrolling */
+	        }
+	        @media (max-width: 768px) {
+	            .accordion-content p {
+	                max-height: 300px;
+	            }
+	        }
+	        .accordion-content p {
+	            white-space: pre-wrap; /* To respect the newlines in the content */
+	            margin-bottom: 0;
+	        }
+	        @media (max-width: 768px) {
+	            .accordion-header h2 {
+	                font-size: 1.5rem;
+	            }
+	            .accordion-header {
+	                padding: 20px 25px;
+	            }
+	            .accordion-content {
+	                padding: 0 25px;
+	            }
+	            .accordion-item.open .accordion-content {
+	                padding: 15px 25px 25px;
+	            }
+	        }
+	        /* --- Responsive Design --- */
         @media (max-width: 992px) {
             h1 { font-size: 3rem; }
             h2 { font-size: 2.5rem; }
@@ -782,7 +876,7 @@
     <!-- Navigation -->
     <header class="navbar" id="navbar">
         <div class="container">
-            <a href="#home" class="logo-container" id="logo">
+            <<a href="/" class="logo-container">r" id="logo">
                 <img src="https://i.ibb.co/C3z1LDXm/logo.png" alt="Beatna Records Logo" class="logo-img">
                 <span class="logo-text">Beatna Records</span>
             </a>
@@ -792,8 +886,6 @@
                 <li><a href="#blog" data-ar="المدونة" data-en="Blog">المدونة</a></li>
                 <li><a href="#platforms" data-ar="المنصات" data-en="Platforms">المنصات</a></li>
                 <li><a href="#contact" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a></li>
-                <li><a href="#privacy" data-ar="سياسة الخصوصية" data-en="Privacy Policy">سياسة الخصوصية</a></li>
-                <li><a href="#rights" data-ar="حقوق الفنان" data-en="Artist Rights">حقوق الفنان</a></li>
             </ul>
             <div class="language-switcher" id="language-switcher">
                 <button class="lang-btn active" data-lang="ar">العربية</button>
@@ -812,16 +904,8 @@
             </div>
         </div>
     </section>
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-content" id="about-content">
-                <h2 data-ar="من نحن؟" data-en="Who Are We?">من نحن؟</h2>
-                <p data-ar="Beatna Records شركة متخصصة في التوزيع الموسيقي الرقمي والخدمات الفنية المستقلة. نهدف إلى تمكين الفنانين العرب من الوصول إلى جمهور عالمي وتحقيق دخل ثابت من موسيقاهم. نركز على البساطة، الشفافية، والدعم الحقيقي للفنان منذ أول خطوة وحتى تحقيق الانتشار." data-en="Beatna Records is a company specializing in digital music distribution and independent artistic services. We aim to empower Arab artists to reach a global audience and achieve a steady income from their music. We focus on simplicity, transparency, and real support for artists from their first step to widespread success.">Beatna Records شركة متخصصة في التوزيع الموسيقي الرقمي والخدمات الفنية المستقلة. نهدف إلى تمكين الفنانين العرب من الوصول إلى جمهور عالمي وتحقيق دخل ثابت من موسيقاهم. نركز على البساطة، الشفافية، والدعم الحقيقي للفنان منذ أول خطوة وحتى تحقيق الانتشار.</p>
-            </div>
-        </div>
-    </section>
-    <!-- Services Section -->
+
+	    <!-- Services Section -->
     <section id="services" class="services">
         <div class="container">
             <h2 data-ar="خدماتنا المتكاملة" data-en="Our Integrated Services">خدماتنا المتكاملة</h2>
@@ -900,7 +984,7 @@
         <div class="container">
             <div class="blog-detail-content">
                 <h2 data-ar="كيف تزيد عدد الاستماعات مجانًا" data-en="How to Increase Streams for Free">كيف تزيد عدد الاستماعات مجانًا</h2>
-                <p data-ar="ليس من الضروري دائمًا إنفاق المال لزيادة عدد الاستماعات، فهناك طرق مجانية فعالة يمكن استخدامها بذكاء." data-en="You don’t always need to spend money to increase streams; there are effective free methods you can use smartly:"></p>
+                <p data-ar="ليس من الضروري دائمًا إنفاق المال لزيادة عدد الاستماعات، فهناك طرق مجانية فعالة يمكن استخدامها بذكاء:" data-en="You don’t always need to spend money to increase streams; there are effective free methods you can use smartly:"></p>
                 <ul data-ar data-en>
                     <li data-ar="فعّل وجودك على المنصات الاجتماعية: كن نشطًا على Instagram وTikTok وYouTube، وشارك لقطات من عملية التسجيل أو من وراء الكواليس لإثارة فضول الجمهور." data-en="Activate your presence on social platforms: Be active on Instagram, TikTok, and YouTube, sharing recording clips or behind-the-scenes footage to spark curiosity."></li>
                     <li data-ar="استخدم القوائم (Playlists): ابحث عن قوائم تشغيل تناسب نوع موسيقاك وراسل أصحابها لطلب إضافة أغنيتك. إذا كانت الأغنية جيدة فالكثير منهم سيقبل دون مقابل." data-en="Use Playlists: Find playlists that match your music genre and contact owners to request adding your song. Many will agree if the song is good, often for free."></li>
@@ -916,7 +1000,7 @@
         <div class="container">
             <div class="blog-detail-content">
                 <h2 data-ar="الفرق بين التوزيع الفردي والتوزيع الاحترافي" data-en="Individual vs Professional Distribution">الفرق بين التوزيع الفردي والتوزيع الاحترافي</h2>
-                <p data-ar="يبدأ الكثير من الفنانين بالتوزيع الفردي ويظنون أنه كافٍ، لكن هناك فرق كبير بينه وبين التوزيع الاحترافي." data-en="Many artists start with individual distribution thinking it’s enough, but there’s a significant difference compared to professional distribution:"></p>
+                <p data-ar="يبدأ الكثير من الفنانين بالتوزيع الفردي ويظنون أنه كافٍ، لكن هناك فرق كبير بينه وبين التوزيع الاحترافي:" data-en="Many artists start with individual distribution thinking it’s enough, but there’s a significant difference compared to professional distribution:"></p>
                 <h3 data-ar="التوزيع الفردي" data-en="Individual Distribution">التوزيع الفردي</h3>
                 <p data-ar="هو أن يقوم الفنان برفع أغنيته بنفسه على منصات محدودة مثل YouTube أو SoundCloud. هذه الطريقة سهلة لكنها محدودة لأنها لا تتيح إدارة الحقوق أو جمع الأرباح من كل المنصات." data-en="This involves the artist uploading their song to limited platforms like YouTube or SoundCloud. It’s easy but limited as it doesn’t manage rights or collect earnings from all platforms."></p>
                 <h3 data-ar="التوزيع الاحترافي" data-en="Professional Distribution">التوزيع الاحترافي</h3>
@@ -930,7 +1014,7 @@
         <div class="container">
             <div class="blog-detail-content">
                 <h2 data-ar="كيفية بناء هوية فنية قوية" data-en="How to Build a Strong Artistic Identity">كيفية بناء هوية فنية قوية</h2>
-                <p data-ar="الهوية الفنية هي ما يجعل الجمهور يتذكرك من أول لحظة يسمع فيها صوتك. الفنان الذي لا يملك هوية واضحة يذوب بين الآلاف مهما كانت موهبته." data-en="Your artistic identity is what makes the audience remember you from the first moment they hear your voice. An artist without a clear identity gets lost among thousands, no matter their talent:"></p>
+                <p data-ar="الهوية الفنية هي ما يجعل الجمهور يتذكرك من أول لحظة يسمع فيها صوتك. الفنان الذي لا يملك هوية واضحة يذوب بين الآلاف مهما كانت موهبته:" data-en="Your artistic identity is what makes the audience remember you from the first moment they hear your voice. An artist without a clear identity gets lost among thousands, no matter their talent:"></p>
                 <ul data-ar data-en>
                     <li data-ar="حدد شخصيتك الفنية: قرر نوع الموسيقى الذي يمثل شخصيتك الحقيقية. هل هي عاطفية أم شبابية أم تجريبية؟ الوضوح في الاتجاه يساعد الجمهور على التعرف عليك بسرعة." data-en="Define your artistic personality: Choose the music genre that reflects your true self. Is it emotional, youthful, or experimental? Clarity in direction helps the audience recognize you quickly."></li>
                     <li data-ar="التزم بخط فني متناسق: لا يعني التكرار لكن حاول أن تحافظ على أسلوب أو طابع خاص يربط بين أعمالك." data-en="Maintain a consistent artistic line: This doesn’t mean repetition, but aim to keep a unique style or theme connecting your works."></li>
@@ -945,7 +1029,7 @@
         <div class="container">
             <div class="blog-detail-content">
                 <h2 data-ar="استراتيجيات تسويق ذكية للفنانين الجدد" data-en="Smart Marketing Strategies for New Artists">استراتيجيات تسويق ذكية للفنانين الجدد</h2>
-                <p data-ar="التسويق الناجح لا يعتمد على المال فقط بل على التنظيم والفهم الجيد للجمهور المستهدف." data-en="Successful marketing isn’t just about money; it relies on organization and a deep understanding of your target audience:"></p>
+                <p data-ar="التسويق الناجح لا يعتمد على المال فقط بل على التنظيم والفهم الجيد للجمهور المستهدف:" data-en="Successful marketing isn’t just about money; it relies on organization and a deep understanding of your target audience:"></p>
                 <ul data-ar data-en>
                     <li data-ar="اعرف جمهورك: من تستهدف بموسيقاك؟ جمهور الراب أم الموسيقى الهادئة أم الشباب الجامعي؟ كل فئة تحتاج طريقة مختلفة للتواصل." data-en="Know your audience: Who are you targeting with your music? Rap fans, calm music lovers, or college students? Each group needs a different approach."></li>
                     <li data-ar="استخدم المنصات بشكل مناسب: TikTok مناسب للمقاطع القصيرة والتحديات. Instagram مثالي لبناء الصورة الفنية والتفاعل. YouTube هو المنصة الأساسية لإطلاق الكليبات الرسمية." data-en="Use platforms wisely: TikTok is great for short clips and challenges. Instagram is ideal for building your artistic image and engagement. YouTube is the primary platform for official music videos."></li>
@@ -1013,15 +1097,95 @@
             </div>
         </div>
     </section>
-    <!-- Footer -->
+    <!-- About, Privacy, and Rights Sections -->
+	    <section id="about-etc" class="about">
+	        <div class="container">
+	            <div class="accordion-container" id="accordion-container-bottom">
+	                <div class="accordion-item open">
+	                    <div class="accordion-header" data-target="content-who-we-are">
+	                        <h2 data-ar="من نحن" data-en="Who We Are">من نحن</h2>
+	                        <i class="fas fa-chevron-down"></i>
+	                    </div>
+	                    <div class="accordion-content" id="content-who-we-are">
+	                        <p data-ar="Beatna Records شركة متخصصة في التوزيع الموسيقي الرقمي والخدمات الفنية المستقلة.
+	نهدف إلى تمكين الفنانين العرب من الوصول إلى جمهور عالمي وتحقيق دخل ثابت من موسيقاهم.
+	نركز على البساطة، الشفافية، والدعم الحقيقي للفنان منذ أول خطوة وحتى تحقيق الانتشار." data-en="Beatna Records is a company specializing in digital music distribution and independent artistic services. We aim to empower Arab artists to reach a global audience and achieve a steady income from their music. We focus on simplicity, transparency, and real support for artists from their first step to widespread success.">Beatna Records شركة متخصصة في التوزيع الموسيقي الرقمي والخدمات الفنية المستقلة.
+	نهدف إلى تمكين الفنانين العرب من الوصول إلى جمهور عالمي وتحقيق دخل ثابت من موسيقاهم.
+	نركز على البساطة، الشفافية، والدعم الحقيقي للفنان منذ أول خطوة وحتى تحقيق الانتشار.</p>
+	                    </div>
+	                </div>
+	                <div class="accordion-item">
+	                    <div class="accordion-header" data-target="content-artist-rights">
+	                        <h2 data-ar="حقوق الفنان" data-en="Artist Rights">حقوق الفنان</h2>
+	                        <i class="fas fa-chevron-down"></i>
+	                    </div>
+	                    <div class="accordion-content" id="content-artist-rights">
+	                        <p data-ar="حقوق الفنان محفوظة بالكامل
+
+	الفنان يحتفظ بجميع حقوقه الفكرية والملكية على أعماله.
+
+	لا يتم نشر أي محتوى دون موافقة الفنان.
+
+	الأرباح تُحوّل مباشرة بعد رصدها وفق نظام واضح وشفاف.
+
+	نسعى لتوفير بيئة عادلة وآمنة تضمن مصلحة الفنان في كل خطوة." data-en="Full Artist Rights Preserved
+
+	The artist retains all intellectual and ownership rights to their work.
+
+	No content is published without the artist's consent.
+
+	Earnings are transferred directly after tracking, following a clear and transparent system.
+
+	We strive to provide a fair and secure environment that ensures the artist's interest at every step.">حقوق الفنان محفوظة بالكامل
+
+	الفنان يحتفظ بجميع حقوقه الفكرية والملكية على أعماله.
+
+	لا يتم نشر أي محتوى دون موافقة الفنان.
+
+	الأرباح تُحوّل مباشرة بعد رصدها وفق نظام واضح وشفاف.
+
+	نسعى لتوفير بيئة عادلة وآمنة تضمن مصلحة الفنان في كل خطوة.</p>
+	                    </div>
+	                </div>
+	                <div class="accordion-item">
+	                    <div class="accordion-header" data-target="content-privacy-terms">
+	                        <h2 data-ar="سياسة الخصوصية والشروط" data-en="Privacy Policy & Terms">سياسة الخصوصية والشروط</h2>
+	                        <i class="fas fa-chevron-down"></i>
+	                    </div>
+	                    <div class="accordion-content" id="content-privacy-terms">
+	                        <p data-ar="جميع البيانات والملفات مؤمنة بالكامل.
+
+	لا تتم مشاركة أي معلومات مع أطراف خارجية.
+
+	يحق للفنان طلب حذف بياناته أو تعديلها في أي وقت.
+
+	جميع العمليات تتم بشفافية وفق الشروط الموضحة في الموقع." data-en="All data and files are fully secured.
+
+	No information is shared with third parties.
+
+	Artists have the right to request deletion or modification of their data at any time.
+
+	All operations are conducted transparently according to the terms outlined on the site.">جميع البيانات والملفات مؤمنة بالكامل.
+
+	لا تتم مشاركة أي معلومات مع أطراف خارجية.
+
+	يحق للفنان طلب حذف بياناته أو تعديلها في أي وقت.
+
+	جميع العمليات تتم بشفافية وفق الشروط الموضحة في الموقع.</p>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </section>
+	    <!-- Footer -->
     <footer class="footer" id="footer">
         <div class="container">
             <img src="https://i.ibb.co/C3z1LDXm/logo.png" alt="Beatna Records Logo" class="footer-logo">
             <p data-ar="Beatna Records &copy; 2025. جميع الحقوق محفوظة." data-en="Beatna Records &copy; 2025. All rights reserved.">Beatna Records &copy; 2025. جميع الحقوق محفوظة.</p>
             <div class="footer-nav">
                 <a href="#about" data-ar="من نحن" data-en="About">من نحن</a>
-                <a href="#privacy" data-ar="سياسة الخصوصية" data-en="Privacy Policy">سياسة الخصوصية</a>
-                <a href="#rights" data-ar="حقوق الفنان" data-en="Artist Rights">حقوق الفنان</a>
+<a href="#privacy-rights-section" data-ar="سياسة الخصوصية" data-en="Privacy Policy">سياسة الخصوصية</a>
+	                <a href="#privacy-rights-section" data-ar="حقوق الفنان" data-en="Artist Rights">حقوق الفنان</a>
             </div>
             <div class="social-media">
                 <a href="https://www.facebook.com/beatnarecords" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -1030,37 +1194,7 @@
             </div>
         </div>
     </footer>
-    <!-- Privacy and Rights Sections -->
-    <section id="privacy" class="about" style="display: none;">
-        <div class="container">
-            <div class="about-content" id="privacy-content">
-                <h2 data-ar="سياسة الخصوصية والشروط" data-en="Privacy Policy & Terms">سياسة الخصوصية والشروط</h2>
-                <p data-ar="جميع البيانات والملفات مؤمنة بالكامل. لا تتم مشاركة أي معلومات مع أطراف خارجية. يحق للفنان طلب حذف بياناته أو تعديلها في أي وقت. جميع العمليات تتم بشفافية وفق الشروط الموضحة في الموقع." data-en="All data and files are fully secured. No information is shared with third parties. Artists have the right to request deletion or modification of their data at any time. All operations are conducted transparently according to the terms outlined on the site."></p>
-                <ul data-ar data-en>
-                    <li data-ar="جميع البيانات والملفات مؤمنة بالكامل." data-en="All data and files are fully secured."></li>
-                    <li data-ar="لا تتم مشاركة أي معلومات مع أطراف خارجية." data-en="No information is shared with third parties."></li>
-                    <li data-ar="يحق للفنان طلب حذف بياناته أو تعديلها في أي وقت." data-en="Artists have the right to request deletion or modification of their data at any time."></li>
-                    <li data-ar="جميع العمليات تتم بشفافية وفق الشروط الموضحة في الموقع." data-en="All operations are conducted transparently according to the terms outlined on the site."></li>
-                </ul>
-                <a href="#footer" class="back-btn" data-ar="العودة إلى الأسفل" data-en="Back to Footer">العودة إلى الأسفل</a>
-            </div>
-        </div>
-    </section>
-    <section id="rights" class="about" style="display: none;">
-        <div class="container">
-            <div class="about-content" id="rights-content">
-                <h2 data-ar="حقوق الفنان محفوظة بالكامل" data-en="Full Artist Rights Preserved">حقوق الفنان محفوظة بالكامل</h2>
-                <p data-ar="الفنان يحتفظ بجميع حقوقه الفكرية والملكية على أعماله. لا يتم نشر أي محتوى دون موافقة الفنان. الأرباح تُحوّل مباشرة بعد رصدها وفق نظام واضح وشفاف. نسعى لتوفير بيئة عادلة وآمنة تضمن مصلحة الفنان في كل خطوة." data-en="The artist retains all intellectual and ownership rights to their work. No content is published without the artist's consent. Earnings are transferred directly after tracking, following a clear and transparent system. We strive to provide a fair and secure environment that ensures the artist's interest at every step."></p>
-                <ul data-ar data-en>
-                    <li data-ar="الفنان يحتفظ بجميع حقوقه الفكرية والملكية على أعماله." data-en="The artist retains all intellectual and ownership rights to their work."></li>
-                    <li data-ar="لا يتم نشر أي محتوى دون موافقة الفنان." data-en="No content is published without the artist's consent."></li>
-                    <li data-ar="الأرباح تُحوّل مباشرة بعد رصدها وفق نظام واضح وشفاف." data-en="Earnings are transferred directly after tracking, following a clear and transparent system."></li>
-                    <li data-ar="نسعى لتوفير بيئة عادلة وآمنة تضمن مصلحة الفنان في كل خطوة." data-en="We strive to provide a fair and secure environment that ensures the artist's interest at every step."></li>
-                </ul>
-                <a href="#footer" class="back-btn" data-ar="العودة إلى الأسفل" data-en="Back to Footer">العودة إلى الأسفل</a>
-            </div>
-        </div>
-    </section>
+
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script>
         // Preloader
@@ -1071,23 +1205,24 @@
                 preloader.style.display = 'none';
             }, 500);
         });
-        // Navbar Scroll Effect with Hide
-        let lastScroll = 0;
-        const navbar = document.querySelector('.navbar');
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.scrollY;
-            if (currentScroll > 50) {
-                navbar.classList.add('scrolled');
-                if (currentScroll > lastScroll) {
-                    navbar.classList.add('hidden');
-                } else {
-                    navbar.classList.remove('hidden');
-                }
-            } else {
-                navbar.classList.remove('scrolled', 'hidden');
-            }
-            lastScroll = currentScroll;
-        });
+// Navbar Scroll Effect with Hide
+	        let lastScroll = 0;
+	        const navbar = document.querySelector('.navbar');
+	        window.addEventListener('scroll', () => {
+	            const currentScroll = window.scrollY;
+	            if (currentScroll > 50) {
+	                navbar.classList.add('scrolled');
+	                // Only hide if scrolling down AND past the initial 50px
+	                if (currentScroll > lastScroll && currentScroll > 50) {
+	                    navbar.classList.add('hidden');
+	                } else {
+	                    navbar.classList.remove('hidden');
+	                }
+	            } else {
+	                navbar.classList.remove('scrolled', 'hidden');
+	            }
+	            lastScroll = currentScroll;
+	        });
         // Back-to-Top Button
         const backToTop = document.getElementById('back-to-top');
         window.addEventListener('scroll', () => {
@@ -1102,6 +1237,44 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
         // Language Switcher
+	        // Accordion Functionality
+	        document.addEventListener('DOMContentLoaded', () => {
+	            const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+	            accordionHeaders.forEach(header => {
+	                header.addEventListener('click', () => {
+	                    const item = header.closest('.accordion-item');
+	                    const content = document.getElementById(header.dataset.target);
+	                    const isOpen = item.classList.contains('open');
+
+	                    if (isOpen) {
+	                        content.style.maxHeight = null;
+	                        item.classList.remove('open');
+	                    } else {
+	                        // Close all other open items
+	                        document.querySelectorAll('.accordion-item.open').forEach(openItem => {
+	                            if (openItem !== item) {
+	                                openItem.classList.remove('open');
+	                                openItem.querySelector('.accordion-content').style.maxHeight = null;
+	                            }
+	                        });
+
+	                        // Open the clicked item
+	                        content.style.maxHeight = content.scrollHeight + "px";
+	                        item.classList.add('open');
+	                    }
+	                });
+	            });
+
+	            // Set initial height for the open item on load (Who We Are)
+	            const initialOpenItem = document.querySelector('.accordion-item.open');
+	            if (initialOpenItem) {
+	                const initialContent = initialOpenItem.querySelector('.accordion-content');
+	                // Use a large fixed value for initial open to ensure all content is shown, 
+	                // as scrollHeight might be incorrect before rendering.
+	                initialContent.style.maxHeight = '500px'; 
+	            }
+	        });
         const langButtons = document.querySelectorAll('.lang-btn');
         function switchLanguage(lang) {
             document.querySelectorAll('[data-ar], [data-en]').forEach(element => {
@@ -1225,4 +1398,54 @@
         function updateActiveLink(id) {
             navLinks.forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('href') === `#${id}` ||
+                if (link.getAttribute('href') === `#${id}` || (id.startsWith('blog-') && link.getAttribute('href') === '#blog')) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        function updateUrlOnScroll() {
+            let current = 'home';
+            const scrollY = window.scrollY;
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - navbar.offsetHeight - 1;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight && section.style.display !== 'none') {
+                    current = section.getAttribute('id');
+                }
+            });
+            updateActiveLink(current);
+            const newUrl = current === 'home' ? window.location.pathname : `/${current}`;
+            history.replaceState(null, null, newUrl);
+        }
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                const href = link.getAttribute('href');
+                const targetId = href.substring(1);
+                const target = document.querySelector(href);
+                if (target) {
+                    if (targetId.startsWith('blog-')) {
+                        sections.forEach(sec => sec.style.display = 'none');
+                        target.style.display = 'block';
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    } else {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                    const newUrl = targetId === 'home' ? window.location.pathname : `/${targetId}`;
+                    history.pushState(null, null, newUrl);
+                    updateActiveLink(targetId);
+                    // Hide other hidden sections
+                    sections.forEach(sec => {
+                        if (sec.id !== targetId && (sec.id === 'privacy' || sec.id === 'rights' || sec.classList.contains('blog-detail'))) {
+                            sec.style.display = 'none';
+                        }
+                    });
+                }
+            });
+        });
+        window.addEventListener('scroll', throttle(updateUrlOnScroll, 100));
+        window.addEventListener('load', updateUrlOnScroll);
+    </script>
+</body>
+</html>
+
