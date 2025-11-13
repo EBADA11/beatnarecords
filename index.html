@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beatna Records | بوابتك لعالم الموسيقى الرقمي</title>
-    <meta name="description" content="Beatna Records: Your digital partner for music distribution, copyright management, and artistic marketing. Learn tips to boost your music career through our blog.">
+    <meta name="description" content="Beatna Records: Your digital partner for music distribution, copyright management, and artistic marketing. Explore our detailed blog for artist tips and strategies.">
     <meta name="keywords" content="music distribution, Beatna Records, digital music, artists, Spotify, Apple Music, music blog, artist tips">
     <link rel="icon" type="image/png" href="https://i.ibb.co/C3z1LDXm/logo.png">
     <!-- hreflang tags for language versions -->
@@ -392,19 +392,77 @@
             box-shadow: var(--shadow);
             border: 1px solid rgba(124, 58, 237, 0.2);
             opacity: 0;
+            text-align: center;
         }
         .blog-post:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), var(--glow-shadow);
             border-color: var(--primary-color);
         }
-        .blog-post h3 {
+        .blog-post h3 a {
             color: var(--text-light);
-            margin-bottom: 10px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .blog-post h3 a:hover {
+            color: var(--primary-color);
+            text-shadow: 0 0 10px rgba(124, 58, 237, 0.5);
         }
         .blog-post p {
             color: var(--text-muted);
             font-size: 0.95rem;
+        }
+        /* --- Detailed Blog Post Section --- */
+        .blog-detail {
+            display: none;
+            background: var(--dark-bg);
+            padding: 80px 0;
+            min-height: 80vh;
+        }
+        .blog-detail-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--dark-card);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(124, 58, 237, 0.2);
+        }
+        .blog-detail-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .blog-detail-content ul {
+            list-style: none;
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+        .blog-detail-content ul li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+            color: var(--text-muted);
+        }
+        .blog-detail-content ul li:before {
+            content: "•";
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
+        }
+        .blog-detail-content .back-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .blog-detail-content .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--glow-shadow);
         }
         /* --- Clients Section --- */
         .clients {
@@ -648,6 +706,7 @@
             .hero h1 { font-size: 3.5rem; }
             .logo-img { height: 100px; }
             .footer-logo { height: 120px; }
+            .blog-detail-content { padding: 20px; }
         }
         @media (max-width: 768px) {
             .navbar .container {
@@ -786,30 +845,107 @@
     <section id="blog" class="blog">
         <div class="container">
             <h2 data-ar="المدونة" data-en="Blog">المدونة</h2>
-            <p data-ar="محتوى توعوي يساعد الفنانين المستقلين على تطوير مسيرتهم الفنية خطوة بخطوة. نشاركك أهم النصائح والتجارب والأفكار التي تساعدك على الوصول بموسيقاك إلى مستوى احترافي." data-en="Educational content to help independent artists develop their careers step by step. We share the best tips, experiences, and ideas to take your music to a professional level.">محتوى توعوي يساعد الفنانين المستقلين على تطوير مسيرتهم الفنية خطوة بخطوة. نشاركك أهم النصائح والتجارب والأفكار التي تساعدك على الوصول بموسيقاك إلى مستوى احترافي.</p>
+            <p data-ar="محتوى توعوي يساعد الفنانين المستقلين على تطوير مسيرتهم الفنية خطوة بخطوة. انقر على العناوين لقراءة التفاصيل!" data-en="Educational content to help independent artists develop their careers step by step. Click the titles for details!">محتوى توعوي يساعد الفنانين المستقلين على تطوير مسيرتهم الفنية خطوة بخطوة. انقر على العناوين لقراءة التفاصيل!</p>
             <div class="blog-grid" id="blog-grid">
                 <div class="blog-post">
-                    <h3 data-ar="أفضل وقت لإطلاق أغنيتك على المنصات" data-en="Best Time to Release Your Song on Platforms">أفضل وقت لإطلاق أغنيتك على المنصات</h3>
-                    <p data-ar="اختيار توقيت إصدار أغنيتك يمكن أن يؤثر بشكل كبير على نجاحها. التوقيت المناسب يساعد أغنيتك على الوصول إلى عدد أكبر من المستمعين وتحقيق انتشار أسرع. نصائح: تجنب الفترات المزدحمة مثل الأعياد وشهر رمضان، إلا إذا كانت أغنيتك مرتبطة بالمناسبة نفسها. الخميس والجمعة هما أفضل يومين في العالم العربي. جهز الحملة الترويجية قبل الإطلاق بأسبوعين على الأقل." data-en="Choosing the right release time for your song can greatly impact its success. The right timing helps your song reach more listeners and gain faster traction. Tips: Avoid busy periods like holidays and Ramadan unless your song is event-related. Thursdays and Fridays are the best days in the Arab world. Prepare your promotional campaign at least two weeks in advance."></p>
+                    <h3><a href="#blog-release-time" data-ar="أفضل وقت لإطلاق أغنيتك على المنصات" data-en="Best Time to Release Your Song on Platforms">أفضل وقت لإطلاق أغنيتك على المنصات</a></h3>
+                    <p data-ar="تعرف على أفضل التواقيت لضمان نجاح أغنيتك." data-en="Learn the best times to ensure your song's success."></p>
                 </div>
                 <div class="blog-post">
-                    <h3 data-ar="كيف تزيد عدد الاستماعات مجانًا" data-en="How to Increase Streams for Free">كيف تزيد عدد الاستماعات مجانًا</h3>
-                    <p data-ar="ليس من الضروري دائمًا إنفاق المال. فعّل حضورك على المنصات الاجتماعية، استخدم القوائم (Playlists)، تفاعل مع جمهورك، وتابع الإحصاءات. الاستمرارية والتفاعل الحقيقي هما الطريق لبناء قاعدة جماهيرية دائمة." data-en="You don’t always need to spend money. Activate your presence on social platforms, use playlists, engage with your audience, and track analytics. Consistency and genuine interaction are key to building a lasting fan base."></p>
+                    <h3><a href="#blog-streams" data-ar="كيف تزيد عدد الاستماعات مجانًا" data-en="How to Increase Streams for Free">كيف تزيد عدد الاستماعات مجانًا</a></h3>
+                    <p data-ar="نصائح فعالة دون تكلفة لزيادة انتشارك." data-en="Effective tips to boost your streams without cost."></p>
                 </div>
                 <div class="blog-post">
-                    <h3 data-ar="الفرق بين التوزيع الفردي والاحترافي" data-en="Individual vs Professional Distribution">الفرق بين التوزيع الفردي والاحترافي</h3>
-                    <p data-ar="التوزيع الفردي محدود ولا يدير الحقوق، بينما التوزيع الاحترافي ينشر على جميع المنصات مع متابعة الأرباح وتقارير مالية واضحة، مع الحفاظ على ملكية الفنان 100%." data-en="Individual distribution is limited and doesn’t manage rights, while professional distribution publishes on all platforms with earnings tracking, clear financial reports, and 100% artist ownership."></p>
+                    <h3><a href="#blog-distribution" data-ar="الفرق بين التوزيع الفردي والاحترافي" data-en="Individual vs Professional Distribution">الفرق بين التوزيع الفردي والاحترافي</a></h3>
+                    <p data-ar="اكتشف الفروق الرئيسية بين الخيارين." data-en="Discover the key differences between the two options."></p>
                 </div>
                 <div class="blog-post">
-                    <h3 data-ar="كيفية بناء هوية فنية قوية" data-en="How to Build a Strong Artistic Identity">كيفية بناء هوية فنية قوية</h3>
-                    <p data-ar="حدد شخصيتك الفنية، التزم بخط متناسق، اهتم بالصورة البصرية، وكن ثابتًا وصادقًا. الهوية تبنى مع الوقت وتجذب الجمهور." data-en="Define your artistic personality, maintain a consistent style, focus on visual branding, and stay consistent and authentic. Identity builds over time and attracts fans."></p>
+                    <h3><a href="#blog-identity" data-ar="كيفية بناء هوية فنية قوية" data-en="How to Build a Strong Artistic Identity">كيفية بناء هوية فنية قوية</a></h3>
+                    <p data-ar="خطوات لبناء علامة فنية مميزة." data-en="Steps to build a unique artistic brand."></p>
                 </div>
                 <div class="blog-post">
-                    <h3 data-ar="استراتيجيات تسويق ذكية للفنانين الجدد" data-en="Smart Marketing Strategies for New Artists">استراتيجيات تسويق ذكية للفنانين الجدد</h3>
-                    <p data-ar="اعرف جمهورك، استخدم المنصات بشكل مناسب، كرر المحتوى بطرق متنوعة، وتعاون مع فنانين آخرين. التسويق الذكي يعتمد على التواصل والإبداع." data-en="Know your audience, use platforms wisely, repurpose content creatively, and collaborate with other artists. Smart marketing relies on engagement and creativity."></p>
+                    <h3><a href="#blog-marketing" data-ar="استراتيجيات تسويق ذكية للفنانين الجدد" data-en="Smart Marketing Strategies for New Artists">استراتيجيات تسويق ذكية للفنانين الجدد</a></h3>
+                    <p data-ar="استراتيجيات للنجاح في عالم الموسيقى." data-en="Strategies for success in the music world."></p>
                 </div>
             </div>
             <p class="text-center" data-ar="خلاصة مدونة Beatna: هدفنا مساعدة الفنانين المستقلين على بناء مسيرتهم بخطوات مدروسة. نؤمن أن الموهبة تحتاج توجيه وتسويق ذكي. تابع المدونة لتتعلم كيف تطور عملك وتصل بموسيقاك إلى جمهور أوسع." data-en="Beatna Blog Summary: Our goal is to help independent artists build their careers with thoughtful steps. We believe talent needs guidance and smart marketing. Follow the blog to learn how to grow your work and reach a wider audience."></p>
+        </div>
+    </section>
+    <!-- Detailed Blog Posts -->
+    <section id="blog-release-time" class="blog-detail">
+        <div class="container">
+            <div class="blog-detail-content">
+                <h2 data-ar="أفضل وقت لإطلاق أغنيتك على المنصات" data-en="Best Time to Release Your Song on Platforms">أفضل وقت لإطلاق أغنيتك على المنصات</h2>
+                <p data-ar="اختيار توقيت إصدار أغنيتك يمكن أن يؤثر بشكل كبير على نجاحها. التوقيت المناسب يساعد أغنيتك على الوصول إلى عدد أكبر من المستمعين وتحقيق انتشار أسرع. إليك نصائح أساسية:" data-en="Choosing the right release time for your song can greatly impact its success. The right timing helps your song reach more listeners and gain faster traction. Here are some key tips:"></p>
+                <ul data-ar data-en>
+                    <li data-ar="تجنب الفترات المزدحمة مثل الأعياد وشهر رمضان، إلا إذا كانت أغنيتك مرتبطة بالمناسبة نفسها." data-en="Avoid busy periods like holidays and Ramadan unless your song is event-related."></li>
+                    <li data-ar="الخميس والجمعة هما أفضل يومين للإطلاق في العالم العربي لأن النشاط على المنصات يكون في أعلى مستوياته." data-en="Thursdays and Fridays are the best days for release in the Arab world as platform activity peaks."></li>
+                    <li data-ar="جهز الحملة الترويجية قبل الإطلاق بأسبوعين على الأقل من خلال صور أو فيديوهات قصيرة أو منشورات تمهيدية." data-en="Prepare your promotional campaign at least two weeks in advance with photos, short videos, or teaser posts."></li>
+                </ul>
+                <p data-ar="التوقيت المثالي لا يخلق النجاح وحده، لكنه يضاعف فرص الوصول عندما تكون مستعدًا بشكل صحيح." data-en="The ideal timing doesn’t guarantee success alone, but it amplifies your reach when you’re properly prepared."></p>
+                <a href="#blog" class="back-btn" data-ar="العودة إلى المدونة" data-en="Back to Blog">العودة إلى المدونة</a>
+            </div>
+        </div>
+    </section>
+    <section id="blog-streams" class="blog-detail">
+        <div class="container">
+            <div class="blog-detail-content">
+                <h2 data-ar="كيف تزيد عدد الاستماعات مجانًا" data-en="How to Increase Streams for Free">كيف تزيد عدد الاستماعات مجانًا</h2>
+                <p data-ar="ليس من الضروري دائمًا إنفاق المال لزيادة عدد الاستماعات، فهناك طرق مجانية فعالة يمكن استخدامها بذكاء:" data-en="You don’t always need to spend money to increase streams; there are effective free methods you can use smartly:"></p>
+                <ul data-ar data-en>
+                    <li data-ar="فعّل وجودك على المنصات الاجتماعية: كن نشطًا على Instagram وTikTok وYouTube، وشارك لقطات من عملية التسجيل أو من وراء الكواليس لإثارة فضول الجمهور." data-en="Activate your presence on social platforms: Be active on Instagram, TikTok, and YouTube, sharing recording clips or behind-the-scenes footage to spark curiosity."></li>
+                    <li data-ar="استخدم القوائم (Playlists): ابحث عن قوائم تشغيل تناسب نوع موسيقاك وراسل أصحابها لطلب إضافة أغنيتك. إذا كانت الأغنية جيدة فالكثير منهم سيقبل دون مقابل." data-en="Use Playlists: Find playlists that match your music genre and contact owners to request adding your song. Many will agree if the song is good, often for free."></li>
+                    <li data-ar="تفاعل مع جمهورك: رد على التعليقات وشارك المتابعين آرائهم وكن قريبًا منهم. التفاعل الحقيقي يبني جمهورًا وفيًا." data-en="Engage with your audience: Reply to comments, share followers’ opinions, and stay close to them. Genuine interaction builds a loyal fan base."></li>
+                    <li data-ar="تابع الإحصاءات: راقب من أين تأتي أكبر نسبة من الاستماع وركز على المنصات التي تحقق لك أفضل نتائج." data-en="Track analytics: Monitor where most streams come from and focus on the platforms that yield the best results."></li>
+                </ul>
+                <p data-ar="الاستمرارية والتفاعل الحقيقي هما الطريق لبناء قاعدة جماهيرية دائمة." data-en="Consistency and genuine interaction are the path to building a lasting fan base."></p>
+                <a href="#blog" class="back-btn" data-ar="العودة إلى المدونة" data-en="Back to Blog">العودة إلى المدونة</a>
+            </div>
+        </div>
+    </section>
+    <section id="blog-distribution" class="blog-detail">
+        <div class="container">
+            <div class="blog-detail-content">
+                <h2 data-ar="الفرق بين التوزيع الفردي والتوزيع الاحترافي" data-en="Individual vs Professional Distribution">الفرق بين التوزيع الفردي والتوزيع الاحترافي</h2>
+                <p data-ar="يبدأ الكثير من الفنانين بالتوزيع الفردي ويظنون أنه كافٍ، لكن هناك فرق كبير بينه وبين التوزيع الاحترافي:" data-en="Many artists start with individual distribution thinking it’s enough, but there’s a significant difference compared to professional distribution:"></p>
+                <h3 data-ar="التوزيع الفردي" data-en="Individual Distribution">التوزيع الفردي</h3>
+                <p data-ar="هو أن يقوم الفنان برفع أغنيته بنفسه على منصات محدودة مثل YouTube أو SoundCloud. هذه الطريقة سهلة لكنها محدودة لأنها لا تتيح إدارة الحقوق أو جمع الأرباح من كل المنصات." data-en="This involves the artist uploading their song to limited platforms like YouTube or SoundCloud. It’s easy but limited as it doesn’t manage rights or collect earnings from all platforms."></p>
+                <h3 data-ar="التوزيع الاحترافي" data-en="Professional Distribution">التوزيع الاحترافي</h3>
+                <p data-ar="يتيح نشر العمل على جميع المنصات العالمية في وقت واحد مع نظام متابعة للأرباح وحقوق النشر بشكل منظم ودقيق. كما يوفر تقارير مالية واضحة ويحافظ على ملكية الفنان لأعماله بنسبة 100%." data-en="Allows publishing on all global platforms simultaneously with a system to track earnings and copyrights accurately. It also provides clear financial reports and preserves 100% artist ownership."></p>
+                <p data-ar="الفرق الحقيقي هو أن التوزيع الاحترافي يحول الأغنية من عمل فردي بسيط إلى مشروع فني كامل ومستمر." data-en="The real difference is that professional distribution transforms a simple individual work into a full, ongoing artistic project."></p>
+                <a href="#blog" class="back-btn" data-ar="العودة إلى المدونة" data-en="Back to Blog">العودة إلى المدونة</a>
+            </div>
+        </div>
+    </section>
+    <section id="blog-identity" class="blog-detail">
+        <div class="container">
+            <div class="blog-detail-content">
+                <h2 data-ar="كيفية بناء هوية فنية قوية" data-en="How to Build a Strong Artistic Identity">كيفية بناء هوية فنية قوية</h2>
+                <p data-ar="الهوية الفنية هي ما يجعل الجمهور يتذكرك من أول لحظة يسمع فيها صوتك. الفنان الذي لا يملك هوية واضحة يذوب بين الآلاف مهما كانت موهبته:" data-en="Your artistic identity is what makes the audience remember you from the first moment they hear your voice. An artist without a clear identity gets lost among thousands, no matter their talent:"></p>
+                <ul data-ar data-en>
+                    <li data-ar="حدد شخصيتك الفنية: قرر نوع الموسيقى الذي يمثل شخصيتك الحقيقية. هل هي عاطفية أم شبابية أم تجريبية؟ الوضوح في الاتجاه يساعد الجمهور على التعرف عليك بسرعة." data-en="Define your artistic personality: Choose the music genre that reflects your true self. Is it emotional, youthful, or experimental? Clarity in direction helps the audience recognize you quickly."></li>
+                    <li data-ar="التزم بخط فني متناسق: لا يعني التكرار لكن حاول أن تحافظ على أسلوب أو طابع خاص يربط بين أعمالك." data-en="Maintain a consistent artistic line: This doesn’t mean repetition, but aim to keep a unique style or theme connecting your works."></li>
+                    <li data-ar="اهتم بالصورة البصرية: الغلاف والصور وطريقة العرض وأسلوب الكلام على مواقع التواصل كلها عناصر تكمل الهوية الفنية." data-en="Focus on visual branding: Album covers, photos, presentation style, and social media tone all contribute to your artistic identity."></li>
+                    <li data-ar="كن ثابتًا وصادقًا: الهوية تبنى مع الوقت والجمهور يثق بالفنان المستمر والمتوازن في أسلوبه ورسائله." data-en="Stay consistent and authentic: Identity builds over time, and audiences trust an artist who remains steady and balanced in style and messaging."></li>
+                </ul>
+                <a href="#blog" class="back-btn" data-ar="العودة إلى المدونة" data-en="Back to Blog">العودة إلى المدونة</a>
+            </div>
+        </div>
+    </section>
+    <section id="blog-marketing" class="blog-detail">
+        <div class="container">
+            <div class="blog-detail-content">
+                <h2 data-ar="استراتيجيات تسويق ذكية للفنانين الجدد" data-en="Smart Marketing Strategies for New Artists">استراتيجيات تسويق ذكية للفنانين الجدد</h2>
+                <p data-ar="التسويق الناجح لا يعتمد على المال فقط بل على التنظيم والفهم الجيد للجمهور المستهدف:" data-en="Successful marketing isn’t just about money; it relies on organization and a deep understanding of your target audience:"></p>
+                <ul data-ar data-en>
+                    <li data-ar="اعرف جمهورك: من تستهدف بموسيقاك؟ جمهور الراب أم الموسيقى الهادئة أم الشباب الجامعي؟ كل فئة تحتاج طريقة مختلفة للتواصل." data-en="Know your audience: Who are you targeting with your music? Rap fans, calm music lovers, or college students? Each group needs a different approach."></li>
+                    <li data-ar="استخدم المنصات بشكل مناسب: TikTok مناسب للمقاطع القصيرة والتحديات. Instagram مثالي لبناء الصورة الفنية والتفاعل. YouTube هو المنصة الأساسية لإطلاق الكليبات الرسمية." data-en="Use platforms wisely: TikTok is great for short clips and challenges. Instagram is ideal for building your artistic image and engagement. YouTube is the primary platform for official music videos."></li>
+                    <li data-ar="كرر المحتوى بطرق متنوعة: استخدم نفس المقطع في أكثر من شكل مثل تيزر أو كلمات أو لقطات من خلف الكواليس. التكرار الذكي يجعل الأغنية تترسخ في ذهن الجمهور." data-en="Repurpose content creatively: Use the same clip in different formats like teasers, lyrics, or behind-the-scenes footage. Smart repetition embeds the song in the audience’s mind."></li>
+                    <li data-ar="تعاون مع فنانين آخرين: التعاون يفتح لك جمهورًا جديدًا دون تكلفة إضافية ويزيد من فرص الانتشار." data-en="Collaborate with other artists: Collaborations open new audiences without extra cost and increase your reach."></li>
+                </ul>
+                <p data-ar="التسويق الذكي هو مزيج من التواصل والإبداع والاستمرارية وليس مجرد إعلان مؤقت." data-en="Smart marketing is a blend of engagement, creativity, and consistency, not just temporary advertising."></p>
+                <a href="#blog" class="back-btn" data-ar="العودة إلى المدونة" data-en="Back to Blog">العودة إلى المدونة</a>
+            </div>
         </div>
     </section>
     <!-- Clients Section -->
@@ -885,7 +1021,7 @@
             </div>
         </div>
     </footer>
-    <!-- Privacy and Rights Sections (Hidden by default, shown via scroll or link) -->
+    <!-- Privacy and Rights Sections (Hidden by default) -->
     <section id="privacy" class="about" style="display: none;">
         <div class="container">
             <div class="about-content" id="privacy-content">
@@ -1060,13 +1196,13 @@
                 }
             }
         }
-        // Section tracking and URL update
+        // Section tracking and URL update with blog details
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('.nav-links a, .footer-nav a');
         function updateActiveLink(id) {
             navLinks.forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('href') === `#${id}`) {
+                if (link.getAttribute('href') === `#${id}` || (id.startsWith('blog-') && link.getAttribute('href') === '#blog')) {
                     link.classList.add('active');
                 }
             });
@@ -1077,7 +1213,7 @@
             sections.forEach(section => {
                 const sectionTop = section.offsetTop - navbar.offsetHeight - 1;
                 const sectionHeight = section.clientHeight;
-                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight && section.style.display !== 'none') {
                     current = section.getAttribute('id');
                 }
             });
@@ -1092,14 +1228,19 @@
                 const targetId = href.substring(1);
                 const target = document.querySelector(href);
                 if (target) {
-                    target.style.display = 'block';
-                    target.scrollIntoView({ behavior: 'smooth' });
+                    if (targetId.startsWith('blog-')) {
+                        sections.forEach(sec => sec.style.display = 'none');
+                        target.style.display = 'block';
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    } else {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
                     const newUrl = targetId === 'home' ? window.location.pathname : `/${targetId}`;
                     history.pushState(null, null, newUrl);
                     updateActiveLink(targetId);
                     // Hide other hidden sections
                     sections.forEach(sec => {
-                        if (sec.id !== targetId && (sec.id === 'privacy' || sec.id === 'rights')) {
+                        if (sec.id !== targetId && (sec.id === 'privacy' || sec.id === 'rights' || sec.classList.contains('blog-detail'))) {
                             sec.style.display = 'none';
                         }
                     });
