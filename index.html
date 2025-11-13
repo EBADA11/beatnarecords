@@ -6,26 +6,28 @@
     <title>Beatna Records | توزيع موسيقى رقمي احترافي</title>
     <meta name="description" content="Beatna Records - نوّزع موسيقاك على جميع المنصات العالمية. Spotify، Apple Music، Anghami، Deezer والمزيد. إدارة حقوق وحماية فنية شاملة.">
     <meta name="keywords" content="توزيع موسيقى, Spotify, Apple Music, Anghami, Deezer, حقوق فنانين, تسويق موسيقى">
-    <link rel="icon" type="image/png" href="https://i.ibb.co/C3z1LDXm">
+    <link rel="icon" type="image/png" href="https://ibb.co/C3z1LDXm">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2D5BFF;
-            --primary-dark: #1E40AF;
-            --primary-light: #60A5FA;
-            --secondary: #FF6B35;
-            --dark: #1E293B;
-            --darker: #0F172A;
-            --light: #F8FAFC;
-            --gray: #64748B;
-            --gray-light: #E2E8F0;
+            --primary: #8B5CF6;
+            --primary-dark: #7C3AED;
+            --primary-light: #A78BFA;
+            --secondary: #F97316;
+            --accent: #EC4899;
+            --dark: #111827;
+            --darker: #030712;
+            --light: #F9FAFB;
+            --gray: #6B7280;
+            --gray-light: #E5E7EB;
             --success: #10B981;
-            --border-radius: 12px;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --border-radius: 16px;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
             --transition: all 0.3s ease;
         }
         * {
@@ -38,8 +40,8 @@
         }
         body {
             font-family: 'Tajawal', sans-serif;
-            background-color: var(--light);
-            color: var(--dark);
+            background-color: var(--dark);
+            color: var(--light);
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -50,18 +52,18 @@
         }
         /* Header & Navigation */
         .header {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(17, 24, 39, 0.9);
             backdrop-filter: blur(10px);
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 10px 0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             transition: background 0.3s ease;
+            padding: 10px 0;
         }
         .header.scrolled {
-            background: rgba(255, 255, 255, 0.98);
+            background: rgba(17, 24, 39, 0.98);
         }
         .header.scrolled .logo-img {
             height: 50px;
@@ -92,7 +94,10 @@
         .logo-text {
             font-size: 1.8rem;
             font-weight: 800;
-            color: var(--primary);
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             margin-right: 10px;
             transition: font-size 0.3s ease;
         }
@@ -104,15 +109,16 @@
         }
         .nav-links a {
             text-decoration: none;
-            color: var(--dark);
+            color: var(--light);
             font-weight: 500;
             font-size: 1rem;
             position: relative;
             padding: 5px 0;
             transition: color 0.3s ease;
+            white-space: nowrap;
         }
         .nav-links a:hover {
-            color: var(--primary);
+            color: var(--primary-light);
         }
         .nav-links a::after {
             content: '';
@@ -133,7 +139,7 @@
             gap: 15px;
         }
         .btn {
-            padding: 8px 18px;
+            padding: 10px 20px;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
@@ -146,20 +152,21 @@
             font-size: 0.9rem;
         }
         .btn-primary {
-            background: var(--primary);
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
             color: white;
+            box-shadow: 0 4px 6px -1px rgba(139, 92, 246, 0.3);
         }
         .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(139, 92, 246, 0.4);
         }
         .btn-outline {
             background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
+            color: var(--primary-light);
+            border: 2px solid var(--primary-light);
         }
         .btn-outline:hover {
-            background: var(--primary);
+            background: var(--primary-light);
             color: white;
         }
         .language-switcher {
@@ -167,12 +174,12 @@
             background: rgba(255, 255, 255, 0.1);
             border-radius: 20px;
             padding: 3px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
         .lang-btn {
             background: transparent;
             border: none;
-            color: var(--dark);
+            color: var(--light);
             padding: 6px 15px;
             border-radius: 20px;
             cursor: pointer;
@@ -182,25 +189,36 @@
         .lang-btn.active {
             background: var(--primary);
             color: white;
-            box-shadow: 0 2px 5px rgba(45, 91, 255, 0.3);
+            box-shadow: 0 2px 5px rgba(139, 92, 246, 0.3);
         }
         .mobile-menu {
             display: none;
             background: none;
             border: none;
             font-size: 1.5rem;
-            color: var(--dark);
+            color: var(--light);
             cursor: pointer;
         }
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(45, 91, 255, 0.8), rgba(30, 64, 175, 0.9)), url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background: linear-gradient(135deg, rgba(17, 24, 39, 0.9), rgba(3, 7, 18, 0.95)), url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
             background-position: center;
             color: white;
-            padding: 120px 0 80px;
+            padding: 140px 0 100px;
             position: relative;
             overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.2), transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.2), transparent 50%);
+            z-index: 1;
         }
         .hero-content {
             position: relative;
@@ -210,40 +228,63 @@
             margin: 0 auto;
         }
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 4rem;
             margin-bottom: 1.5rem;
             font-weight: 800;
             line-height: 1.2;
+            background: linear-gradient(90deg, var(--light), var(--primary-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: fadeInUp 0.8s ease;
         }
         .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
             opacity: 0.9;
+            animation: fadeInUp 0.8s ease 0.2s both;
         }
         .hero-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
             justify-content: center;
             flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.4s both;
         }
         .hero .btn {
-            padding: 1rem 2rem;
+            padding: 1.2rem 2.5rem;
             font-size: 1.1rem;
         }
         .hero-stats {
             display: flex;
             justify-content: center;
-            gap: 3rem;
-            margin-top: 4rem;
+            gap: 4rem;
+            margin-top: 5rem;
             flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.6s both;
         }
         .stat {
             text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            min-width: 150px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+        .stat:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
         }
         .stat-number {
             font-size: 2.5rem;
             font-weight: 800;
             margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, var(--primary-light), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             direction: ltr;
         }
         .stat-label {
@@ -252,22 +293,35 @@
         }
         /* Platforms Section */
         .platforms {
-            padding: 80px 0;
-            background: white;
+            padding: 100px 0;
+            background: var(--darker);
+            position: relative;
+        }
+        .platforms::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary-light), transparent);
         }
         .section-header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
         .section-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--darker);
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--light), var(--primary-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         .section-header p {
             font-size: 1.2rem;
             color: var(--gray);
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
         }
         .platforms-grid {
@@ -277,72 +331,119 @@
             margin-top: 3rem;
         }
         .platform-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.05);
             padding: 2rem;
             border-radius: var(--border-radius);
             text-align: center;
             box-shadow: var(--shadow);
             transition: var(--transition);
-            border: 1px solid var(--gray-light);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .platform-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .platform-card:hover::before {
+            opacity: 1;
         }
         .platform-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
         }
         .platform-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--primary-light), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            z-index: 1;
         }
         /* Services Section */
         .services {
-            padding: 80px 0;
-            background: var(--light);
+            padding: 100px 0;
+            background: var(--dark);
         }
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            gap: 2.5rem;
         }
         .service-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.05);
             padding: 2.5rem;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             transition: var(--transition);
             text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .service-card:hover::before {
+            opacity: 1;
         }
         .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
         }
         .service-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--primary-light);
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, var(--primary-light), var(--accent));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 1.5rem;
             font-size: 2rem;
-            color: var(--primary);
+            color: white;
+            position: relative;
+            z-index: 1;
         }
         .service-card h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: var(--darker);
+            color: var(--light);
+            position: relative;
+            z-index: 1;
+        }
+        .service-card p {
+            color: var(--gray);
+            position: relative;
+            z-index: 1;
         }
         /* How It Works */
         .how-it-works {
-            padding: 80px 0;
-            background: white;
+            padding: 100px 0;
+            background: var(--darker);
         }
         .steps {
             display: flex;
             justify-content: space-between;
             gap: 2rem;
-            margin-top: 3rem;
+            margin-top: 4rem;
             position: relative;
         }
         .steps::before {
@@ -352,7 +453,7 @@
             right: 0;
             left: 0;
             height: 2px;
-            background: var(--gray-light);
+            background: linear-gradient(90deg, var(--primary-light), var(--accent));
             z-index: 1;
         }
         .step {
@@ -364,7 +465,7 @@
         .step-number {
             width: 80px;
             height: 80px;
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary-light), var(--accent));
             color: white;
             border-radius: 50%;
             display: flex;
@@ -373,68 +474,91 @@
             font-size: 1.5rem;
             font-weight: 700;
             margin: 0 auto 1.5rem;
-            border: 4px solid white;
+            border: 4px solid var(--dark);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
         }
         .step h4 {
             font-size: 1.25rem;
             margin-bottom: 1rem;
-            color: var(--darker);
+            color: var(--light);
         }
         /* Pricing */
         .pricing {
-            padding: 80px 0;
-            background: var(--light);
+            padding: 100px 0;
+            background: var(--dark);
         }
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            gap: 2.5rem;
+            margin-top: 4rem;
         }
         .pricing-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.05);
             padding: 2.5rem;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             text-align: center;
             position: relative;
             transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+        }
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .pricing-card:hover::before {
+            opacity: 1;
         }
         .pricing-card.featured {
-            border: 2px solid var(--primary);
+            border: 2px solid var(--primary-light);
             transform: scale(1.05);
         }
         .pricing-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
         }
         .pricing-card.featured:hover {
-            transform: scale(1.05) translateY(-5px);
+            transform: scale(1.05) translateY(-10px);
         }
         .pricing-badge {
             position: absolute;
             top: -10px;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--secondary);
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
             color: white;
             padding: 0.5rem 1.5rem;
             border-radius: 20px;
             font-size: 0.875rem;
             font-weight: 600;
+            box-shadow: 0 4px 6px -1px rgba(249, 115, 22, 0.3);
         }
         .pricing-header {
             margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
         }
         .pricing-name {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: var(--darker);
+            color: var(--light);
         }
         .pricing-price {
             font-size: 2rem;
             font-weight: 800;
-            color: var(--primary);
+            background: linear-gradient(90deg, var(--primary-light), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             margin-bottom: 0.5rem;
         }
         .pricing-period {
@@ -444,10 +568,13 @@
         .pricing-features {
             list-style: none;
             margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
         }
         .pricing-features li {
             padding: 0.75rem 0;
-            border-bottom: 1px solid var(--gray-light);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light);
         }
         .pricing-features li:last-child {
             border-bottom: none;
@@ -458,25 +585,32 @@
         }
         /* Testimonials */
         .testimonials {
-            padding: 80px 0;
-            background: white;
+            padding: 100px 0;
+            background: var(--darker);
         }
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            gap: 2.5rem;
+            margin-top: 4rem;
         }
         .testimonial-card {
-            background: var(--light);
-            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2.5rem;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
         }
         .testimonial-text {
             font-style: italic;
             margin-bottom: 1.5rem;
             color: var(--gray);
+            font-size: 1.1rem;
         }
         .testimonial-author {
             display: flex;
@@ -484,14 +618,15 @@
             gap: 1rem;
         }
         .author-avatar {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             object-fit: cover;
+            border: 2px solid var(--primary-light);
         }
         .author-info h5 {
             margin-bottom: 0.25rem;
-            color: var(--darker);
+            color: var(--light);
         }
         .author-info span {
             color: var(--gray);
@@ -499,8 +634,8 @@
         }
         /* About Section */
         .about {
-            padding: 80px 0;
-            background: var(--light);
+            padding: 100px 0;
+            background: var(--dark);
         }
         .about-content {
             display: flex;
@@ -509,15 +644,22 @@
         }
         .about-text {
             flex: 1;
+            font-size: 1.1rem;
+            line-height: 1.8;
         }
         .ceo-card {
             flex: 0 0 300px;
-            background: white;
+            background: rgba(255, 255, 255, 0.05);
             padding: 30px;
             border-radius: var(--border-radius);
             text-align: center;
             box-shadow: var(--shadow);
-            border: 1px solid var(--gray-light);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+        .ceo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
         }
         .ceo-image {
             width: 100%;
@@ -526,35 +668,40 @@
             border-radius: var(--border-radius);
             object-fit: cover;
             margin: 0 auto 20px;
-            border: 3px solid var(--primary);
-            box-shadow: 0 0 20px rgba(45, 91, 255, 0.3);
+            border: 3px solid var(--primary-light);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
         }
         .ceo-name {
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 5px;
-            color: var(--darker);
+            color: var(--light);
         }
         .ceo-title {
             font-size: 1rem;
-            color: var(--primary);
+            color: var(--primary-light);
             font-weight: 600;
         }
         /* FAQ */
         .faq {
-            padding: 80px 0;
-            background: var(--light);
+            padding: 100px 0;
+            background: var(--darker);
         }
         .faq-grid {
             max-width: 800px;
-            margin: 3rem auto 0;
+            margin: 4rem auto 0;
         }
         .faq-item {
-            background: white;
+            background: rgba(255, 255, 255, 0.05);
             margin-bottom: 1rem;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+        .faq-item:hover {
+            box-shadow: var(--shadow-lg);
         }
         .faq-question {
             padding: 1.5rem;
@@ -563,6 +710,7 @@
             align-items: center;
             cursor: pointer;
             font-weight: 600;
+            color: var(--light);
         }
         .faq-answer {
             padding: 0 1.5rem 1.5rem;
@@ -581,8 +729,8 @@
         /* Support Pages */
         .support-page {
             display: none;
-            padding: 120px 0 80px;
-            background: var(--light);
+            padding: 140px 0 80px;
+            background: var(--dark);
             min-height: 100vh;
         }
         .support-page.active {
@@ -591,15 +739,19 @@
         .support-content {
             max-width: 800px;
             margin: 0 auto;
-            background: white;
+            background: rgba(255, 255, 255, 0.05);
             padding: 40px;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         .support-content h2 {
             font-size: 2.5rem;
             margin-bottom: 20px;
-            color: var(--darker);
+            background: linear-gradient(90deg, var(--light), var(--primary-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         .back-btn {
             display: inline-block;
@@ -617,20 +769,35 @@
         }
         /* CTA */
         .cta {
-            padding: 80px 0;
-            background: linear-gradient(rgba(45, 91, 255, 0.9), rgba(30, 64, 175, 0.9)), url('https://images.unsplash.com/photo-1571974599782-87624638275f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            padding: 100px 0;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.9), rgba(236, 72, 153, 0.9)), url('https://images.unsplash.com/photo-1571974599782-87624638275f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
             background-position: center;
             color: white;
             text-align: center;
+            position: relative;
+        }
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(17, 24, 39, 0.2), transparent 70%);
+            z-index: 1;
+        }
+        .cta > .container {
+            position: relative;
+            z-index: 2;
         }
         .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
         }
         .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
             opacity: 0.9;
             max-width: 600px;
             margin-left: auto;
@@ -638,12 +805,12 @@
         }
         .cta-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
             justify-content: center;
             flex-wrap: wrap;
         }
         .cta .btn {
-            padding: 1rem 2rem;
+            padding: 1.2rem 2.5rem;
             font-size: 1.1rem;
         }
         .btn-light {
@@ -668,6 +835,10 @@
         .footer-col h4 {
             margin-bottom: 1.5rem;
             font-size: 1.25rem;
+            background: linear-gradient(90deg, var(--light), var(--primary-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         .footer-links {
             list-style: none;
@@ -676,12 +847,12 @@
             margin-bottom: 0.75rem;
         }
         .footer-links a {
-            color: var(--gray-light);
+            color: var(--gray);
             text-decoration: none;
             transition: var(--transition);
         }
         .footer-links a:hover {
-            color: white;
+            color: var(--primary-light);
         }
         .social-links {
             display: flex;
@@ -706,7 +877,7 @@
             text-align: center;
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--gray-light);
+            color: var(--gray);
         }
         /* WhatsApp Float */
         .whatsapp-float {
@@ -729,6 +900,17 @@
         .whatsapp-float:hover {
             transform: scale(1.1);
         }
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
         /* Responsive */
         @media (max-width: 768px) {
             .nav-links {
@@ -736,7 +918,7 @@
                 position: absolute;
                 top: 100%;
                 right: 0;
-                background: white;
+                background: rgba(17, 24, 39, 0.95);
                 width: 200px;
                 flex-direction: column;
                 padding: 15px;
@@ -1175,90 +1357,3 @@
                         <div class="faq-answer">
                             <span data-ar="نعم، أنت تحتفظ بكامل حقوق الملكية الفكرية لأعمالك. نحن فقط نوزع الموسيقى وندير الحقوق نيابة عنك." data-en="Yes, you retain all intellectual property rights to your works. We only distribute the music and manage rights on your behalf.">نعم، أنت تحتفظ بكامل حقوق الملكية الفكرية لأعمالك. نحن فقط نوزع الموسيقى وندير الحقوق نيابة عنك.</span>
                         </div>
-                    </div>
-                </div>
-                <a href="#" class="back-btn" data-ar="العودة" data-en="Back">العودة</a>
-            </div>
-        </div>
-    </section>
-    <section id="support-terms" class="support-page">
-        <div class="container">
-            <div class="support-content">
-                <h2 data-ar="الشروط والأحكام" data-en="Terms and Conditions">الشروط والأحكام</h2>
-                <p data-ar="شروط وأحكام استخدام خدمات Beatna Records" data-en="Terms and conditions for using Beatna Records services">شروط وأحكام استخدام خدمات Beatna Records</p>
-                <div class="terms-content">
-                    <h3 data-ar="1. القبول" data-en="1. Acceptance">1. القبول</h3>
-                    <p data-ar="باستخدامك لخدمات Beatna Records، فإنك توافق على الالتزام بهذه الشروط والأحكام." data-en="By using Beatna Records services, you agree to comply with these terms and conditions.">باستخدامك لخدمات Beatna Records، فإنك توافق على الالتزام بهذه الشروط والأحكام.</p>
-                    <h3 data-ar="2. الخدمات" data-en="2. Services">2. الخدمات</h3>
-                    <p data-ar="نقدم خدمات التوزيع الموسيقي الرقمي وإدارة الحقوق والحماية الفنية." data-en="We provide digital music distribution services, rights management, and artistic protection.">نقدم خدمات التوزيع الموسيقي الرقمي وإدارة الحقوق والحماية الفنية.</p>
-                </div>
-                <a href="#" class="back-btn" data-ar="العودة" data-en="Back">العودة</a>
-            </div>
-        </div>
-    </section>
-    <section id="support-privacy" class="support-page">
-        <div class="container">
-            <div class="support-content">
-                <h2 data-ar="سياسة الخصوصية" data-en="Privacy Policy">سياسة الخصوصية</h2>
-                <p data-ar="كيف نحمي بياناتك الشخصية ونستخدمها" data-en="How we protect and use your personal data">كيف نحمي بياناتك الشخصية ونستخدمها</p>
-                <div class="privacy-content">
-                    <h3 data-ar="جمع المعلومات" data-en="Information Collection">جمع المعلومات</h3>
-                    <p data-ar="نقوم بجمع المعلومات اللازمة لتقديم خدماتنا وتحسين تجربة المستخدم." data-en="We collect the necessary information to provide our services and improve user experience.">نقوم بجمع المعلومات اللازمة لتقديم خدماتنا وتحسين تجربة المستخدم.</p>
-                    <h3 data-ar="حماية البيانات" data-en="Data Protection">حماية البيانات</h3>
-                    <p data-ar="نحن نحمي بياناتك الشخصية باستخدام تقنيات أمنية متقدمة." data-en="We protect your personal data using advanced security technologies.">نحن نحمي بياناتك الشخصية باستخدام تقنيات أمنية متقدمة.</p>
-                </div>
-                <a href="#" class="back-btn" data-ar="العودة" data-en="Back">العودة</a>
-            </div>
-        </div>
-    </section>
-    <section id="support-contact" class="support-page">
-        <div class="container">
-            <div class="support-content">
-                <h2 data-ar="اتصل بنا" data-en="Contact Us">اتصل بنا</h2>
-                <p data-ar="طرق التواصل مع فريق Beatna Records" data-en="Ways to contact the Beatna Records team">طرق التواصل مع فريق Beatna Records</p>
-                <div class="contact-info">
-                    <p><i class="fas fa-envelope"></i> contact@beatnarecords.store</p>
-                    <p><i class="fas fa-phone"></i> +20 105 009 3361</p>
-                    <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/201050093361" target="_blank">واتساب</a></p>
-                </div>
-                <a href="#" class="back-btn" data-ar="العودة" data-en="Back">العودة</a>
-            </div>
-        </div>
-    </section>
-    <section id="support-help" class="support-page">
-        <div class="container">
-            <div class="support-content">
-                <h2 data-ar="مركز المساعدة" data-en="Help Center">مركز المساعدة</h2>
-                <p data-ar="دليل شامل لاستخدام خدماتنا" data-en="Comprehensive guide to using our services">دليل شامل لاستخدام خدماتنا</p>
-                <div class="help-content">
-                    <h3 data-ar="كيف تبدأ" data-en="How to Start">كيف تبدأ</h3>
-                    <p data-ar="1. اختر الباقة المناسبة لاحتياجاتك" data-en="1. Choose the package that suits your needs">1. اختر الباقة المناسبة لاحتياجاتك</p>
-                    <p data-ar="2. سجل حسابك على المنصة" data-en="2. Register your account on the platform">2. سجل حسابك على المنصة</p>
-                    <p data-ar="3. ارفع أعمالك الموسيقية" data-en="3. Upload your musical works">3. ارفع أعمالك الموسيقية</p>
-                </div>
-                <a href="#" class="back-btn" data-ar="العودة" data-en="Back">العودة</a>
-            </div>
-        </div>
-    </section>
-    <!-- CTA -->
-    <section class="cta" id="contact">
-        <div class="container">
-            <h2 data-ar="جاهز لبدء رحلتك الموسيقية؟" data-en="Ready to start your musical journey?">جاهز لبدء رحلتك الموسيقية؟</h2>
-            <p data-ar="انضم إلى المئات من الفنانين الناجحين وابدأ توزيع موسيقاك على المنصات العالمية اليوم" data-en="Join hundreds of successful artists and start distributing your music on global platforms today">انضم إلى المئات من الفنانين الناجحين وابدأ توزيع موسيقاك على المنصات العالمية اليوم</p>
-            <div class="cta-buttons">
-                <a href="#pricing" class="btn btn-light" data-ar="اختر باقتك" data-en="Choose Your Package">اختر باقتك</a>
-                <a href="https://wa.me/201050093361" class="btn btn-outline" style="background: rgba(255,255,255,0.1); color: white; border-color: white;" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</a>
-            </div>
-        </div>
-    </section>
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h4>Beatna Records</h4>
-                    <p data-ar="شركة رائدة في توزيع الموسيقى الرقمي، نساعد الفنانين على نشر أعمالهم عالمياً وتحقيق دخل مستمر من إبداعاتهم." data-en="A leading company in digital music distribution, we help artists publish their works globally and achieve a steady income from their creations.">شركة رائدة في توزيع الموسيقى الرقمي، نساعد الفنانين على نشر أعمالهم عالمياً وتحقيق دخل مستمر من إبداعاتهم.</p>
-                    <div class="social-links">
-                        <a href="https://www.facebook.com/BeatnaRacords" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/beatnarecords/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/@
