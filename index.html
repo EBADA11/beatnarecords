@@ -568,6 +568,16 @@
             from { opacity: 0; transform: translateY(30px); filter: blur(5px); }
             to { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
         /* --- Responsive Design --- */
         @media (max-width: 992px) {
             h1 { font-size: 3rem; }
@@ -712,7 +722,7 @@
     <section class="clients" id="clients">
         <div class="container">
             <div class="clients-content" id="clients-content">
-                <div class="clients-number">+500</div>
+                <div class="clients-number" id="countNumber">0</div>
                 <div class="clients-text" data-ar="عميل يثقون بخدماتنا ويحققون نجاحات موسيقية مذهلة" data-en="Clients trust our services and achieve amazing musical successes">عميل يثقون بخدماتنا ويحققون نجاحات موسيقية مذهلة</div>
             </div>
         </div>
@@ -768,7 +778,7 @@
     <footer class="footer" id="footer">
         <div class="container">
             <img src="https://i.ibb.co/C3z1LDXm/logo.png" alt="Beatna Records Logo" class="footer-logo">
-            <p data-ar="Beatna Records &copy; 2025. كل الحقوق محفوظة." data-en="Beatna Records &copy; 2025. All rights reserved.">Beatna Records &copy; 2025. كل الحقوق محفوظة.</p>
+            <p data-ar="Beatna Records &copy; 2025. جميع الحقوق محفوظة." data-en="Beatna Records &copy; 2025. All rights reserved.">Beatna Records &copy; 2025. جميع الحقوق محفوظة.</p>
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
@@ -866,12 +876,34 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.style.animation = 'fadeInUp 1.2s ease-out forwards';
+                    if (entry.target.querySelector('.clients-number')) {
+                        startCounter();
+                    }
                 }
             });
         }, observerOptions);
         document.querySelectorAll('.service-card, .platform-card, .contact-card, .clients-content, .about-content').forEach(el => {
             observer.observe(el);
         });
+        // Counter Animation
+        function startCounter() {
+            const countElement = document.getElementById('countNumber');
+            let count = 0;
+            const target = 500;
+            const duration = 2000; // 2 seconds
+            const increment = target / (duration / 16); // Assuming 60fps
+
+            const counter = setInterval(() => {
+                count += increment;
+                if (count >= target) {
+                    count = target;
+                    clearInterval(counter);
+                }
+                countElement.textContent = Math.floor(count);
+            }, 16); // Approximately 60fps
+
+            countElement.style.animation = 'countUp 1.2s ease-out forwards';
+        }
         // Particles.js for Hero Section
         particlesJS('particles-js', {
             particles: {
