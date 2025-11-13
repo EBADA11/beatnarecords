@@ -46,10 +46,16 @@
             scroll-behavior: smooth;
             scroll-padding-top: 80px;
         }
-        body {
-            font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--dark-bg);
-            color: var(--text-light);
+body {
+	            font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	            background-color: var(--dark-bg);
+	            color: var(--text-light);
+	            /* New Background Image for the entire body */
+	            background-image: url('https://i.ibb.co/6803700/sound-waves-abstract-background.jpg'); /* Placeholder for sound waves image */
+	            background-attachment: fixed;
+	            background-size: cover;
+	            background-repeat: no-repeat;
+	            background-position: center center;
             line-height: 1.7;
             overflow-x: hidden;
             font-weight: 400;
@@ -288,13 +294,18 @@
             box-shadow: var(--glow-shadow);
         }
         /* --- Hero Section with Particles --- */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(135deg, rgba(10, 7, 21, 0.9), rgba(31, 26, 68, 0.7)),
+.hero {
+	            min-height: 100vh;
+	            display: flex;
+	            align-items: center;
+	            position: relative;
+	            overflow: hidden;
+	            /* New Background Image for Hero Section */
+	            background-image: url('https://i.ibb.co/3YkYBKGHa2cf/studio-music-room.jpg'); /* Placeholder for studio image */
+	            background-size: cover;
+	            background-position: center center;
+	            background-blend-mode: overlay;
+	            background: linear-gradient(135deg, rgba(10, 7, 21, 0.9), rgba(31, 26, 68, 0.7)),
                         url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
             background-attachment: fixed;
         }
@@ -758,6 +769,18 @@
 	        }
 	        .accordion-item.open .accordion-content {
 	            padding: 20px 30px 30px;
+	            overflow: visible; /* Allow content to be visible */
+	        }
+	        .accordion-content p {
+	            white-space: pre-wrap; /* To respect the newlines in the content */
+	            margin-bottom: 0;
+	            overflow: auto; /* Add scrollbar if content overflows */
+	            max-height: 400px; /* Set a max height for the content area to enable scrolling */
+	        }
+	        @media (max-width: 768px) {
+	            .accordion-content p {
+	                max-height: 300px;
+	            }
 	        }
 	        .accordion-content p {
 	            white-space: pre-wrap; /* To respect the newlines in the content */
@@ -853,7 +876,7 @@
     <!-- Navigation -->
     <header class="navbar" id="navbar">
         <div class="container">
-            <a href="#home" class="logo-container" id="logo">
+            <<a href="/" class="logo-container">r" id="logo">
                 <img src="https://i.ibb.co/C3z1LDXm/logo.png" alt="Beatna Records Logo" class="logo-img">
                 <span class="logo-text">Beatna Records</span>
             </a>
@@ -882,7 +905,7 @@
         </div>
     </section>
     <!-- About Section -->
-    <section id="about" class="about" style="padding-bottom: 0;">
+    
         <div class="container">
             <div class="accordion-container" id="accordion-container">
 <div class="accordion-item open">
@@ -902,74 +925,7 @@
         </div>
 </div>
 	        </div>
-	    </section>
-	    <!-- Privacy and Rights Sections (Integrated into About) -->
-	    <section id="privacy-rights-section" class="about" style="padding-top: 0;">
-	        <div class="container">
-	            <div class="accordion-container">
-	                <div class="accordion-item">
-	                    <div class="accordion-header" data-target="content-artist-rights">
-	                        <h2 data-ar="حقوق الفنان" data-en="Artist Rights">حقوق الفنان</h2>
-	                        <i class="fas fa-chevron-down"></i>
-	                    </div>
-	                    <div class="accordion-content" id="content-artist-rights">
-	                        <p data-ar="حقوق الفنان محفوظة بالكامل
-
-	الفنان يحتفظ بجميع حقوقه الفكرية والملكية على أعماله.
-
-	لا يتم نشر أي محتوى دون موافقة الفنان.
-
-	الأرباح تُحوّل مباشرة بعد رصدها وفق نظام واضح وشفاف.
-
-	نسعى لتوفير بيئة عادلة وآمنة تضمن مصلحة الفنان في كل خطوة." data-en="Full Artist Rights Preserved
-
-	The artist retains all intellectual and ownership rights to their work.
-
-	No content is published without the artist's consent.
-
-	Earnings are transferred directly after tracking, following a clear and transparent system.
-
-	We strive to provide a fair and secure environment that ensures the artist's interest at every step.">حقوق الفنان محفوظة بالكامل
-
-	الفنان يحتفظ بجميع حقوقه الفكرية والملكية على أعماله.
-
-	لا يتم نشر أي محتوى دون موافقة الفنان.
-
-	الأرباح تُحوّل مباشرة بعد رصدها وفق نظام واضح وشفاف.
-
-	نسعى لتوفير بيئة عادلة وآمنة تضمن مصلحة الفنان في كل خطوة.</p>
-	                    </div>
-	                </div>
-	                <div class="accordion-item">
-	                    <div class="accordion-header" data-target="content-privacy-terms">
-	                        <h2 data-ar="سياسة الخصوصية والشروط" data-en="Privacy Policy & Terms">سياسة الخصوصية والشروط</h2>
-	                        <i class="fas fa-chevron-down"></i>
-	                    </div>
-	                    <div class="accordion-content" id="content-privacy-terms">
-	                        <p data-ar="جميع البيانات والملفات مؤمنة بالكامل.
-
-	لا تتم مشاركة أي معلومات مع أطراف خارجية.
-
-	يحق للفنان طلب حذف بياناته أو تعديلها في أي وقت.
-
-	جميع العمليات تتم بشفافية وفق الشروط الموضحة في الموقع." data-en="All data and files are fully secured.
-
-	No information is shared with third parties.
-
-	Artists have the right to request deletion or modification of their data at any time.
-
-	All operations are conducted transparently according to the terms outlined on the site.">جميع البيانات والملفات مؤمنة بالكامل.
-
-	لا تتم مشاركة أي معلومات مع أطراف خارجية.
-
-	يحق للفنان طلب حذف بياناته أو تعديلها في أي وقت.
-
-	جميع العمليات تتم بشفافية وفق الشروط الموضحة في الموقع.</p>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-	    </section>
+	    
 	    <!-- Services Section -->
     <section id="services" class="services">
         <div class="container">
@@ -1162,7 +1118,87 @@
             </div>
         </div>
     </section>
-    <!-- Footer -->
+    <!-- About, Privacy, and Rights Sections -->
+	    <section id="about-etc" class="about">
+	        <div class="container">
+	            <div class="accordion-container" id="accordion-container-bottom">
+	                <div class="accordion-item open">
+	                    <div class="accordion-header" data-target="content-who-we-are">
+	                        <h2 data-ar="من نحن" data-en="Who We Are">من نحن</h2>
+	                        <i class="fas fa-chevron-down"></i>
+	                    </div>
+	                    <div class="accordion-content" id="content-who-we-are">
+	                        <p data-ar="Beatna Records شركة متخصصة في التوزيع الموسيقي الرقمي والخدمات الفنية المستقلة.
+	نهدف إلى تمكين الفنانين العرب من الوصول إلى جمهور عالمي وتحقيق دخل ثابت من موسيقاهم.
+	نركز على البساطة، الشفافية، والدعم الحقيقي للفنان منذ أول خطوة وحتى تحقيق الانتشار." data-en="Beatna Records is a company specializing in digital music distribution and independent artistic services. We aim to empower Arab artists to reach a global audience and achieve a steady income from their music. We focus on simplicity, transparency, and real support for artists from their first step to widespread success.">Beatna Records شركة متخصصة في التوزيع الموسيقي الرقمي والخدمات الفنية المستقلة.
+	نهدف إلى تمكين الفنانين العرب من الوصول إلى جمهور عالمي وتحقيق دخل ثابت من موسيقاهم.
+	نركز على البساطة، الشفافية، والدعم الحقيقي للفنان منذ أول خطوة وحتى تحقيق الانتشار.</p>
+	                    </div>
+	                </div>
+	                <div class="accordion-item">
+	                    <div class="accordion-header" data-target="content-artist-rights">
+	                        <h2 data-ar="حقوق الفنان" data-en="Artist Rights">حقوق الفنان</h2>
+	                        <i class="fas fa-chevron-down"></i>
+	                    </div>
+	                    <div class="accordion-content" id="content-artist-rights">
+	                        <p data-ar="حقوق الفنان محفوظة بالكامل
+
+	الفنان يحتفظ بجميع حقوقه الفكرية والملكية على أعماله.
+
+	لا يتم نشر أي محتوى دون موافقة الفنان.
+
+	الأرباح تُحوّل مباشرة بعد رصدها وفق نظام واضح وشفاف.
+
+	نسعى لتوفير بيئة عادلة وآمنة تضمن مصلحة الفنان في كل خطوة." data-en="Full Artist Rights Preserved
+
+	The artist retains all intellectual and ownership rights to their work.
+
+	No content is published without the artist's consent.
+
+	Earnings are transferred directly after tracking, following a clear and transparent system.
+
+	We strive to provide a fair and secure environment that ensures the artist's interest at every step.">حقوق الفنان محفوظة بالكامل
+
+	الفنان يحتفظ بجميع حقوقه الفكرية والملكية على أعماله.
+
+	لا يتم نشر أي محتوى دون موافقة الفنان.
+
+	الأرباح تُحوّل مباشرة بعد رصدها وفق نظام واضح وشفاف.
+
+	نسعى لتوفير بيئة عادلة وآمنة تضمن مصلحة الفنان في كل خطوة.</p>
+	                    </div>
+	                </div>
+	                <div class="accordion-item">
+	                    <div class="accordion-header" data-target="content-privacy-terms">
+	                        <h2 data-ar="سياسة الخصوصية والشروط" data-en="Privacy Policy & Terms">سياسة الخصوصية والشروط</h2>
+	                        <i class="fas fa-chevron-down"></i>
+	                    </div>
+	                    <div class="accordion-content" id="content-privacy-terms">
+	                        <p data-ar="جميع البيانات والملفات مؤمنة بالكامل.
+
+	لا تتم مشاركة أي معلومات مع أطراف خارجية.
+
+	يحق للفنان طلب حذف بياناته أو تعديلها في أي وقت.
+
+	جميع العمليات تتم بشفافية وفق الشروط الموضحة في الموقع." data-en="All data and files are fully secured.
+
+	No information is shared with third parties.
+
+	Artists have the right to request deletion or modification of their data at any time.
+
+	All operations are conducted transparently according to the terms outlined on the site.">جميع البيانات والملفات مؤمنة بالكامل.
+
+	لا تتم مشاركة أي معلومات مع أطراف خارجية.
+
+	يحق للفنان طلب حذف بياناته أو تعديلها في أي وقت.
+
+	جميع العمليات تتم بشفافية وفق الشروط الموضحة في الموقع.</p>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </section>
+	    <!-- Footer -->
     <footer class="footer" id="footer">
         <div class="container">
             <img src="https://i.ibb.co/C3z1LDXm/logo.png" alt="Beatna Records Logo" class="footer-logo">
@@ -1190,23 +1226,24 @@
                 preloader.style.display = 'none';
             }, 500);
         });
-        // Navbar Scroll Effect with Hide
-        let lastScroll = 0;
-        const navbar = document.querySelector('.navbar');
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.scrollY;
-            if (currentScroll > 50) {
-                navbar.classList.add('scrolled');
-                if (currentScroll > lastScroll) {
-                    navbar.classList.add('hidden');
-                } else {
-                    navbar.classList.remove('hidden');
-                }
-            } else {
-                navbar.classList.remove('scrolled', 'hidden');
-            }
-            lastScroll = currentScroll;
-        });
+// Navbar Scroll Effect with Hide
+	        let lastScroll = 0;
+	        const navbar = document.querySelector('.navbar');
+	        window.addEventListener('scroll', () => {
+	            const currentScroll = window.scrollY;
+	            if (currentScroll > 50) {
+	                navbar.classList.add('scrolled');
+	                // Only hide if scrolling down AND past the initial 50px
+	                if (currentScroll > lastScroll && currentScroll > 50) {
+	                    navbar.classList.add('hidden');
+	                } else {
+	                    navbar.classList.remove('hidden');
+	                }
+	            } else {
+	                navbar.classList.remove('scrolled', 'hidden');
+	            }
+	            lastScroll = currentScroll;
+	        });
         // Back-to-Top Button
         const backToTop = document.getElementById('back-to-top');
         window.addEventListener('scroll', () => {
@@ -1254,7 +1291,9 @@
 	            const initialOpenItem = document.querySelector('.accordion-item.open');
 	            if (initialOpenItem) {
 	                const initialContent = initialOpenItem.querySelector('.accordion-content');
-	                initialContent.style.maxHeight = initialContent.scrollHeight + "px";
+	                // Use a large fixed value for initial open to ensure all content is shown, 
+	                // as scrollHeight might be incorrect before rendering.
+	                initialContent.style.maxHeight = '500px'; 
 	            }
 	        });
         const langButtons = document.querySelectorAll('.lang-btn');
