@@ -31,7 +31,7 @@
             --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.3);
             --glow-shadow: 0 0 20px rgba(124, 58, 237, 0.5);
             --border-radius: 16px;
-            --transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* Slower transitions */
+            --transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
         * {
             margin: 0;
@@ -63,8 +63,8 @@
             font-weight: 700;
             line-height: 1.3;
             margin-bottom: 1rem;
-            opacity: 0; /* Start hidden for animation */
-            animation: textFadeIn 1.5s ease-out forwards 0.5s; /* Subtle fade-in animation */
+            opacity: 0;
+            animation: textFadeIn 1.5s ease-out forwards 0.5s;
         }
         h1 {
             font-size: 3.5rem;
@@ -116,7 +116,7 @@
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            animation: textFadeIn 1.5s ease-out forwards 0.5s; /* Subtle animation for buttons */
+            animation: textFadeIn 1.5s ease-out forwards 0.5s;
         }
         .btn-primary {
             background: var(--gradient-primary);
@@ -154,12 +154,16 @@
         }
         @media (max-width: 768px) {
             .navbar {
-                padding: 10px 0; /* تقليل الحشوة لتقليل الارتفاع */
+                padding: 10px 0;
             }
         }
         .navbar.scrolled {
             padding: 12px 0;
             background: rgba(10, 7, 21, 1);
+        }
+        .navbar.hidden {
+            transform: translateY(-100%);
+            transition: transform 0.3s ease-in-out;
         }
         .navbar .container {
             display: flex;
@@ -176,14 +180,14 @@
             transform: scale(1.05);
         }
         .logo-img {
-            height: 120px; /* Further enlarged logo */
+            height: 120px;
             width: auto;
             filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2)) brightness(1.1);
             transition: transform 0.8s ease, filter 0.8s ease;
         }
         @media (max-width: 768px) {
             .logo-img {
-                height: 60px; /* تقليل حجم الشعار على الهاتف */
+                height: 60px;
             }
         }
         .logo-container:hover .logo-img {
@@ -191,7 +195,7 @@
             filter: drop-shadow(0 6px 12px rgba(124, 58, 237, 0.5)) brightness(1.2);
         }
         .logo-text {
-            font-size: 2.6rem; /* Slightly larger text to match logo */
+            font-size: 2.6rem;
             font-weight: 900;
             letter-spacing: 1px;
             background: var(--gradient-primary);
@@ -199,11 +203,11 @@
             -webkit-text-fill-color: transparent;
             margin-right: 15px;
             text-shadow: 0 0 8px rgba(124, 58, 237, 0.3);
-            animation: textFadeIn 1.5s ease-out forwards 0.5s; /* Subtle animation */
+            animation: textFadeIn 1.5s ease-out forwards 0.5s;
         }
         @media (max-width: 768px) {
             .logo-text {
-                font-size: 1.5rem; /* تقليل حجم النص على الهاتف */
+                font-size: 1.5rem;
             }
         }
         .nav-links {
@@ -219,11 +223,11 @@
             font-weight: 500;
             transition: var(--transition);
             position: relative;
-            animation: textFadeIn 1.5s ease-out forwards 0.5s; /* Subtle animation */
+            animation: textFadeIn 1.5s ease-out forwards 0.5s;
         }
         @media (max-width: 768px) {
             .nav-links a {
-                font-size: 0.9rem; /* تقليل حجم خط الروابط على الهاتف */
+                font-size: 0.9rem;
             }
         }
         .nav-links a:after {
@@ -253,7 +257,7 @@
         }
         @media (max-width: 768px) {
             .language-switcher {
-                padding: 3px; /* تقليل حشوة مبدل اللغة */
+                padding: 3px;
             }
         }
         .lang-btn {
@@ -266,11 +270,11 @@
             transition: var(--transition);
             font-family: 'Tajawal', sans-serif;
             font-weight: 500;
-            animation: textFadeIn 1.5s ease-out forwards 0.5s; /* Subtle animation */
+            animation: textFadeIn 1.5s ease-out forwards 0.5s;
         }
         @media (max-width: 768px) {
             .lang-btn {
-                padding: 6px 15px; /* تقليل حشوة أزرار اللغة */
+                padding: 6px 15px;
                 font-size: 0.9rem;
             }
         }
@@ -340,7 +344,7 @@
             transition: var(--transition);
             box-shadow: var(--shadow);
             border: 1px solid rgba(124, 58, 237, 0.2);
-            opacity: 0; /* Start hidden for animation */
+            opacity: 0;
         }
         .service-card:hover {
             transform: translateY(-10px);
@@ -376,7 +380,7 @@
         .clients-content {
             position: relative;
             z-index: 2;
-            opacity: 0; /* Start hidden for animation */
+            opacity: 0;
         }
         .clients-number {
             font-size: 6rem;
@@ -406,7 +410,7 @@
             transition: var(--transition);
             box-shadow: var(--shadow);
             border: 1px solid rgba(236, 72, 153, 0.2);
-            opacity: 0; /* Start hidden for animation */
+            opacity: 0;
         }
         .platform-card:hover {
             transform: scale(1.05);
@@ -437,7 +441,7 @@
             transition: var(--transition);
             box-shadow: var(--shadow);
             border: 1px solid rgba(6, 182, 212, 0.2);
-            opacity: 0; /* Start hidden for animation */
+            opacity: 0;
         }
         .contact-card:hover {
             transform: translateY(-10px);
@@ -573,31 +577,28 @@
             .footer-logo { height: 120px; }
         }
         @media (max-width: 768px) {
-            /* تعديل مشكلة التجاوب في شريط التنقل */
             .navbar .container {
-                flex-direction: row; /* إبقاء العناصر في صف واحد */
-                flex-wrap: wrap; /* السماح بلف العناصر */
-                justify-content: space-between; /* توزيع العناصر على الجانبين */
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
                 align-items: center;
             }
             .logo-container {
-                margin-bottom: 0; /* إزالة الهامش السفلي */
+                margin-bottom: 0;
             }
             .nav-links {
-                order: 3; /* وضع قائمة الروابط في الأسفل */
-                flex-basis: 100%; /* جعلها تأخذ عرض الشاشة بالكامل */
-                justify-content: space-around; /* توزيع الروابط بالتساوي */
-                margin-top: 15px; /* إضافة هامش علوي للفصل */
-                margin-bottom: 0; /* إزالة الهامش السفلي */
+                order: 3;
+                flex-basis: 100%;
+                justify-content: space-around;
+                margin-top: 15px;
+                margin-bottom: 0;
             }
             .nav-links li {
-                margin-right: 0; /* إزالة الهامش الأيمن */
+                margin-right: 0;
             }
             .language-switcher {
-                order: 2; /* وضع مبدل اللغة في المنتصف */
+                order: 2;
             }
-            /* نهاية تعديل مشكلة التجاوب في شريط التنقل */
-
             h1 { font-size: 2.5rem; }
             h2 { font-size: 2rem; }
             .hero h1 { font-size: 2.8rem; }
@@ -631,17 +632,14 @@
     <div class="preloader" id="preloader">
         <img src="https://i.ibb.co/C3z1LDXm/logo.png" alt="Loading">
     </div>
-
     <!-- WhatsApp Floating Button -->
     <a href="https://wa.me/201050093361?text=مرحباً%20أرغب%20في%20معرفة%20المزيد%20عن%20خدماتكم" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
-
     <!-- Back-to-Top Button -->
     <a href="#" class="back-to-top" id="back-to-top">
         <i class="fas fa-chevron-up"></i>
     </a>
-
     <!-- Navigation -->
     <header class="navbar" id="navbar">
         <div class="container">
@@ -661,7 +659,6 @@
             </div>
         </div>
     </header>
-
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div id="particles-js"></div>
@@ -673,7 +670,6 @@
             </div>
         </div>
     </section>
-
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
@@ -683,7 +679,6 @@
             </div>
         </div>
     </section>
-
     <!-- Services Section -->
     <section id="services" class="services">
         <div class="container">
@@ -713,7 +708,6 @@
             </div>
         </div>
     </section>
-
     <!-- Clients Section -->
     <section class="clients" id="clients">
         <div class="container">
@@ -723,7 +717,6 @@
             </div>
         </div>
     </section>
-
     <!-- Platforms Section -->
     <section id="platforms" class="platforms">
         <div class="container">
@@ -752,7 +745,6 @@
             </div>
         </div>
     </section>
-
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
@@ -772,7 +764,6 @@
             </div>
         </div>
     </section>
-
     <!-- Footer -->
     <footer class="footer" id="footer">
         <div class="container">
@@ -780,7 +771,6 @@
             <p data-ar="Beatna Records &copy; 2025. كل الحقوق محفوظة." data-en="Beatna Records &copy; 2025. All rights reserved.">Beatna Records &copy; 2025. كل الحقوق محفوظة.</p>
         </div>
     </footer>
-
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script>
         // Preloader
@@ -791,17 +781,25 @@
                 preloader.style.display = 'none';
             }, 500);
         });
-
-        // Navbar Scroll Effect
+        // Navbar Scroll Effect with Hide
+        let lastScroll = 0;
         const navbar = document.querySelector('.navbar');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
+            const currentScroll = window.scrollY;
+            
+            if (currentScroll > 50) {
                 navbar.classList.add('scrolled');
+                if (currentScroll > lastScroll) {
+                    navbar.classList.add('hidden');
+                } else {
+                    navbar.classList.remove('hidden');
+                }
             } else {
-                navbar.classList.remove('scrolled');
+                navbar.classList.remove('scrolled', 'hidden');
             }
+            
+            lastScroll = currentScroll;
         });
-
         // Back-to-Top Button
         const backToTop = document.getElementById('back-to-top');
         window.addEventListener('scroll', () => {
@@ -815,7 +813,6 @@
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
-
         // Language Switcher
         const langButtons = document.querySelectorAll('.lang-btn');
         function switchLanguage(lang) {
@@ -860,7 +857,6 @@
                 switchLanguage(lang);
             });
         });
-
         // Scroll Animations
         const observerOptions = {
             threshold: 0.2,
@@ -876,7 +872,6 @@
         document.querySelectorAll('.service-card, .platform-card, .contact-card, .clients-content, .about-content').forEach(el => {
             observer.observe(el);
         });
-
         // Particles.js for Hero Section
         particlesJS('particles-js', {
             particles: {
@@ -895,9 +890,6 @@
             },
             retina_detect: true
         });
-
-        // --- التعديلات الجديدة هنا ---
-
         // Utility function for throttling
         function throttle(func, limit) {
             let inThrottle;
@@ -911,12 +903,9 @@
                 }
             }
         }
-
-        // 1. قائمة بجميع الأقسام التي يجب تتبعها
+        // Section tracking and URL update
         const sections = document.querySelectorAll('section[id]');
         const navLinks = document.querySelectorAll('.nav-links a');
-
-        // 2. وظيفة لتحديث الرابط النشط في شريط التنقل
         function updateActiveLink(id) {
             navLinks.forEach(link => {
                 link.classList.remove('active');
@@ -925,57 +914,36 @@
                 }
             });
         }
-
-        // 3. وظيفة لتحديث الـ URL بدون # عند التمرير
         function updateUrlOnScroll() {
             let current = 'home';
             const scrollY = window.scrollY;
-
             sections.forEach(section => {
-                const sectionTop = section.offsetTop - navbar.offsetHeight - 1; // -1 لتجنب التحديث المبكر
+                const sectionTop = section.offsetTop - navbar.offsetHeight - 1;
                 const sectionHeight = section.clientHeight;
-
                 if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
                     current = section.getAttribute('id');
                 }
             });
-
-            // تحديث الرابط النشط
             updateActiveLink(current);
-
-            // تحديث الـ URL باستخدام history.replaceState لإزالة #
             const newUrl = current === 'home' ? window.location.pathname : `/${current}`;
             history.replaceState(null, null, newUrl);
         }
-
-        // 4. تعديل وظيفة Smooth Scroll لتحديث الـ URL بدون #
         document.querySelectorAll('a[href^="#"]').forEach(link => {
             link.addEventListener('click', e => {
                 e.preventDefault();
                 const href = link.getAttribute('href');
-                const targetId = href.substring(1); // إزالة #
+                const targetId = href.substring(1);
                 const target = document.querySelector(href);
-
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth' });
-                    
-                    // تحديث الـ URL باستخدام history.pushState لإزالة #
                     const newUrl = targetId === 'home' ? window.location.pathname : `/${targetId}`;
                     history.pushState(null, null, newUrl);
-
-                    // تحديث الرابط النشط فورًا
                     updateActiveLink(targetId);
                 }
             });
         });
-
-        // 5. إضافة مستمع حدث التمرير لتحديث الـ URL تلقائيًا (مع تطبيق Throttling لتحسين الأداء)
-        window.addEventListener('scroll', throttle(updateUrlOnScroll, 100)); // يتم التنفيذ مرة واحدة كل 100 مللي ثانية كحد أقصى
-
-        // 6. تشغيل تحديث الـ URL عند تحميل الصفحة
+        window.addEventListener('scroll', throttle(updateUrlOnScroll, 100));
         window.addEventListener('load', updateUrlOnScroll);
-
-        // --- نهاية التعديلات الجديدة ---
     </script>
 </body>
 </html>
