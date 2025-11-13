@@ -333,6 +333,54 @@
             height: 100%;
             z-index: 1;
         }
+        /* --- About Section --- */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        .about-text {
+            flex: 1;
+        }
+        .ceo-card {
+            flex: 0 0 300px;
+            background: var(--dark-card);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(124, 58, 237, 0.2);
+        }
+        .ceo-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            border: 3px solid var(--primary-color);
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.5);
+        }
+        .ceo-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--text-light);
+        }
+        .ceo-title {
+            font-size: 1rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        @media (max-width: 768px) {
+            .about-content {
+                flex-direction: column;
+            }
+            .ceo-card {
+                flex: none;
+                width: 100%;
+                max-width: 300px;
+            }
+        }
         /* --- Services Section --- */
         .services-grid {
             display: grid;
@@ -372,6 +420,49 @@
         .service-card h3 {
             color: var(--text-light);
             font-weight: 700;
+        }
+        .more-platforms {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(124, 58, 237, 0.1);
+            border-radius: var(--border-radius);
+            text-align: right;
+        }
+        .more-platforms.show {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+        .more-platforms ul {
+            list-style: none;
+            columns: 2;
+            gap: 15px;
+        }
+        .more-platforms li {
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .toggle-platforms {
+            background: transparent;
+            border: none;
+            color: var(--primary-color);
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: var(--transition);
+        }
+        .toggle-platforms:hover {
+            text-shadow: 0 0 10px rgba(124, 58, 237, 0.5);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 768px) {
+            .more-platforms ul {
+                columns: 1;
+            }
         }
         /* --- Blog Section --- */
         .blog {
@@ -848,8 +939,15 @@
     <section id="about" class="about">
         <div class="container">
             <div class="about-content" id="about-content">
-                <h2 data-ar="من نحن؟" data-en="Who Are We?">من نحن؟</h2>
-                <p data-ar="Beatna Records شركة متخصصة في التوزيع الموسيقي الرقمي والخدمات الفنية المستقلة. نهدف إلى تمكين الفنانين العرب من الوصول إلى جمهور عالمي وتحقيق دخل ثابت من موسيقاهم. نركز على البساطة، الشفافية، والدعم الحقيقي للفنان منذ أول خطوة وحتى تحقيق الانتشار." data-en="Beatna Records is a company specializing in digital music distribution and independent artistic services. We aim to empower Arab artists to reach a global audience and achieve a steady income from their music. We focus on simplicity, transparency, and real support for artists from their first step to widespread success.">Beatna Records شركة متخصصة في التوزيع الموسيقي الرقمي والخدمات الفنية المستقلة. نهدف إلى تمكين الفنانين العرب من الوصول إلى جمهور عالمي وتحقيق دخل ثابت من موسيقاهم. نركز على البساطة، الشفافية، والدعم الحقيقي للفنان منذ أول خطوة وحتى تحقيق الانتشار.</p>
+                <div class="about-text">
+                    <h2 data-ar="من نحن؟" data-en="Who Are We?">من نحن؟</h2>
+                    <p data-ar="Beatna Records شركة متخصصة في التوزيع الموسيقي الرقمي والخدمات الفنية المستقلة. نهدف إلى تمكين الفنانين العرب من الوصول إلى جمهور عالمي وتحقيق دخل ثابت من موسيقاهم. نركز على البساطة، الشفافية، والدعم الحقيقي للفنان منذ أول خطوة وحتى تحقيق الانتشار." data-en="Beatna Records is a company specializing in digital music distribution and independent artistic services. We aim to empower Arab artists to reach a global audience and achieve a steady income from their music. We focus on simplicity, transparency, and real support for artists from their first step to widespread success.">Beatna Records شركة متخصصة في التوزيع الموسيقي الرقمي والخدمات الفنية المستقلة. نهدف إلى تمكين الفنانين العرب من الوصول إلى جمهور عالمي وتحقيق دخل ثابت من موسيقاهم. نركز على البساطة، الشفافية، والدعم الحقيقي للفنان منذ أول خطوة وحتى تحقيق الانتشار.</p>
+                </div>
+                <div class="ceo-card">
+                    <img src="https://i.ibb.co/84Tqmfn5/hady-ahmed.jpg" alt="Hady Ahmed" class="ceo-image">
+                    <div class="ceo-name">Hady Ahmed</div>
+                    <div class="ceo-title" data-ar="المدير التنفيذي" data-en="CEO">المدير التنفيذي</div>
+                </div>
             </div>
         </div>
     </section>
@@ -863,7 +961,125 @@
                         <i class="fas fa-globe"></i>
                     </div>
                     <h3 data-ar="التوزيع الرقمي" data-en="Digital Distribution">التوزيع الرقمي</h3>
-                    <p data-ar="نشر أغانيك على أكثر من 150 منصة عالمية ومحلية، بما في ذلك Spotify, Apple Music, Anghami, Deezer والمزيد." data-en="Publish your songs on more than 150 global and local platforms, including Spotify, Apple Music, Anghami, Deezer and more.">نشر أغانيك على أكثر من 150 منصة عالمية ومحلية، بما في ذلك Spotify, Apple Music, Anghami, Deezer والمزيد.</p>
+                    <p data-ar="نشر أغانيك على أكثر من 150 منصة عالمية ومحلية، بما في ذلك Spotify, Apple Music, Anghami, Deezer <span class='more-text'>والمزيد</span>." data-en="Publish your songs on more than 150 global and local platforms, including Spotify, Apple Music, Anghami, Deezer <span class='more-text'>and more</span>.">نشر أغانيك على أكثر من 150 منصة عالمية ومحلية، بما في ذلك Spotify, Apple Music, Anghami, Deezer <span class='more-text'>والمزيد</span>.</p>
+                    
+                    <div class="more-platforms" id="more-platforms">
+                        <ul>
+                            <li>Spotify</li>
+                            <li>Apple Music</li>
+                            <li>Anghami</li>
+                            <li>Deezer</li>
+                            <li>YouTube Music</li>
+                            <li>Amazon Music</li>
+                            <li>Tidal</li>
+                            <li>SoundCloud</li>
+                            <li>Pandora</li>
+                            <li>iHeartRadio</li>
+                            <li>Napster</li>
+                            <li>Audiomack</li>
+                            <li>Boomplay</li>
+                            <li>JioSaavn</li>
+                            <li>Gaana</li>
+                            <li>KKBox</li>
+                            <li>MelOn</li>
+                            <li>Bugs</li>
+                            <li>Genie</li>
+                            <li>Flo</li>
+                            <li>VIBE</li>
+                            <li>Mubert</li>
+                            <li>8tracks</li>
+                            <li>Bandcamp</li>
+                            <li>Beatport</li>
+                            <li>Traxsource</li>
+                            <li>Juno Download</li>
+                            <li>7digital</li>
+                            <li>Qobuz</li>
+                            <li>HDtracks</li>
+                            <li>Prostudiomasters</li>
+                            <li>iTunes</li>
+                            <li>Google Play Music</li>
+                            <li>Shazam</li>
+                            <li>TikTok</li>
+                            <li>Instagram</li>
+                            <li>Facebook</li>
+                            <li>Snapchat</li>
+                            <li>Twitch</li>
+                            <li>Plex</li>
+                            <li>Resso</li>
+                            <li>Yandex Music</li>
+                            <li>Zvooq</li>
+                            <li>VK</li>
+                            <li>NetEase</li>
+                            <li>Tencent</li>
+                            <li>Baidu</li>
+                            <li>Xiami</li>
+                            <li>Kugou</li>
+                            <li>Kuwo</li>
+                            <li>QQ Music</li>
+                            <li>Migu</li>
+                            <li>Douyin</li>
+                            <li>WeSing</li>
+                            <li>Smule</li>
+                            <li>StarMaker</li>
+                            <li>Lark Player</li>
+                            <li>Musi</li>
+                            <li>Player FM</li>
+                            <li>Castbox</li>
+                            <li>Pocket Casts</li>
+                            <li>Overcast</li>
+                            <li>Castro</li>
+                            <li>Podbean</li>
+                            <li>Anchor</li>
+                            <li>Breaker</li>
+                            <li>RadioPublic</li>
+                            <li>Stitcher</li>
+                            <li>iHeartRadio Podcasts</li>
+                            <li>Google Podcasts</li>
+                            <li>Apple Podcasts</li>
+                            <li>Spotify Podcasts</li>
+                            <li>Amazon Podcasts</li>
+                            <li>Pandora Podcasts</li>
+                            <li>Deezer Podcasts</li>
+                            <li>TuneIn</li>
+                            <li>Simple Radio</li>
+                            <li>iCatcher</li>
+                            <li>Downcast</li>
+                            <li>Instacast</li>
+                            <li>PodCruncher</li>
+                            <li>Podcast Addict</li>
+                            <li>Podcast Republic</li>
+                            <li>Podkicker</li>
+                            <li>AntennaPod</li>
+                            <li>Player FM</li>
+                            <li>Castbox</li>
+                            <li>Pocket Casts</li>
+                            <li>Overcast</li>
+                            <li>Castro</li>
+                            <li>Podbean</li>
+                            <li>Anchor</li>
+                            <li>Breaker</li>
+                            <li>RadioPublic</li>
+                            <li>Stitcher</li>
+                            <li>iHeartRadio Podcasts</li>
+                            <li>Google Podcasts</li>
+                            <li>Apple Podcasts</li>
+                            <li>Spotify Podcasts</li>
+                            <li>Amazon Podcasts</li>
+                            <li>Pandora Podcasts</li>
+                            <li>Deezer Podcasts</li>
+                            <li>TuneIn</li>
+                            <li>Simple Radio</li>
+                            <li>iCatcher</li>
+                            <li>Downcast</li>
+                            <li>Instacast</li>
+                            <li>PodCruncher</li>
+                            <li>Podcast Addict</li>
+                            <li>Podcast Republic</li>
+                            <li>Podkicker</li>
+                            <li>AntennaPod</li>
+                        </ul>
+                    </div>
+                    <button class="toggle-platforms" data-ar="عرض كل المنصات" data-en="Show all platforms">عرض كل المنصات</button>
                 </div>
                 <div class="service-card" id="service-copyright">
                     <div class="service-icon">
@@ -909,7 +1125,6 @@
                     <p data-ar="استراتيجيات للنجاح في عالم الموسيقى." data-en="Strategies for success in the music world.">استراتيجيات للنجاح في عالم الموسيقى.</p>
                 </div>
             </div>
-            <p class="text-center" data-ar="خلاصة مدونة Beatna: هدفنا مساعدة الفنانين المستقلين على بناء مسيرتهم بخطوات مدروسة. نؤمن أن الموهبة تحتاج توجيه وتسويق ذكي. تابع المدونة لتتعلم كيف تطور عملك وتصل بموسيقاك إلى جمهور أوسع." data-en="Beatna Blog Summary: Our goal is to help independent artists build their careers with thoughtful steps. We believe talent needs guidance and smart marketing. Follow the blog to learn how to grow your work and reach a wider audience.">خلاصة مدونة Beatna: هدفنا مساعدة الفنانين المستقلين على بناء مسيرتهم بخطوات مدروسة. نؤمن أن الموهبة تحتاج توجيه وتسويق ذكي. تابع المدونة لتتعلم كيف تطور عملك وتصل بموسيقاك إلى جمهور أوسع.</p>
         </div>
     </section>
     <!-- Detailed Blog Posts -->
@@ -1179,6 +1394,18 @@
                 const lang = button.getAttribute('data-lang');
                 switchLanguage(lang);
             });
+        });
+        // Toggle Platforms List
+        const toggleButton = document.querySelector('.toggle-platforms');
+        const morePlatforms = document.getElementById('more-platforms');
+        
+        toggleButton.addEventListener('click', () => {
+            morePlatforms.classList.toggle('show');
+            if (morePlatforms.classList.contains('show')) {
+                toggleButton.textContent = toggleButton.getAttribute('data-ar') === 'عرض كل المنصات' ? 'إخفاء المنصات' : 'Hide platforms';
+            } else {
+                toggleButton.textContent = toggleButton.getAttribute('data-ar') === 'عرض كل المنصات' ? 'عرض كل المنصات' : 'Show all platforms';
+            }
         });
         // Scroll Animations
         const observerOptions = {
