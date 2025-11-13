@@ -87,12 +87,14 @@
         .logo-img {
             height: 60px;
             margin-left: 15px;
+            transition: height 0.3s ease;
         }
         .logo-text {
             font-size: 1.8rem;
             font-weight: 800;
             color: var(--primary);
             margin-right: 10px;
+            transition: font-size 0.3s ease;
         }
         .nav-links {
             display: flex;
@@ -160,15 +162,6 @@
             background: var(--primary);
             color: white;
         }
-        .mobile-menu {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--dark);
-            cursor: pointer;
-        }
-        /* Language Switcher */
         .language-switcher {
             display: flex;
             background: rgba(255, 255, 255, 0.1);
@@ -190,6 +183,14 @@
             background: var(--primary);
             color: white;
             box-shadow: 0 2px 5px rgba(45, 91, 255, 0.3);
+        }
+        .mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
         }
         /* Hero Section */
         .hero {
@@ -243,7 +244,7 @@
             font-size: 2.5rem;
             font-weight: 800;
             margin-bottom: 0.5rem;
-            direction: ltr; /* تصحيح عرض الأرقام */
+            direction: ltr;
         }
         .stat-label {
             font-size: 1rem;
@@ -678,7 +679,6 @@
             color: var(--gray-light);
             text-decoration: none;
             transition: var(--transition);
-            cursor: pointer;
         }
         .footer-links a:hover {
             color: white;
@@ -1189,7 +1189,6 @@
                 <div class="terms-content">
                     <h3 data-ar="1. القبول" data-en="1. Acceptance">1. القبول</h3>
                     <p data-ar="باستخدامك لخدمات Beatna Records، فإنك توافق على الالتزام بهذه الشروط والأحكام." data-en="By using Beatna Records services, you agree to comply with these terms and conditions.">باستخدامك لخدمات Beatna Records، فإنك توافق على الالتزام بهذه الشروط والأحكام.</p>
-                   
                     <h3 data-ar="2. الخدمات" data-en="2. Services">2. الخدمات</h3>
                     <p data-ar="نقدم خدمات التوزيع الموسيقي الرقمي وإدارة الحقوق والحماية الفنية." data-en="We provide digital music distribution services, rights management, and artistic protection.">نقدم خدمات التوزيع الموسيقي الرقمي وإدارة الحقوق والحماية الفنية.</p>
                 </div>
@@ -1205,7 +1204,6 @@
                 <div class="privacy-content">
                     <h3 data-ar="جمع المعلومات" data-en="Information Collection">جمع المعلومات</h3>
                     <p data-ar="نقوم بجمع المعلومات اللازمة لتقديم خدماتنا وتحسين تجربة المستخدم." data-en="We collect the necessary information to provide our services and improve user experience.">نقوم بجمع المعلومات اللازمة لتقديم خدماتنا وتحسين تجربة المستخدم.</p>
-                   
                     <h3 data-ar="حماية البيانات" data-en="Data Protection">حماية البيانات</h3>
                     <p data-ar="نحن نحمي بياناتك الشخصية باستخدام تقنيات أمنية متقدمة." data-en="We protect your personal data using advanced security technologies.">نحن نحمي بياناتك الشخصية باستخدام تقنيات أمنية متقدمة.</p>
                 </div>
@@ -1263,20 +1261,4 @@
                     <div class="social-links">
                         <a href="https://www.facebook.com/BeatnaRacords" target="_blank"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://www.instagram.com/beatnarecords/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/@BeatnaRecords" target="_blank"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h4 data-ar="روابط سريعة" data-en="Quick Links">روابط سريعة</h4>
-                    <ul class="footer-links">
-                        <li><a href="#home" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
-                        <li><a href="#services" data-ar="خدماتنا" data-en="Our Services">خدماتنا</a></li>
-                        <li><a href="#pricing" data-ar="الباقات" data-en="Packages">الباقات</a></li>
-                        <li><a href="#how-it-works" data-ar="كيف تعمل" data-en="How It Works">كيف تعمل</a></li>
-                        <li><a href="#testimonials" data-ar="آراء العملاء" data-en="Testimonials">آراء العملاء</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4 data-ar="الدعم" data-en="Support">الدعم</h4>
-                    <ul class="footer-links">
-                        <
+                        <a href="https://www.youtube.com/@
