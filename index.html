@@ -221,9 +221,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-                    background: radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.1), transparent 50%),
+            background: radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.1), transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.1), transparent 50%);
-
             z-index: 1;
         }
         .hero-content {
@@ -297,113 +296,6 @@
             font-size: 1rem;
             opacity: 0.8;
         }
-
-        /* Latest Releases Section */
-        .latest-releases {
-            padding: 80px 0;
-            background: var(--darker);
-            position: relative;
-        }
-
-        .latest-releases::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--primary-light), transparent);
-        }
-
-        .releases-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .release-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .release-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .release-cover {
-            position: relative;
-            overflow: hidden;
-            aspect-ratio: 1 / 1;
-        }
-
-        .release-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .release-card:hover .release-img {
-            transform: scale(1.05);
-        }
-
-        .release-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .release-card:hover .release-overlay {
-            opacity: 1;
-        }
-
-        .release-info {
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .release-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--light);
-        }
-
-        .release-artist {
-            color: var(--primary-light);
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        @media (max-width: 768px) {
-            .releases-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-                gap: 1.5rem;
-            }
-            
-            .release-title {
-                font-size: 1.2rem;
-            }
-            
-            .release-artist {
-                font-size: 1rem;
-            }
-        }
-        
         /* Platforms Section */
         .platforms {
             padding: 100px 0;
@@ -482,10 +374,100 @@
             position: relative;
             z-index: 1;
         }
+        /* Releases Section */
+        .releases {
+            padding: 100px 0;
+            background: var(--dark);
+        }
+        .releases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+        .release-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .release-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+        .release-image {
+            position: relative;
+            overflow: hidden;
+            height: 250px;
+        }
+        .release-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        .release-card:hover .release-image img {
+            transform: scale(1.05);
+        }
+        .release-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        .release-card:hover .release-overlay {
+            opacity: 1;
+        }
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        .release-info {
+            padding: 1.5rem;
+        }
+        .release-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+        }
+        .release-artist {
+            color: var(--primary-light);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+        .release-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: space-between;
+        }
+        .release-actions .btn {
+            flex: 1;
+            padding: 0.75rem;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
         /* Services Section */
         .services {
             padding: 100px 0;
-            background: var(--dark);
+            background: var(--darker);
         }
         .services-grid {
             display: grid;
@@ -550,7 +532,7 @@
         /* How It Works */
         .how-it-works {
             padding: 100px 0;
-            background: var(--darker);
+            background: var(--dark);
         }
         .steps {
             display: flex;
@@ -598,7 +580,7 @@
         /* Pricing */
         .pricing {
             padding: 100px 0;
-            background: var(--dark);
+            background: var(--darker);
         }
         .pricing-grid {
             display: grid;
@@ -699,7 +681,7 @@
         /* Testimonials */
         .testimonials {
             padding: 100px 0;
-            background: var(--darker);
+            background: var(--dark);
         }
         .testimonials-grid {
             display: grid;
@@ -748,7 +730,7 @@
         /* About Section */
         .about {
             padding: 100px 0;
-            background: var(--dark);
+            background: var(--darker);
         }
         .about-content {
             display: flex;
@@ -798,7 +780,7 @@
         /* FAQ */
         .faq {
             padding: 100px 0;
-            background: var(--darker);
+            background: var(--dark);
         }
         .faq-grid {
             max-width: 800px;
@@ -842,7 +824,7 @@
         /* Contact Section */
         .contact {
             padding: 100px 0;
-            background: var(--dark);
+            background: var(--darker);
         }
         .contact-content {
             display: grid;
@@ -1187,6 +1169,114 @@
                 opacity: 1;
             }
         }
+        /* Dashboard Styles */
+        .dashboard {
+            display: none;
+            padding: 120px 0 50px;
+            background: var(--darker);
+            min-height: 100vh;
+        }
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+        }
+        .dashboard-sidebar {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            height: fit-content;
+        }
+        .dashboard-nav {
+            list-style: none;
+        }
+        .dashboard-nav li {
+            margin-bottom: 1rem;
+        }
+        .dashboard-nav a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: var(--light);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        .dashboard-nav a:hover,
+        .dashboard-nav a.active {
+            background: rgba(139, 92, 246, 0.2);
+            color: var(--primary-light);
+        }
+        .dashboard-content {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+        }
+        .dashboard-section {
+            display: none;
+        }
+        .dashboard-section.active {
+            display: block;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+            font-weight: 500;
+        }
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: var(--light);
+            font-family: 'Tajawal', sans-serif;
+            transition: var(--transition);
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+        }
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: var(--darker);
+            padding: 20px;
+        }
+        .login-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-xl);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .login-box h2 {
+            margin-bottom: 2rem;
+            background: linear-gradient(90deg, var(--light), var(--primary-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .admin-login-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+        }
         /* Responsive */
         @media (max-width: 768px) {
             .nav-links {
@@ -1237,6 +1327,15 @@
             .about-content {
                 flex-direction: column;
             }
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            .dashboard-sidebar {
+                order: 2;
+            }
+            .dashboard-content {
+                order: 1;
+            }
         }
         @media (max-width: 480px) {
             .hero h1 {
@@ -1255,488 +1354,572 @@
     <!-- GFX Background -->
     <div class="gfx-background" id="gfx-background"></div>
     
-    <!-- WhatsApp Float -->
-    <a href="https://wa.me/201050093361?text=مرحباً، أود الاستفسار عن خدمات توزيع الموسيقى." class="whatsapp-float" target="_blank" id="whatsapp-float">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-    <!-- Header -->
-    <header class="header" id="header">
-        <div class="container">
-            <nav class="nav">
-                <a href="#home" class="logo" id="logo-link">
-                    <img src="https://i.ibb.co/C3z1LDXm/beatna-logo.png" alt="Beatna Records" class="logo-img">
-                </a>
-                <ul class="nav-links">
-    <li><a href="#home" data-ar="الرئيسية" data-en="Home"><span class="nav-text">الرئيسية</span></a></li>
-    <li><a href="#latest-releases" data-ar="أحدث الإصدارات" data-en="Latest Releases"><span class="nav-text">أحدث الإصدارات</span></a></li>
-    <li><a href="#services" data-ar="خدماتنا" data-en="Our Services"><span class="nav-text">خدماتنا</span></a></li>
-    <li><a href="#pricing" data-ar="الباقات" data-en="Packages"><span class="nav-text">الباقات</span></a></li>
-    <li><a href="#how-it-works" data-ar="كيف تعمل" data-en="How It Works"><span class="nav-text">كيف تعمل</span></a></li>
-    <li><a href="#about" data-ar="من نحن" data-en="About Us"><span class="nav-text">من نحن</span></a></li>
-    <li><a href="#testimonials" data-ar="آراء العملاء" data-en="Testimonials"><span class="nav-text">آراء العملاء</span></a></li>
-    <li><a href="#faq" data-ar="الأسئلة الشائعة" data-en="FAQ"><span class="nav-text">الأسئلة الشائعة</span></a></li>
-</ul>
-
-                <div class="nav-actions">
-                    <div class="language-switcher" id="language-switcher">
-                        <button class="lang-btn active" data-lang="ar">العربية</button>
-                        <button class="lang-btn" data-lang="en">English</button>
-                    </div>
-                    <a href="#contact" class="btn btn-primary" data-ar="تواصل معنا" data-en="Contact Us"><span class="btn-text">تواصل معنا</span></a>
-                    <button class="mobile-menu">
-                        <i class="fas fa-bars"></i>
-                    </button>
+    <!-- Admin Login Button -->
+    <button class="btn btn-primary admin-login-btn" id="admin-login-btn">
+        <i class="fas fa-user-shield"></i>
+        <span>لوحة التحكم</span>
+    </button>
+    
+    <!-- Login Page -->
+    <div class="login-container" id="login-page">
+        <div class="login-box">
+            <h2>تسجيل الدخول</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">اسم المستخدم</label>
+                    <input type="text" id="username" class="form-control" required>
                 </div>
-            </nav>
+                <div class="form-group">
+                    <label for="password">كلمة المرور</label>
+                    <input type="password" id="password" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    <i class="fas fa-sign-in-alt"></i>
+                    تسجيل الدخول
+                </button>
+            </form>
         </div>
-    </header>
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <h1 data-ar="حوّل موسيقاك إلى نجاح عالمي" data-en="Transform Your Music into Global Success">حوّل موسيقاك إلى نجاح عالمي</h1>
-                <p data-ar="نوّزع أعمالك الفنية على أكثر من 150 منصة موسيقية حول العالم مع حماية حقوقك وضمان أرباحك" data-en="We distribute your artistic works on more than 150 music platforms worldwide while protecting your rights and ensuring your profits">نوّزع أعمالك الفنية على أكثر من 150 منصة موسيقية حول العالم مع حماية حقوقك وضمان أرباحك</p>
-                <div class="hero-buttons">
+    </div>
+    
+    <!-- Main Website -->
+    <div id="main-website">
+        <!-- WhatsApp Float -->
+        <a href="https://wa.me/201050093361?text=مرحباً، أود الاستفسار عن خدمات توزيع الموسيقى." class="whatsapp-float" target="_blank" id="whatsapp-float">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <!-- Header -->
+        <header class="header" id="header">
+            <div class="container">
+                <nav class="nav">
+                    <a href="#home" class="logo" id="logo-link">
+                        <img src="https://i.ibb.co/C3z1LDXm/beatna-logo.png" alt="Beatna Records" class="logo-img">
+                    </a>
+                    <ul class="nav-links">
+                        <li><a href="#home" data-ar="الرئيسية" data-en="Home"><span class="nav-text">الرئيسية</span></a></li>
+                        <li><a href="#releases" data-ar="الإصدارات" data-en="Releases"><span class="nav-text">الإصدارات</span></a></li>
+                        <li><a href="#services" data-ar="خدماتنا" data-en="Our Services"><span class="nav-text">خدماتنا</span></a></li>
+                        <li><a href="#pricing" data-ar="الباقات" data-en="Packages"><span class="nav-text">الباقات</span></a></li>
+                        <li><a href="#how-it-works" data-ar="كيف تعمل" data-en="How It Works"><span class="nav-text">كيف تعمل</span></a></li>
+                        <li><a href="#about" data-ar="من نحن" data-en="About Us"><span class="nav-text">من نحن</span></a></li>
+                        <li><a href="#testimonials" data-ar="آراء العملاء" data-en="Testimonials"><span class="nav-text">آراء العملاء</span></a></li>
+                        <li><a href="#faq" data-ar="الأسئلة الشائعة" data-en="FAQ"><span class="nav-text">الأسئلة الشائعة</span></a></li>
+                    </ul>
+                    <div class="nav-actions">
+                        <div class="language-switcher" id="language-switcher">
+                            <button class="lang-btn active" data-lang="ar">العربية</button>
+                            <button class="lang-btn" data-lang="en">English</button>
+                        </div>
+                        <a href="#contact" class="btn btn-primary" data-ar="تواصل معنا" data-en="Contact Us"><span class="btn-text">تواصل معنا</span></a>
+                        <button class="mobile-menu">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 data-ar="حوّل موسيقاك إلى نجاح عالمي" data-en="Transform Your Music into Global Success">حوّل موسيقاك إلى نجاح عالمي</h1>
+                    <p data-ar="نوّزع أعمالك الفنية على أكثر من 150 منصة موسيقية حول العالم مع حماية حقوقك وضمان أرباحك" data-en="We distribute your artistic works on more than 150 music platforms worldwide while protecting your rights and ensuring your profits">نوّزع أعمالك الفنية على أكثر من 150 منصة موسيقية حول العالم مع حماية حقوقك وضمان أرباحك</p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-light" data-ar="تواصل معنا" data-en="Contact Us"><span class="btn-text">تواصل معنا</span></a>
+                        <a href="#how-it-works" class="btn btn-outline" style="background: rgba(255,255,255,0.1); color: white; border-color: white;" data-ar="كيف تعمل" data-en="How It Works"><span class="btn-text">كيف تعمل</span></a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="stat-number" id="platforms-counter">0</div>
+                            <div class="stat-label" data-ar="منصة موسيقية" data-en="Music Platforms">منصة موسيقية</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number" id="artists-counter">0</div>
+                            <div class="stat-label" data-ar="فنان" data-en="Artists">فنان</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number" id="satisfaction-counter">0%</div>
+                            <div class="stat-label" data-ar="رضا العملاء" data-en="Client Satisfaction">رضا العملاء</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Platforms Section -->
+        <section class="platforms">
+            <div class="container">
+                <div class="section-header">
+                    <h2 data-ar="نوّزع على أهم المنصات العالمية" data-en="We Distribute on Major Global Platforms">نوّزع على أهم المنصات العالمية</h2>
+                    <p data-ar="وصل موسيقاك إلى الملايين من المستمعين حول العالم عبر منصاتهم المفضلة" data-en="Reach millions of listeners worldwide through their favorite platforms">وصل موسيقاك إلى الملايين من المستمعين حول العالم عبر منصاتهم المفضلة</p>
+                </div>
+                <div class="platforms-grid">
+                    <div class="platform-card">
+                        <i class="fab fa-spotify platform-icon"></i>
+                        <h4>Spotify</h4>
+                    </div>
+                    <div class="platform-card">
+                        <i class="fab fa-apple platform-icon"></i>
+                        <h4>Apple Music</h4>
+                    </div>
+                    <div class="platform-card">
+                        <i class="fas fa-music platform-icon"></i>
+                        <h4>Anghami</h4>
+                    </div>
+                    <div class="platform-card">
+                        <i class="fab fa-deezer platform-icon"></i>
+                        <h4>Deezer</h4>
+                    </div>
+                    <div class="platform-card">
+                        <i class="fab fa-youtube platform-icon"></i>
+                        <h4>YouTube Music</h4>
+                    </div>
+                    <div class="platform-card">
+                        <i class="fab fa-soundcloud platform-icon"></i>
+                        <h4>SoundCloud</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Releases Section -->
+        <section class="releases" id="releases">
+            <div class="container">
+                <div class="section-header">
+                    <h2 data-ar="الإصدارات الحديثة" data-en="Latest Releases">الإصدارات الحديثة</h2>
+                    <p data-ar="اكتشف أحدث الأعمال الموسيقية لفنانينا" data-en="Discover the latest musical works from our artists">اكتشف أحدث الأعمال الموسيقية لفنانينا</p>
+                </div>
+                <div class="releases-grid" id="releases-container">
+                    <!-- Releases will be dynamically added here -->
+                </div>
+            </div>
+        </section>
+        <!-- Services Section -->
+        <section class="services" id="services">
+            <div class="container">
+                <div class="section-header">
+                    <h2 data-ar="خدماتنا الشاملة" data-en="Our Comprehensive Services">خدماتنا الشاملة</h2>
+                    <p data-ar="نقدم لك حزمة متكاملة من الخدمات لدعم مسيرتك الفنية من البداية إلى النجاح" data-en="We provide you with a complete package of services to support your artistic journey from start to success">نقدم لك حزمة متكاملة من الخدمات لدعم مسيرتك الفنية من البداية إلى النجاح</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3 data-ar="التوزيع الرقمي" data-en="Digital Distribution">التوزيع الرقمي</h3>
+                        <p data-ar="نشر موسيقاك على جميع المنصات العالمية مع متابعة الأداء والإحصائيات" data-en="Publishing your music on all global platforms with performance tracking and statistics">نشر موسيقاك على جميع المنصات العالمية مع متابعة الأداء والإحصائيات</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-copyright"></i>
+                        </div>
+                        <h3 data-ar="حماية الحقوق" data-en="Rights Protection">حماية الحقوق</h3>
+                        <p data-ar="إدارة حقوق النشر والملكية الفكرية وحماية أعمالك من الانتهاكات" data-en="Managing copyright and intellectual property rights, protecting your works from violations">إدارة حقوق النشر والملكية الفكرية وحماية أعمالك من الانتهاكات</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 data-ar="التسويق الفني" data-en="Artistic Marketing">التسويق الفني</h3>
+                        <p data-ar="خطط تسويقية مخصصة لتعزيز وجودك وزيادة قاعدة معجبيك" data-en="Customized marketing plans to enhance your presence and grow your fan base">خطط تسويقية مخصصة لتعزيز وجودك وزيادة قاعدة معجبيك</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <h3 data-ar="تحصيل الأرباح" data-en="Revenue Collection">تحصيل الأرباح</h3>
+                        <p data-ar="تحصيل كافة مستحقاتك المالية من جميع المنصات بشفافية كاملة" data-en="Collecting all your financial dues from all platforms with full transparency">تحصيل كافة مستحقاتك المالية من جميع المنصات بشفافية كاملة</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-headphones"></i>
+                        </div>
+                        <h3 data-ar="دعم فني متكامل" data-en="Comprehensive Technical Support">دعم فني متكامل</h3>
+                        <p data-ar="فريق دعم فني متخصص لمساعدتك في جميع مراحل التوزيع" data-en="Specialized technical support team to assist you in all distribution stages">فريق دعم فني متخصص لمساعدتك في جميع مراحل التوزيع</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-analytics"></i>
+                        </div>
+                        <h3 data-ar="تقارير أداء" data-en="Performance Reports">تقارير أداء</h3>
+                        <p data-ar="تقارير مفصلة عن أداء موسيقاك وتحليلات دقيقة للجمهور" data-en="Detailed reports on your music performance and accurate audience analytics">تقارير مفصلة عن أداء موسيقاك وتحليلات دقيقة للجمهور</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- How It Works -->
+        <section class="how-it-works" id="how-it-works">
+            <div class="container">
+                <div class="section-header">
+                    <h2 data-ar="كيف تعمل خدمتنا" data-en="How Our Service Works">كيف تعمل خدمتنا</h2>
+                    <p data-ar="4 خطوات بسيطة تفصلك عن نشر موسيقاك على المنصات العالمية" data-en="4 simple steps separate you from publishing your music on global platforms">4 خطوات بسيطة تفصلك عن نشر موسيقاك على المنصات العالمية</p>
+                </div>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h4 data-ar="انضم إلينا" data-en="Join Us">انضم إلينا</h4>
+                        <p data-ar="سجّل حسابك واختر الباقة المناسبة لاحتياجاتك" data-en="Register your account and choose package that suits your needs">سجّل حسابك واختر الباقة المناسبة لاحتياجاتك</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h4 data-ar="ارفع أعمالك" data-en="Upload Your Works">ارفع أعمالك</h4>
+                        <p data-ar="قم برفع ملفاتك الموسيقية وبيانات الأغنية" data-en="Upload your music files and song data">قم برفع ملفاتك الموسيقية وبيانات الأغنية</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h4 data-ar="التوزيع" data-en="Distribution">التوزيع</h4>
+                        <p data-ar="نقوم بتوزيع موسيقاك على جميع المنصات المختارة" data-en="We distribute your music to all selected platforms">نقوم بتوزيع موسيقاك على جميع المنصات المختارة</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h4 data-ar="المتابعة" data-en="Follow-up">المتابعة</h4>
+                        <p data-ar="تابع أداء موسيقاك واحصل على أرباحك" data-en="Track your music performance and receive your profits">تابع أداء موسيقاك واحصل على أرباحك</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- About Section -->
+        <section class="about" id="about">
+            <div class="container">
+                <div class="section-header">
+                    <h2 data-ar="من نحن" data-en="About Us">من نحن</h2>
+                    <p data-ar="تعرف على فريق Beatna Records والرؤية التي تقودنا" data-en="Get to know Beatna Records team and vision that drives us">تعرف على فريق Beatna Records والرؤية التي تقودنا</p>
+                </div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p data-ar="Beatna Records شركة متخصصة في التوزيع الموسيقي الرقمي والخدمات الفنية المستقلة. نهدف إلى تمكين الفنانين العرب من الوصول إلى جمهور عالمي وتحقيق دخل ثابت من موسيقاهم. نركز على البساطة، الشفافية، والدعم الحقيقي للفنان منذ أول خطوة وحتى تحقيق الانتشار." data-en="Beatna Records is a company specialized in digital music distribution and independent artistic services. We aim to empower Arab artists to reach a global audience and achieve a steady income from their music. We focus on simplicity, transparency, and genuine support for artists from their first step to achieving widespread recognition.">Beatna Records شركة متخصصة في التوزيع الموسيقي الرقمي والخدمات الفنية المستقلة. نهدف إلى تمكين الفنانين العرب من الوصول إلى جمهور عالمي وتحقيق دخل ثابت من موسيقاهم. نركز على البساطة، الشفافية، والدعم الحقيقي للفنان منذ أول خطوة وحتى تحقيق الانتشار.</p>
+                    </div>
+                    <div class="ceo-card">
+                        <img src="https://i.ibb.co/84Tqmfn5/ceo-image.jpg" alt="Hady Ahmed" class="ceo-image">
+                        <div class="ceo-name">Hady Ahmed</div>
+                        <div class="ceo-title" data-ar="المدير التنفيذي" data-en="CEO">المدير التنفيذي</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Pricing -->
+        <section class="pricing" id="pricing">
+            <div class="container">
+                <div class="section-header">
+                    <h2 data-ar="باقاتنا المميزة" data-en="Our Premium Packages">باقاتنا المميزة</h2>
+                    <p data-ar="اختر الباقة المناسبة لاحتياجاتك وابدأ رحلتك الفنية" data-en="Choose the package that suits your needs and start your artistic journey">اختر الباقة المناسبة لاحتياجاتك وابدأ رحلتك الفنية</p>
+                </div>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3 class="pricing-name" data-ar="الباقة الأساسية" data-en="Basic Package">الباقة الأساسية</h3>
+                            <div class="pricing-price" data-ar="اتصل للتفاصيل" data-en="Contact for Details">اتصل للتفاصيل</div>
+                            <div class="pricing-period" data-ar="لـ 5 أغاني سنوياً" data-en="For 5 songs annually">لـ 5 أغاني سنوياً</div>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> <span data-ar="توزيع على 150+ منصة" data-en="Distribution on 150+ platforms">توزيع على 150+ منصة</span></li>
+                            <li><i class="fas fa-check"></i> <span data-ar="تحصيل 100% من الأرباح" data-en="100% profit collection">تحصيل 100% من الأرباح</span></li>
+                            <li><i class="fas fa-check"></i> <span data-ar="تقارير أداء أساسية" data-en="Basic performance reports">تقارير أداء أساسية</span></li>
+                            <li><i class="fas fa-check"></i> <span data-ar="دعم فني عبر البريد" data-en="Email technical support">دعم فني عبر البريد</span></li>
+                            <li><i class="fas fa-times"></i> <span data-ar="تسويق متقدم" data-en="Advanced marketing">تسويق متقدم</span></li>
+                            <li><i class="fas fa-times"></i> <span data-ar="إدارة حقوق متكاملة" data-en="Comprehensive rights management">إدارة حقوق متكاملة</span></li>
+                        </ul>
+                        <a href="https://wa.me/201050093361?text=مرحباً، أود الاستفسار عن الباقة الأساسية" class="btn btn-outline" target="_blank" data-ar="اختر الباقة" data-en="Choose Package"><span class="btn-text">اختر الباقة</span></a>
+                    </div>
+                    <div class="pricing-card featured">
+                        <div class="pricing-badge" data-ar="الأكثر طلباً" data-en="Most Popular">الأكثر طلباً</div>
+                        <div class="pricing-header">
+                            <h3 class="pricing-name" data-ar="الباقة الاحترافية" data-en="Professional Package">الباقة الاحترافية</h3>
+                            <div class="pricing-price" data-ar="اتصل للتفاصيل" data-en="Contact for Details">اتصل للتفاصيل</div>
+                            <div class="pricing-period" data-ar="أغاني غير محدودة" data-en="Unlimited songs">أغاني غير محدودة</div>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> <span data-ar="توزيع على 150+ منصة" data-en="Distribution on 150+ platforms">توزيع على 150+ منصة</span></li>
+                            <li><i class="fas fa-check"></i> <span data-ar="تحصيل 100% من الأرباح" data-en="100% profit collection">تحصيل 100% من الأرباح</span></li>
+                            <li><i class="fas fa-check"></i> <span data-ar="تقارير أداء متقدمة" data-en="Advanced performance reports">تقارير أداء متقدمة</span></li>
+                            <li><i class="fas fa-check"></i> <span data-ar="دعم فني فوري" data-en="Instant technical support">دعم فني فوري</span></li>
+                            <li><i class="fas fa-check"></i> <span data-ar="خطط تسويق مخصصة" data-en="Customized marketing plans">خطط تسويق مخصصة</span></li>
+                            <li><i class="fas fa-check"></i> <span data-ar="إدارة حقوق متكاملة" data-en="Comprehensive rights management">إدارة حقوق متكاملة</span></li>
+                        </ul>
+                        <a href="https://wa.me/201050093361?text=مرحباً، أود الاستفسار عن الباقة الاحترافية" class="btn btn-primary" target="_blank" data-ar="اختر الباقة" data-en="Choose Package"><span class="btn-text">اختر الباقة</span></a>
+                    </div>
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3 class="pricing-name" data-ar="باقة الاستوديوهات" data-en="Studios Package">باقة الاستوديوهات</h3>
+                            <div class="pricing-price" data-ar="اتصل للتفاصيل" data-en="Contact for Details">اتصل للتفاصيل</div>
+                            <div class="pricing-period" data-ar="لـ 10 فنانين" data-en="For 10 artists">لـ 10 فنانين</div>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> <span data-ar="كل مزايا الباقة الاحترافية" data-en="All professional package features">كل مزايا الباقة الاحترافية</span></li>
+                            <li><i class="fas fa-check"></i> <span data-ar="إدارة متعددة الفنانين" data-en="Multi-artist management">إدارة متعددة الفنانين</span></li>
+                            <li><i class="fas fa-check"></i> <span data-ar="تقارير جماعية" data-en="Group reports">تقارير جماعية</span></li>
+                            <li><i class="fas fa-check"></i> <span data-ar="دعم مخصص للاستوديوهات" data-en="Dedicated studio support">دعم مخصص للاستوديوهات</span></li>
+                            <li><i class="fas fa-check"></i> <span data-ar="خصم على الإصدارات" data-en="Discount on releases">خصم على الإصدارات</span></li>
+                            <li><i class="fas fa-check"></i> <span data-ar="تحليلات متقدمة" data-en="Advanced analytics">تحليلات متقدمة</span></li>
+                        </ul>
+                        <a href="https://wa.me/201050093361?text=مرحباً، أود الاستفسار عن باقة الاستوديوهات" class="btn btn-outline" target="_blank" data-ar="اختر الباقة" data-en="Choose Package"><span class="btn-text">اختر الباقة</span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Testimonials -->
+        <section class="testimonials" id="testimonials">
+            <div class="container">
+                <div class="section-header">
+                    <h2 data-ar="آراء عملائنا" data-en="Our Clients' Opinions">آراء عملائنا</h2>
+                    <p data-ar="اكتشف تجارب الفنانين الذين حققوا نجاحات مع Beatna Records" data-en="Discover the experiences of artists who have achieved success with Beatna Records">اكتشف تجارب الفنانين الذين حققوا نجاحات مع Beatna Records</p>
+                </div>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text" data-ar="منذ أن بدأت التعامل مع Beatna Records، تضاعفت إيراداتي وزادت قاعدة معجبي بشكل ملحوظ. فريق محترف جداً!" data-en="Since I started dealing with Beatna Records, my revenue has doubled and my fan base has increased significantly. A very professional team!">"منذ أن بدأت التعامل مع Beatna Records، تضاعفت إيراداتي وزادت قاعدة معجبي بشكل ملحوظ. فريق محترف جداً!"</div>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="فنان" class="author-avatar">
+                            <div class="author-info">
+                                <h5 data-ar="أحمد محمد" data-en="Ahmed Mohamed">أحمد محمد</h5>
+                                <span data-ar="فنان مستقل" data-en="Independent Artist">فنان مستقل</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-text" data-ar="الخدمة سريعة والدعم الفني ممتاز. ساعدوني في نشر أولى أغانيي وحققت آلاف الاستماعات في الأسابيع الأولى." data-en="The service is fast and technical support is excellent. They helped me publish my first songs and I achieved thousands of listens in the first weeks.">"الخدمة سريعة والدعم الفني ممتاز. ساعدوني في نشر أولى أغانيي وحققت آلاف الاستماعات في الأسابيع الأولى."</div>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="فنانة" class="author-avatar">
+                            <div class="author-info">
+                                <h5 data-ar="سارة الخالد" data-en="Sara Al-Khaled">سارة الخالد</h5>
+                                <span data-ar="مطربة" data-en="Singer">مطربة</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-text" data-ar="كاستوديو إنتاج، وجدنا في Beatna Records الشريك المثالي لتوزيع أعمال فنانينا بكفاءة واحترافية عالية." data-en="As a production studio, we found in Beatna Records the ideal partner for distributing our artists' works with efficiency and high professionalism.">"كاستوديو إنتاج، وجدنا في Beatna Records الشريك المثالي لتوزيع أعمال فنانينا بكفاءة واحترافية عالية."</div>
+                        <div class="testimonial-author">
+                            <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="مدير استوديو" class="author-avatar">
+                            <div class="author-info">
+                                <h5 data-ar="خالد الحربي" data-en="Khaled Al-Harbi">خالد الحربي</h5>
+                                <span data-ar="مدير استوديو" data-en="Studio Manager">مدير استوديو</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- FAQ -->
+        <section class="faq" id="faq">
+            <div class="container">
+                <div class="section-header">
+                    <h2 data-ar="الأسئلة الشائعة" data-en="Frequently Asked Questions">الأسئلة الشائعة</h2>
+                    <p data-ar="إجابات على أكثر الأسئلة شيوعاً حول خدماتنا" data-en="Answers to the most common questions about our services">إجابات على أكثر الأسئلة شيوعاً حول خدماتنا</p>
+                </div>
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span data-ar="كم من الوقت يستغرق توزيع الأغنية؟" data-en="How long does it take to distribute a song?">كم من الوقت يستغرق توزيع الأغنية؟</span>
+                            <i class="fas fa-chevron-down faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <span data-ar="عادةً ما يستغرق التوزيع من 3 إلى 7 أيام عمل حتى تظهر الأغنية على جميع المنصات. بعض المنصات قد تستغرق وقتاً أطول قليلاً." data-en="Distribution usually takes 3 to 7 working days for the song to appear on all platforms. Some platforms may take a little longer.">عادةً ما يستغرق التوزيع من 3 إلى 7 أيام عمل حتى تظهر الأغنية على جميع المنصات. بعض المنصات قد تستغرق وقتاً أطول قليلاً.</span>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span data-ar="هل أحتفظ بحقوق ملكية أعمالي؟" data-en="Do I retain ownership rights to my works?">هل أحتفظ بحقوق ملكية أعمالي؟</span>
+                            <i class="fas fa-chevron-down faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <span data-ar="نعم، أنت تحتفظ بكامل حقوق الملكية الفكرية لأعمالك. نحن فقط نوزع الموسيقى وندير الحقوق نيابة عنك." data-en="Yes, you retain all intellectual property rights to your works. We only distribute the music and manage rights on your behalf.">نعم، أنت تحتفظ بكامل حقوق الملكية الفكرية لأعمالك. نحن فقط نوزع الموسيقى وندير الحقوق نيابة عنك.</span>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span data-ar="كيف يتم تحصيل الأرباح؟" data-en="How are profits collected?">كيف يتم تحصيل الأرباح؟</span>
+                            <i class="fas fa-chevron-down faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <span data-ar="نحن نحصل على أرباحك من جميع المنصات ونتقاضى عمولة ثابتة فقط. يتم تحويل كامل المبلغ المستحق لك بشكل دوري." data-en="We collect your profits from all platforms and charge only a fixed commission. The full amount due to you is transferred periodically.">نحن نحصل على أرباحك من جميع المنصات ونتقاضى عمولة ثابتة فقط. يتم تحويل كامل المبلغ المستحق لك بشكل دوري.</span>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span data-ar="هل يمكنني إلغاء الخدمة في أي وقت؟" data-en="Can I cancel the service at any time?">هل يمكنني إلغاء الخدمة في أي وقت؟</span>
+                            <i class="fas fa-chevron-down faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <span data-ar="نعم، يمكنك إلغاء الخدمة في أي وقت. الأغاني الموزعة تبقى على المنصات وتستمر في جني الأرباح لك." data-en="Yes, you can cancel the service at any time. Distributed songs remain on the platforms and continue to generate profits for you.">نعم، يمكنك إلغاء الخدمة في أي وقت. الأغاني الموزعة تبقى على المنصات وتستمر في جني الأرباح لك.</span>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span data-ar="ما هي أنواع الملفات المقبولة؟" data-en="What file types are accepted?">ما هي أنواع الملفات المقبولة؟</span>
+                            <i class="fas fa-chevron-down faq-toggle"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <span data-ar="نقبل ملفات WAV و MP3 بجودة عالية، مع ضرورة توفير بيانات الأغنية كاملة وأغلفة بجودة مناسبة." data-en="We accept WAV and MP3 files in high quality, with the necessity of providing complete song data and covers with appropriate quality.">نقبل ملفات WAV و MP3 بجودة عالية، مع ضرورة توفير بيانات الأغنية كاملة وأغلفة بجودة مناسبة.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <div class="container">
+                <div class="section-header">
+                    <h2 data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</h2>
+                    <p data-ar="يسعدنا التواصل معك والإجابة على جميع استفساراتك" data-en="We are happy to communicate with you and answer all your inquiries">يسعدنا التواصل معك والإجابة على جميع استفساراتك</p>
+                </div>
+                <div class="contact-content">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3 data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</h3>
+                        <p data-ar="تواصل معنا عبر البريد الإلكتروني" data-en="Contact us via email">تواصل معنا عبر البريد الإلكتروني</p>
+                        <a href="mailto:contact@beatnarecords.store">contact@beatnarecords.store</a>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3 data-ar="الهاتف" data-en="Phone">الهاتف</h3>
+                        <p data-ar="اتصل بنا مباشرة" data-en="Call us directly">اتصل بنا مباشرة</p>
+                        <a href="tel:01050093361">01050093361</a>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3 data-ar="العنوان" data-en="Address">العنوان</h3>
+                        <p data-ar="زيارة مكتبنا" data-en="Visit our office">زيارة مكتبنا</p>
+                        <a href="#">القاهرة، مصر</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- CTA -->
+        <section class="cta">
+            <div class="container">
+                <h2 data-ar="هل أنت مستعد لنشر موسيقاك عالمياً؟" data-en="Are you ready to publish your music globally?">هل أنت مستعد لنشر موسيقاك عالمياً؟</h2>
+                <p data-ar="انضم إلى فنانينا وابدأ رحلتك نحو النجاح" data-en="Join our artists and start your journey to success">انضم إلى فنانينا وابدأ رحلتك نحو النجاح</p>
+                <div class="cta-buttons">
                     <a href="#contact" class="btn btn-light" data-ar="تواصل معنا" data-en="Contact Us"><span class="btn-text">تواصل معنا</span></a>
                     <a href="#how-it-works" class="btn btn-outline" style="background: rgba(255,255,255,0.1); color: white; border-color: white;" data-ar="كيف تعمل" data-en="How It Works"><span class="btn-text">كيف تعمل</span></a>
                 </div>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <div class="stat-number" id="platforms-counter">0</div>
-                        <div class="stat-label" data-ar="منصة موسيقية" data-en="Music Platforms">منصة موسيقية</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number" id="artists-counter">0</div>
-                        <div class="stat-label" data-ar="فنان" data-en="Artists">فنان</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number" id="satisfaction-counter">0%</div>
-                        <div class="stat-label" data-ar="رضا العملاء" data-en="Client Satisfaction">رضا العملاء</div>
-                    </div>
-                </div>
             </div>
-        </div>
-    </section>
-    
-    <!-- Latest Releases Section -->
-    <section class="latest-releases" id="latest-releases">
-        <div class="container">
-            <div class="section-header">
-                <h2 data-ar="أحدث الإصدارات" data-en="Latest Releases">أحدث الإصدارات</h2>
-                <p data-ar="استمتع بأحدث الأعمال الموسيقية من فنانينا" data-en="Enjoy the latest musical works from our artists">استمتع بأحدث الأعمال الموسيقية من فنانينا</p>
-            </div>
-            <div class="releases-grid">
-                <!-- Release Card 1 -->
-                <div class="release-card">
-                    <div class="release-cover">
-                        <img src="https://i.ibb.co/20xpfD2c/Cover.jpg" alt="فاقد - دولسيكا" class="release-img">
-                        <div class="release-overlay">
-                            <a href="https://lnk.bio/Beatna-Records?text=مرحباً، أود الاستفسار عن تراك فاقد لدولسيكا" class="btn btn-primary" target="_blank" data-ar="استمع الآن" data-en="Listen Now"><span class="btn-text">استمع الآن</span></a>
+        </section>
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-col">
+                        <h4 data-ar="Beatna Records" data-en="Beatna Records">Beatna Records</h4>
+                        <p data-ar="منصة متخصصة في توزيع الموسيقى الرقمي وخدمات الفنانين المستقلين" data-en="A platform specialized in digital music distribution and services for independent artists">منصة متخصصة في توزيع الموسيقى الرقمي وخدمات الفنانين المستقلين</p>
+                        <div class="social-links">
+                            <a href="https://www.youtube.com/@BeatnaRecords" target="_blank"><i class="fab fa-youtube"></i></a>
+                            <a href="https://www.instagram.com/beatnarecords/" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/BeatnaRacords" target="_blank"><i class="fab fa-facebook"></i></a>
                         </div>
                     </div>
-                    <div class="release-info">
-                        <h3 class="release-title">فاقد</h3>
-                        <p class="release-artist">دولسيكا</p>
+                    <div class="footer-col">
+                        <h4 data-ar="روابط سريعة" data-en="Quick Links">روابط سريعة</h4>
+                        <ul class="footer-links">
+                            <li><a href="#home" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+                            <li><a href="#releases" data-ar="الإصدارات" data-en="Releases">الإصدارات</a></li>
+                            <li><a href="#services" data-ar="خدماتنا" data-en="Our Services">خدماتنا</a></li>
+                            <li><a href="#pricing" data-ar="الباقات" data-en="Packages">الباقات</a></li>
+                            <li><a href="#about" data-ar="من نحن" data-en="About Us">من نحن</a></li>
+                            <li><a href="#faq" data-ar="الأسئلة الشائعة" data-en="FAQ">الأسئلة الشائعة</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4 data-ar="الدعم" data-en="Support">الدعم</h4>
+                        <ul class="footer-links">
+                            <li><a href="#contact" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</a></li>
+                            <li><a href="#faq" data-ar="الأسئلة الشائعة" data-en="FAQ">الأسئلة الشائعة</a></li>
+                            <li><a href="#" id="privacy-link" data-ar="سياسة الخصوصية" data-en="Privacy Policy">سياسة الخصوصية</a></li>
+                            <li><a href="#" id="terms-link" data-ar="شروط الاستخدام" data-en="Terms of Use">شروط الاستخدام</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4 data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</h4>
+                        <ul class="footer-links">
+                            <li><a href="mailto:contact@beatnarecords.store">contact@beatnarecords.store</a></li>
+                            <li><a href="tel:01050093361">01050093361</a></li>
+                            <li><a href="#">القاهرة، مصر</a></li>
+                        </ul>
                     </div>
                 </div>
-                
-                <!-- You can add more release cards here -->
+                <div class="footer-bottom">
+                    <p data-ar="جميع الحقوق محفوظة © 2025 Beatna Records" data-en="All rights reserved © 2025 Beatna Records">جميع الحقوق محفوظة © 2025 Beatna Records</p>
+                </div>
             </div>
-        </div>
-    </section>
+        </footer>
+    </div>
 
-    <!-- Platforms Section -->
-    <section class="platforms">
+    <!-- Dashboard -->
+    <div class="dashboard" id="dashboard">
         <div class="container">
-            <div class="section-header">
-                <h2 data-ar="نوّزع على أهم المنصات العالمية" data-en="We Distribute on Major Global Platforms">نوّزع على أهم المنصات العالمية</h2>
-                <p data-ar="وصل موسيقاك إلى الملايين من المستمعين حول العالم عبر منصاتهم المفضلة" data-en="Reach millions of listeners worldwide through their favorite platforms">وصل موسيقاك إلى الملايين من المستمعين حول العالم عبر منصاتهم المفضلة</p>
+            <div class="dashboard-header">
+                <h2>لوحة تحكم Beatna Records</h2>
+                <p>إدارة الإصدارات والمحتوى</p>
             </div>
-            <div class="platforms-grid">
-                <div class="platform-card">
-                    <i class="fab fa-spotify platform-icon"></i>
-                    <h4>Spotify</h4>
-                </div>
-                <div class="platform-card">
-                    <i class="fab fa-apple platform-icon"></i>
-                    <h4>Apple Music</h4>
-                </div>
-                <div class="platform-card">
-                    <i class="fas fa-music platform-icon"></i>
-                    <h4>Anghami</h4>
-                </div>
-                <div class="platform-card">
-                    <i class="fab fa-deezer platform-icon"></i>
-                    <h4>Deezer</h4>
-                </div>
-                <div class="platform-card">
-                    <i class="fab fa-youtube platform-icon"></i>
-                    <h4>YouTube Music</h4>
-                </div>
-                <div class="platform-card">
-                    <i class="fab fa-soundcloud platform-icon"></i>
-                    <h4>SoundCloud</h4>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <div class="section-header">
-                <h2 data-ar="خدماتنا الشاملة" data-en="Our Comprehensive Services">خدماتنا الشاملة</h2>
-                <p data-ar="نقدم لك حزمة متكاملة من الخدمات لدعم مسيرتك الفنية من البداية إلى النجاح" data-en="We provide you with a complete package of services to support your artistic journey from start to success">نقدم لك حزمة متكاملة من الخدمات لدعم مسيرتك الفنية من البداية إلى النجاح</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <h3 data-ar="التوزيع الرقمي" data-en="Digital Distribution">التوزيع الرقمي</h3>
-                    <p data-ar="نشر موسيقاك على جميع المنصات العالمية مع متابعة الأداء والإحصائيات" data-en="Publishing your music on all global platforms with performance tracking and statistics">نشر موسيقاك على جميع المنصات العالمية مع متابعة الأداء والإحصائيات</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-copyright"></i>
-                    </div>
-                    <h3 data-ar="حماية الحقوق" data-en="Rights Protection">حماية الحقوق</h3>
-                    <p data-ar="إدارة حقوق النشر والملكية الفكرية وحماية أعمالك من الانتهاكات" data-en="Managing copyright and intellectual property rights, protecting your works from violations">إدارة حقوق النشر والملكية الفكرية وحماية أعمالك من الانتهاكات</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 data-ar="التسويق الفني" data-en="Artistic Marketing">التسويق الفني</h3>
-                    <p data-ar="خطط تسويقية مخصصة لتعزيز وجودك وزيادة قاعدة معجبيك" data-en="Customized marketing plans to enhance your presence and grow your fan base">خطط تسويقية مخصصة لتعزيز وجودك وزيادة قاعدة معجبيك</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-money-bill-wave"></i>
-                    </div>
-                    <h3 data-ar="تحصيل الأرباح" data-en="Revenue Collection">تحصيل الأرباح</h3>
-                    <p data-ar="تحصيل كافة مستحقاتك المالية من جميع المنصات بشفافية كاملة" data-en="Collecting all your financial dues from all platforms with full transparency">تحصيل كافة مستحقاتك المالية من جميع المنصات بشفافية كاملة</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-headphones"></i>
-                    </div>
-                    <h3 data-ar="دعم فني متكامل" data-en="Comprehensive Technical Support">دعم فني متكامل</h3>
-                    <p data-ar="فريق دعم فني متخصص لمساعدتك في جميع مراحل التوزيع" data-en="Specialized technical support team to assist you in all distribution stages">فريق دعم فني متخصص لمساعدتك في جميع مراحل التوزيع</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-analytics"></i>
-                    </div>
-                    <h3 data-ar="تقارير أداء" data-en="Performance Reports">تقارير أداء</h3>
-                    <p data-ar="تقارير مفصلة عن أداء موسيقاك وتحليلات دقيقة للجمهور" data-en="Detailed reports on your music performance and accurate audience analytics">تقارير مفصلة عن أداء موسيقاك وتحليلات دقيقة للجمهور</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- How It Works -->
-    <section class="how-it-works" id="how-it-works">
-        <div class="container">
-            <div class="section-header">
-                <h2 data-ar="كيف تعمل خدمتنا" data-en="How Our Service Works">كيف تعمل خدمتنا</h2>
-                <p data-ar="4 خطوات بسيطة تفصلك عن نشر موسيقاك على المنصات العالمية" data-en="4 simple steps separate you from publishing your music on global platforms">4 خطوات بسيطة تفصلك عن نشر موسيقاك على المنصات العالمية</p>
-            </div>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h4 data-ar="انضم إلينا" data-en="Join Us">انضم إلينا</h4>
-                    <p data-ar="سجّل حسابك واختر الباقة المناسبة لاحتياجاتك" data-en="Register your account and choose package that suits your needs">سجّل حسابك واختر الباقة المناسبة لاحتياجاتك</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h4 data-ar="ارفع أعمالك" data-en="Upload Your Works">ارفع أعمالك</h4>
-                    <p data-ar="قم برفع ملفاتك الموسيقية وبيانات الأغنية" data-en="Upload your music files and song data">قم برفع ملفاتك الموسيقية وبيانات الأغنية</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h4 data-ar="التوزيع" data-en="Distribution">التوزيع</h4>
-                    <p data-ar="نقوم بتوزيع موسيقاك على جميع المنصات المختارة" data-en="We distribute your music to all selected platforms">نقوم بتوزيع موسيقاك على جميع المنصات المختارة</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h4 data-ar="المتابعة" data-en="Follow-up">المتابعة</h4>
-                    <p data-ar="تابع أداء موسيقاك واحصل على أرباحك" data-en="Track your music performance and receive your profits">تابع أداء موسيقاك واحصل على أرباحك</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="section-header">
-                <h2 data-ar="من نحن" data-en="About Us">من نحن</h2>
-                <p data-ar="تعرف على فريق Beatna Records والرؤية التي تقودنا" data-en="Get to know Beatna Records team and vision that drives us">تعرف على فريق Beatna Records والرؤية التي تقودنا</p>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <p data-ar="Beatna Records شركة متخصصة في التوزيع الموسيقي الرقمي والخدمات الفنية المستقلة. نهدف إلى تمكين الفنانين العرب من الوصول إلى جمهور عالمي وتحقيق دخل ثابت من موسيقاهم. نركز على البساطة، الشفافية، والدعم الحقيقي للفنان منذ أول خطوة وحتى تحقيق الانتشار." data-en="Beatna Records is a company specialized in digital music distribution and independent artistic services. We aim to empower Arab artists to reach a global audience and achieve a steady income from their music. We focus on simplicity, transparency, and genuine support for artists from their first step to achieving widespread recognition.">Beatna Records شركة متخصصة في التوزيع الموسيقي الرقمي والخدمات الفنية المستقلة. نهدف إلى تمكين الفنانين العرب من الوصول إلى جمهور عالمي وتحقيق دخل ثابت من موسيقاهم. نركز على البساطة، الشفافية، والدعم الحقيقي للفنان منذ أول خطوة وحتى تحقيق الانتشار.</p>
-                </div>
-                <div class="ceo-card">
-                    <img src="https://i.ibb.co/84Tqmfn5/ceo-image.jpg" alt="Hady Ahmed" class="ceo-image">
-                    <div class="ceo-name">Hady Ahmed</div>
-                    <div class="ceo-title" data-ar="المدير التنفيذي" data-en="CEO">المدير التنفيذي</div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Pricing -->
-    <section class="pricing" id="pricing">
-        <div class="container">
-            <div class="section-header">
-                <h2 data-ar="باقاتنا المميزة" data-en="Our Premium Packages">باقاتنا المميزة</h2>
-                <p data-ar="اختر الباقة المناسبة لاحتياجاتك وابدأ رحلتك الفنية" data-en="Choose the package that suits your needs and start your artistic journey">اختر الباقة المناسبة لاحتياجاتك وابدأ رحلتك الفنية</p>
-            </div>
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3 class="pricing-name" data-ar="الباقة الأساسية" data-en="Basic Package">الباقة الأساسية</h3>
-                        <div class="pricing-price" data-ar="اتصل للتفاصيل" data-en="Contact for Details">اتصل للتفاصيل</div>
-                        <div class="pricing-period" data-ar="لـ 5 أغاني سنوياً" data-en="For 5 songs annually">لـ 5 أغاني سنوياً</div>
-                    </div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> <span data-ar="توزيع على 150+ منصة" data-en="Distribution on 150+ platforms">توزيع على 150+ منصة</span></li>
-                        <li><i class="fas fa-check"></i> <span data-ar="تحصيل 100% من الأرباح" data-en="100% profit collection">تحصيل 100% من الأرباح</span></li>
-                        <li><i class="fas fa-check"></i> <span data-ar="تقارير أداء أساسية" data-en="Basic performance reports">تقارير أداء أساسية</span></li>
-                        <li><i class="fas fa-check"></i> <span data-ar="دعم فني عبر البريد" data-en="Email technical support">دعم فني عبر البريد</span></li>
-                        <li><i class="fas fa-times"></i> <span data-ar="تسويق متقدم" data-en="Advanced marketing">تسويق متقدم</span></li>
-                        <li><i class="fas fa-times"></i> <span data-ar="إدارة حقوق متكاملة" data-en="Comprehensive rights management">إدارة حقوق متكاملة</span></li>
+            <div class="dashboard-grid">
+                <div class="dashboard-sidebar">
+                    <ul class="dashboard-nav">
+                        <li><a href="#dashboard-releases" class="active"><i class="fas fa-music"></i> الإصدارات</a></li>
+                        <li><a href="#dashboard-add-release"><i class="fas fa-plus-circle"></i> إضافة إصدار جديد</a></li>
+                        <li><a href="#dashboard-stats"><i class="fas fa-chart-bar"></i> الإحصائيات</a></li>
+                        <li><a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a></li>
                     </ul>
-                    <a href="https://wa.me/201050093361?text=مرحباً، أود الاستفسار عن الباقة الأساسية" class="btn btn-outline" target="_blank" data-ar="اختر الباقة" data-en="Choose Package"><span class="btn-text">اختر الباقة</span></a>
                 </div>
-                <div class="pricing-card featured">
-                    <div class="pricing-badge" data-ar="الأكثر طلباً" data-en="Most Popular">الأكثر طلباً</div>
-                    <div class="pricing-header">
-                        <h3 class="pricing-name" data-ar="الباقة الاحترافية" data-en="Professional Package">الباقة الاحترافية</h3>
-                        <div class="pricing-price" data-ar="اتصل للتفاصيل" data-en="Contact for Details">اتصل للتفاصيل</div>
-                        <div class="pricing-period" data-ar="أغاني غير محدودة" data-en="Unlimited songs">أغاني غير محدودة</div>
-                    </div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> <span data-ar="توزيع على 150+ منصة" data-en="Distribution on 150+ platforms">توزيع على 150+ منصة</span></li>
-                        <li><i class="fas fa-check"></i> <span data-ar="تحصيل 100% من الأرباح" data-en="100% profit collection">تحصيل 100% من الأرباح</span></li>
-                        <li><i class="fas fa-check"></i> <span data-ar="تقارير أداء متقدمة" data-en="Advanced performance reports">تقارير أداء متقدمة</span></li>
-                        <li><i class="fas fa-check"></i> <span data-ar="دعم فني فوري" data-en="Instant technical support">دعم فني فوري</span></li>
-                        <li><i class="fas fa-check"></i> <span data-ar="خطط تسويق مخصصة" data-en="Customized marketing plans">خطط تسويق مخصصة</span></li>
-                        <li><i class="fas fa-check"></i> <span data-ar="إدارة حقوق متكاملة" data-en="Comprehensive rights management">إدارة حقوق متكاملة</span></li>
-                    </ul>
-                    <a href="https://wa.me/201050093361?text=مرحباً، أود الاستفسار عن الباقة الاحترافية" class="btn btn-primary" target="_blank" data-ar="اختر الباقة" data-en="Choose Package"><span class="btn-text">اختر الباقة</span></a>
-                </div>
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3 class="pricing-name" data-ar="باقة الاستوديوهات" data-en="Studios Package">باقة الاستوديوهات</h3>
-                        <div class="pricing-price" data-ar="اتصل للتفاصيل" data-en="Contact for Details">اتصل للتفاصيل</div>
-                        <div class="pricing-period" data-ar="لـ 10 فنانين" data-en="For 10 artists">لـ 10 فنانين</div>
-                    </div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> <span data-ar="كل مزايا الباقة الاحترافية" data-en="All professional package features">كل مزايا الباقة الاحترافية</span></li>
-                        <li><i class="fas fa-check"></i> <span data-ar="إدارة متعددة الفنانين" data-en="Multi-artist management">إدارة متعددة الفنانين</span></li>
-                        <li><i class="fas fa-check"></i> <span data-ar="تقارير جماعية" data-en="Group reports">تقارير جماعية</span></li>
-                        <li><i class="fas fa-check"></i> <span data-ar="دعم مخصص للاستوديوهات" data-en="Dedicated studio support">دعم مخصص للاستوديوهات</span></li>
-                        <li><i class="fas fa-check"></i> <span data-ar="خصم على الإصدارات" data-en="Discount on releases">خصم على الإصدارات</span></li>
-                        <li><i class="fas fa-check"></i> <span data-ar="تحليلات متقدمة" data-en="Advanced analytics">تحليلات متقدمة</span></li>
-                    </ul>
-                    <a href="https://wa.me/201050093361?text=مرحباً، أود الاستفسار عن باقة الاستوديوهات" class="btn btn-outline" target="_blank" data-ar="اختر الباقة" data-en="Choose Package"><span class="btn-text">اختر الباقة</span></a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Testimonials -->
-    <section class="testimonials" id="testimonials">
-        <div class="container">
-            <div class="section-header">
-                <h2 data-ar="آراء عملائنا" data-en="Our Clients' Opinions">آراء عملائنا</h2>
-                <p data-ar="اكتشف تجارب الفنانين الذين حققوا نجاحات مع Beatna Records" data-en="Discover the experiences of artists who have achieved success with Beatna Records">اكتشف تجارب الفنانين الذين حققوا نجاحات مع Beatna Records</p>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-text" data-ar="منذ أن بدأت التعامل مع Beatna Records، تضاعفت إيراداتي وزادت قاعدة معجبي بشكل ملحوظ. فريق محترف جداً!" data-en="Since I started dealing with Beatna Records, my revenue has doubled and my fan base has increased significantly. A very professional team!">"منذ أن بدأت التعامل مع Beatna Records، تضاعفت إيراداتي وزادت قاعدة معجبي بشكل ملحوظ. فريق محترف جداً!"</div>
-                    <div class="testimonial-author">
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="فنان" class="author-avatar">
-                        <div class="author-info">
-                            <h5 data-ar="أحمد محمد" data-en="Ahmed Mohamed">أحمد محمد</h5>
-                            <span data-ar="فنان مستقل" data-en="Independent Artist">فنان مستقل</span>
+                <div class="dashboard-content">
+                    <!-- Releases Management -->
+                    <div class="dashboard-section active" id="dashboard-releases">
+                        <h3>إدارة الإصدارات</h3>
+                        <div class="releases-grid" id="dashboard-releases-container">
+                            <!-- Releases will be dynamically added here -->
                         </div>
                     </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-text" data-ar="الخدمة سريعة والدعم الفني ممتاز. ساعدوني في نشر أولى أغانيي وحققت آلاف الاستماعات في الأسابيع الأولى." data-en="The service is fast and technical support is excellent. They helped me publish my first songs and I achieved thousands of listens in the first weeks.">"الخدمة سريعة والدعم الفني ممتاز. ساعدوني في نشر أولى أغانيي وحققت آلاف الاستماعات في الأسابيع الأولى."</div>
-                    <div class="testimonial-author">
-                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="فنانة" class="author-avatar">
-                        <div class="author-info">
-                            <h5 data-ar="سارة الخالد" data-en="Sara Al-Khaled">سارة الخالد</h5>
-                            <span data-ar="مطربة" data-en="Singer">مطربة</span>
-                        </div>
+                    
+                    <!-- Add Release Form -->
+                    <div class="dashboard-section" id="dashboard-add-release">
+                        <h3>إضافة إصدار جديد</h3>
+                        <form id="add-release-form">
+                            <div class="form-group">
+                                <label for="artist-name">اسم الفنان</label>
+                                <input type="text" id="artist-name" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="track-name">اسم التراك</label>
+                                <input type="text" id="track-name" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="image-url">رابط الصورة</label>
+                                <input type="url" id="image-url" class="form-control" required placeholder="https://example.com/image.jpg">
+                            </div>
+                            <div class="form-group">
+                                <label for="listen-url">رابط الاستماع (اختياري)</label>
+                                <input type="url" id="listen-url" class="form-control" placeholder="https://example.com/track">
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-plus"></i>
+                                إضافة الإصدار
+                            </button>
+                        </form>
                     </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-text" data-ar="كاستوديو إنتاج، وجدنا في Beatna Records الشريك المثالي لتوزيع أعمال فنانينا بكفاءة واحترافية عالية." data-en="As a production studio, we found in Beatna Records the ideal partner for distributing our artists' works with efficiency and high professionalism.">"كاستوديو إنتاج، وجدنا في Beatna Records الشريك المثالي لتوزيع أعمال فنانينا بكفاءة واحترافية عالية."</div>
-                    <div class="testimonial-author">
-                        <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="مدير استوديو" class="author-avatar">
-                        <div class="author-info">
-                            <h5 data-ar="خالد الحربي" data-en="Khaled Al-Harbi">خالد الحربي</h5>
-                            <span data-ar="مدير استوديو" data-en="Studio Manager">مدير استوديو</span>
+                    
+                    <!-- Statistics -->
+                    <div class="dashboard-section" id="dashboard-stats">
+                        <h3>الإحصائيات</h3>
+                        <div class="hero-stats">
+                            <div class="stat">
+                                <div class="stat-number" id="total-releases">0</div>
+                                <div class="stat-label">إصدار</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number" id="total-artists">0</div>
+                                <div class="stat-label">فنان</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">100%</div>
+                                <div class="stat-label">نشط</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- FAQ -->
-    <section class="faq" id="faq">
-        <div class="container">
-            <div class="section-header">
-                <h2 data-ar="الأسئلة الشائعة" data-en="Frequently Asked Questions">الأسئلة الشائعة</h2>
-                <p data-ar="إجابات على أكثر الأسئلة شيوعاً حول خدماتنا" data-en="Answers to the most common questions about our services">إجابات على أكثر الأسئلة شيوعاً حول خدماتنا</p>
-            </div>
-            <div class="faq-grid">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span data-ar="كم من الوقت يستغرق توزيع الأغنية؟" data-en="How long does it take to distribute a song?">كم من الوقت يستغرق توزيع الأغنية؟</span>
-                        <i class="fas fa-chevron-down faq-toggle"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <span data-ar="عادةً ما يستغرق التوزيع من 3 إلى 7 أيام عمل حتى تظهر الأغنية على جميع المنصات. بعض المنصات قد تستغرق وقتاً أطول قليلاً." data-en="Distribution usually takes 3 to 7 working days for the song to appear on all platforms. Some platforms may take a little longer.">عادةً ما يستغرق التوزيع من 3 إلى 7 أيام عمل حتى تظهر الأغنية على جميع المنصات. بعض المنصات قد تستغرق وقتاً أطول قليلاً.</span>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span data-ar="هل أحتفظ بحقوق ملكية أعمالي؟" data-en="Do I retain ownership rights to my works?">هل أحتفظ بحقوق ملكية أعمالي؟</span>
-                        <i class="fas fa-chevron-down faq-toggle"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <span data-ar="نعم، أنت تحتفظ بكامل حقوق الملكية الفكرية لأعمالك. نحن فقط نوزع الموسيقى وندير الحقوق نيابة عنك." data-en="Yes, you retain all intellectual property rights to your works. We only distribute the music and manage rights on your behalf.">نعم، أنت تحتفظ بكامل حقوق الملكية الفكرية لأعمالك. نحن فقط نوزع الموسيقى وندير الحقوق نيابة عنك.</span>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span data-ar="كيف يتم تحصيل الأرباح؟" data-en="How are profits collected?">كيف يتم تحصيل الأرباح؟</span>
-                        <i class="fas fa-chevron-down faq-toggle"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <span data-ar="نحن نحصل على أرباحك من جميع المنصات ونتقاضى عمولة ثابتة فقط. يتم تحويل كامل المبلغ المستحق لك بشكل دوري." data-en="We collect your profits from all platforms and charge only a fixed commission. The full amount due to you is transferred periodically.">نحن نحصل على أرباحك من جميع المنصات ونتقاضى عمولة ثابتة فقط. يتم تحويل كامل المبلغ المستحق لك بشكل دوري.</span>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span data-ar="هل يمكنني إلغاء الخدمة في أي وقت؟" data-en="Can I cancel the service at any time?">هل يمكنني إلغاء الخدمة في أي وقت؟</span>
-                        <i class="fas fa-chevron-down faq-toggle"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <span data-ar="نعم، يمكنك إلغاء الخدمة في أي وقت. الأغاني الموزعة تبقى على المنصات وتستمر في جني الأرباح لك." data-en="Yes, you can cancel the service at any time. Distributed songs remain on the platforms and continue to generate profits for you.">نعم، يمكنك إلغاء الخدمة في أي وقت. الأغاني الموزعة تبقى على المنصات وتستمر في جني الأرباح لك.</span>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span data-ar="ما هي أنواع الملفات المقبولة؟" data-en="What file types are accepted?">ما هي أنواع الملفات المقبولة؟</span>
-                        <i class="fas fa-chevron-down faq-toggle"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <span data-ar="نقبل ملفات WAV و MP3 بجودة عالية، مع ضرورة توفير بيانات الأغنية كاملة وأغلفة بجودة مناسبة." data-en="We accept WAV and MP3 files in high quality, with the necessity of providing complete song data and covers with appropriate quality.">نقبل ملفات WAV و MP3 بجودة عالية، مع ضرورة توفير بيانات الأغنية كاملة وأغلفة بجودة مناسبة.</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2 data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</h2>
-                <p data-ar="يسعدنا التواصل معك والإجابة على جميع استفساراتك" data-en="We are happy to communicate with you and answer all your inquiries">يسعدنا التواصل معك والإجابة على جميع استفساراتك</p>
-            </div>
-            <div class="contact-content">
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <h3 data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</h3>
-                    <p data-ar="تواصل معنا عبر البريد الإلكتروني" data-en="Contact us via email">تواصل معنا عبر البريد الإلكتروني</p>
-                    <a href="mailto:contact@beatnarecords.store">contact@beatnarecords.store</a>
-                </div>
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <h3 data-ar="الهاتف" data-en="Phone">الهاتف</h3>
-                    <p data-ar="اتصل بنا مباشرة" data-en="Call us directly">اتصل بنا مباشرة</p>
-                    <a href="tel:01050093361">01050093361</a>
-                </div>
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <h3 data-ar="العنوان" data-en="Address">العنوان</h3>
-                    <p data-ar="زيارة مكتبنا" data-en="Visit our office">زيارة مكتبنا</p>
-                    <a href="#">القاهرة، مصر</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- CTA -->
-    <section class="cta">
-        <div class="container">
-            <h2 data-ar="هل أنت مستعد لنشر موسيقاك عالمياً؟" data-en="Are you ready to publish your music globally?">هل أنت مستعد لنشر موسيقاك عالمياً؟</h2>
-            <p data-ar="انضم إلى فنانينا وابدأ رحلتك نحو النجاح" data-en="Join our artists and start your journey to success">انضم إلى فنانينا وابدأ رحلتك نحو النجاح</p>
-            <div class="cta-buttons">
-                <a href="#contact" class="btn btn-light" data-ar="تواصل معنا" data-en="Contact Us"><span class="btn-text">تواصل معنا</span></a>
-                <a href="#how-it-works" class="btn btn-outline" style="background: rgba(255,255,255,0.1); color: white; border-color: white;" data-ar="كيف تعمل" data-en="How It Works"><span class="btn-text">كيف تعمل</span></a>
-            </div>
-        </div>
-    </section>
-    <!-- WhatsApp Floating Button (GFX) -->
-    <a href="https://wa.me/201050093361?text=مرحباً، أود الاستفسار عن خدمات توزيع الموسيقى." class="whatsapp-float" target="_blank" id="whatsapp-float">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h4 data-ar="Beatna Records" data-en="Beatna Records">Beatna Records</h4>
-                    <p data-ar="منصة متخصصة في توزيع الموسيقى الرقمي وخدمات الفنانين المستقلين" data-en="A platform specialized in digital music distribution and services for independent artists">منصة متخصصة في توزيع الموسيقى الرقمي وخدمات الفنانين المستقلين</p>
-                    <div class="social-links">
-                        <a href="https://www.youtube.com/@BeatnaRecords" target="_blank"><i class="fab fa-youtube"></i></a>
-                        <a href="https://www.instagram.com/beatnarecords/" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.facebook.com/BeatnaRacords" target="_blank"><i class="fab fa-facebook"></i></a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h4 data-ar="روابط سريعة" data-en="Quick Links">روابط سريعة</h4>
-                    <ul class="footer-links">
-                        <li><a href="#home" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
-                        <li><a href="#services" data-ar="خدماتنا" data-en="Our Services">خدماتنا</a></li>
-                        <li><a href="#pricing" data-ar="الباقات" data-en="Packages">الباقات</a></li>
-                        <li><a href="#about" data-ar="من نحن" data-en="About Us">من نحن</a></li>
-                        <li><a href="#faq" data-ar="الأسئلة الشائعة" data-en="FAQ">الأسئلة الشائعة</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4 data-ar="الدعم" data-en="Support">الدعم</h4>
-                    <ul class="footer-links">
-                        <li><a href="#contact" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</a></li>
-                        <li><a href="#faq" data-ar="الأسئلة الشائعة" data-en="FAQ">الأسئلة الشائعة</a></li>
-                        <li><a href="#" id="privacy-link" data-ar="سياسة الخصوصية" data-en="Privacy Policy">سياسة الخصوصية</a></li>
-                        <li><a href="#" id="terms-link" data-ar="شروط الاستخدام" data-en="Terms of Use">شروط الاستخدام</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4 data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</h4>
-                    <ul class="footer-links">
-                        <li><a href="mailto:contact@beatnarecords.store">contact@beatnarecords.store</a></li>
-                        <li><a href="tel:01050093361">01050093361</a></li>
-                        <li><a href="#">القاهرة، مصر</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p data-ar="جميع الحقوق محفوظة © 2025 Beatna Records" data-en="All rights reserved © 2025 Beatna Records">جميع الحقوق محفوظة © 2025 Beatna Records</p>
-            </div>
-        </div>
-    </footer>
+    </div>
 
     <!-- Privacy Policy Modal -->
     <div id="privacyModal" class="modal">
@@ -1752,5 +1935,597 @@
             <p data-ar="نستخدم معلوماتك لتقديم خدماتنا، وتحسين تجربتك، والتواصل معك بشأن حسابك وأعمالك الموسيقية، وإرسال تحديثات وعروض ترويجية ذات صلة." data-en="We use your information to provide our services, improve your experience, communicate with you about your account and music work, and send relevant updates and promotional offers.">نستخدم معلوماتك لتقديم خدماتنا، وتحسين تجربتك، والتواصل معك بشأن حسابك وأعمالك الموسيقية، وإرسال تحديثات وعروض ترويجية ذات صلة.</p>
             
             <h3 data-ar="3. مشاركة المعلومات" data-en="3. Information Sharing">3. مشاركة المعلومات</h3>
-            <p data-ar="لا نبيع أو نؤجر معلوماتك الشخصية لجهات خارجية. نشارك معلوماتك فقط مع منصات الموسيقى الشريكة لتوزيع أعمالك ومع مزودي الخدمات المعتمدين لتقديم خدماتنا." data-en="We do not sell or rent your personal information to third parties. We only share your information with partner music platforms to distribute your work
+            <p data-ar="لا نبيع أو نؤجر معلوماتك الشخصية لجهات خارجية. نشارك معلوماتك فقط مع منصات الموسيقى الشريكة لتوزيع أعمالك ومع مزودي الخدمات المعتمدين لتقديم خدماتنا." data-en="We do not sell or rent your personal information to third parties. We only share your information with partner music platforms to distribute your work and with approved service providers to deliver our services.">لا نبيع أو نؤجر معلوماتك الشخصية لجهات خارجية. نشارك معلوماتك فقط مع منصات الموسيقى الشريكة لتوزيع أعمالك ومع مزودي الخدمات المعتمدين لتقديم خدماتنا.</p>
+            
+            <h3 data-ar="4. أمان البيانات" data-en="4. Data Security">4. أمان البيانات</h3>
+            <p data-ar="نتخذ تدابير أمنية مناسبة لحماية معلوماتك من الوصول غير المصرح به أو التعديل أو الإفصاح. نستخدم تشفير SSL وبروتوكولات أمان أخرى." data-en="We take appropriate security measures to protect your information from unauthorized access, alteration, or disclosure. We use SSL encryption and other security protocols.">نتخذ تدابير أمنية مناسبة لحماية معلوماتك من الوصول غير المصرح به أو التعديل أو الإفصاح. نستخدم تشفير SSL وبروتوكولات أمان أخرى.</p>
+            
+            <h3 data-ar="5. حقوقك" data-en="5. Your Rights">5. حقوقك</h3>
+            <p data-ar="لديك الحق في الوصول إلى معلوماتك وتصحيحها وحذفها. يمكنك إدارة إعدادات الخصوصية من خلال حسابك أو التواصل معنا مباشرة." data-en="You have the right to access, correct, and delete your information. You can manage privacy settings through your account or contact us directly.">لديك الحق في الوصول إلى معلوماتك وتصحيحها وحذفها. يمكنك إدارة إعدادات الخصوصية من خلال حسابك أو التواصل معنا مباشرة.</p>
+            
+            <h3 data-ar="6. ملفات تعريف الارتباط" data-en="6. Cookies">6. ملفات تعريف الارتباط</h3>
+            <p data-ar="نستخدم ملفات تعريف الارتباط لتحسين تجربتك على موقعنا وتحليل استخدام الموقع. يمكنك تعطيل ملفات تعريف الارتباط من خلال إعدادات المتصفح." data-en="We use cookies to improve your experience on our site and analyze site usage. You can disable cookies through your browser settings.">نستخدم ملفات تعريف الارتباط لتحسين تجربتك على موقعنا وتحليل استخدام الموقع. يمكنك تعطيل ملفات تعريف الارتباط من خلال إعدادات المتصفح.</p>
+            
+            <h3 data-ar="7. الاتصال بنا" data-en="7. Contact Us">7. الاتصال بنا</h3>
+            <p data-ar="إذا كان لديك أي أسئلة حول سياسة الخصوصية الخاصة بنا، يرجى التواصل معنا على:" data-en="If you have any questions about our privacy policy, please contact us at:">إذا كان لديك أي أسئلة حول سياسة الخصوصية الخاصة بنا، يرجى التواصل معنا على:</p>
+            <p data-ar="البريد الإلكتروني: privacy@beatnarecords.store" data-en="Email: privacy@beatnarecords.store">البريد الإلكتروني: privacy@beatnarecords.store</p>
+        </div>
+    </div>
 
+    <!-- Terms of Use Modal -->
+    <div id="termsModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 data-ar="شروط الاستخدام" data-en="Terms of Use">شروط الاستخدام</h2>
+            <p data-ar="آخر تحديث: 1 يناير 2025" data-en="Last updated: January 1, 2025">آخر تحديث: 1 يناير 2025</p>
+            
+            <h3 data-ar="1. قبول الشروط" data-en="1. Acceptance of Terms">1. قبول الشروط</h3>
+            <p data-ar="باستخدام خدمات Beatna Records، فإنك توافق على الالتزام بهذه الشروط والأحكام. إذا كنت لا توافق على هذه الشروط، يرجى عدم استخدام خدماتنا." data-en="By using Beatna Records services, you agree to comply with these terms and conditions. If you do not agree to these terms, please do not use our services.">باستخدام خدمات Beatna Records، فإنك توافق على الالتزام بهذه الشروط والأحكام. إذا كنت لا توافق على هذه الشروط، يرجى عدم استخدام خدماتنا.</p>
+            
+            <h3 data-ar="2. وصف الخدمة" data-en="2. Service Description">2. وصف الخدمة</h3>
+            <p data-ar="Beatna Records توفر خدمات توزيع موسيقى رقمي للفنانين المستقلين، بما في ذلك التوزيع على المنصات العالمية وإدارة حقوق الطبع والنشر وتحصيل الإيرادات." data-en="Beatna Records provides digital music distribution services for independent artists, including distribution to global platforms, copyright management, and revenue collection.">Beatna Records توفر خدمات توزيع موسيقى رقمي للفنانين المستقلين، بما في ذلك التوزيع على المنصات العالمية وإدارة حقوق الطبع والنشر وتحصيل الإيرادات.</p>
+            
+            <h3 data-ar="3. مسؤوليات المستخدم" data-en="3. User Responsibilities">3. مسؤوليات المستخدم</h3>
+            <p data-ar="أنت مسؤول عن تقديم محتوى أصلي لا ينتهك حقوق الطبع والنشر أو الملكية الفكرية للآخرين. يجب أن تضمن أن جميع المعلومات المقدمة دقيقة وكاملة." data-en="You are responsible for providing original content that does not infringe on others' copyright or intellectual property rights. You must ensure all provided information is accurate and complete.">أنت مسؤول عن تقديم محتوى أصلي لا ينتهك حقوق الطبع والنشر أو الملكية الفكرية للآخرين. يجب أن تضمن أن جميع المعلومات المقدمة دقيقة وكاملة.</p>
+            
+            <h3 data-ar="4. الملكية الفكرية" data-en="4. Intellectual Property">4. الملكية الفكرية</h3>
+            <p data-ar="تحتفظ بالملكية الكاملة لأعمالك الموسيقية. تمنحنا Beatna Records ترخيصاً غير حصري لتوزيع موسيقاك على المنصات الشريكة طوال فترة الاتفاقية." data-en="You retain full ownership of your musical works. You grant Beatna Records a non-exclusive license to distribute your music on partner platforms during the agreement period.">تحتفظ بالملكية الكاملة لأعمالك الموسيقية. تمنحنا Beatna Records ترخيصاً غير حصري لتوزيع موسيقاك على المنصات الشريكة طوال فترة الاتفاقية.</p>
+            
+            <h3 data-ar="5. الدفع والإيرادات" data-en="5. Payment and Revenue">5. الدفع والإيرادات</h3>
+            <p data-ar="تخضع رسوم الخدمة للباقات المختارة. يتم تحصيل الإيرادات من المنصات وتحويلها إليك بعد خصم العمولة المتفق عليها. يتم الدفع بشكل دوري حسب الجدول الزمني المحدد." data-en="Service fees are subject to selected packages. Revenue is collected from platforms and transferred to you after deducting the agreed commission. Payments are made periodically according to the specified schedule.">تخضع رسوم الخدمة للباقات المختارة. يتم تحصيل الإيرادات من المنصات وتحويلها إليك بعد خصم العمولة المتفق عليها. يتم الدفع بشكل دوري حسب الجدول الزمني المحدد.</p>
+            
+            <h3 data-ar="6. إنهاء الخدمة" data-en="6. Service Termination">6. إنهاء الخدمة</h3>
+            <p data-ar="يمكنك إنهاء الخدمة في أي وقت بإشعار مسبق 30 يوماً. الأغاني الموزعة تبقى على المنصات وتستمر في توليد الإيرادات. نحتفظ بالحق في إنهاء الخدمة في حالة انتهاك الشروط." data-en="You can terminate the service at any time with 30 days' notice. Distributed songs remain on platforms and continue to generate revenue. We reserve the right to terminate the service in case of terms violation.">يمكنك إنهاء الخدمة في أي وقت بإشعار مسبق 30 يوماً. الأغاني الموزعة تبقى على المنصات وتستمر في توليد الإيرادات. نحتفظ بالحق في إنهاء الخدمة في حالة انتهاك الشروط.</p>
+            
+            <h3 data-ar="7. تحديد المسؤولية" data-en="7. Limitation of Liability">7. تحديد المسؤولية</h3>
+            <p data-ar="لا نكون مسؤولين عن أي أضرار غير مباشرة أو عرضية أو تبعية تنشأ عن استخدام خدماتنا. مسؤوليتنا الإجمالية محدودة بمبلغ الرسوم المدفوعة للخدمة." data-en="We are not liable for any indirect, incidental, or consequential damages arising from the use of our services. Our total liability is limited to the amount of fees paid for the service.">لا نكون مسؤولين عن أي أضرار غير مباشرة أو عرضية أو تبعية تنشأ عن استخدام خدماتنا. مسؤوليتنا الإجمالية محدودة بمبلغ الرسوم المدفوعة للخدمة.</p>
+            
+            <h3 data-ar="8. تعديل الشروط" data-en="8. Terms Modification">8. تعديل الشروط</h3>
+            <p data-ar="نحتفظ بالحق في تعديل هذه الشروط من وقت لآخر. سيتم إعلامك بأي تغييرات مهمة عبر البريد الإلكتروني أو من خلال موقعنا." data-en="We reserve the right to modify these terms from time to time. You will be notified of any significant changes via email or through our website.">نحتفظ بالحق في تعديل هذه الشروط من وقت لآخر. سيتم إعلامك بأي تغييرات مهمة عبر البريد الإلكتروني أو من خلال موقعنا.</p>
+            
+            <h3 data-ar="9. القانون الحاكم" data-en="9. Governing Law">9. القانون الحاكم</h3>
+            <p data-ar="تخضع هذه الشروط لقوانين جمهورية مصر العربية. أي نزاع يتم حله من خلال المحاكم المصرية." data-en="These terms are subject to the laws of the Arab Republic of Egypt. Any dispute will be resolved through Egyptian courts.">تخضع هذه الشروط لقوانين جمهورية مصر العربية. أي نزاع يتم حله من خلال المحاكم المصرية.</p>
+            
+            <h3 data-ar="10. الاتصال بنا" data-en="10. Contact Us">10. الاتصال بنا</h3>
+            <p data-ar="لأي استفسارات حول شروط الاستخدام، يرجى التواصل معنا على:" data-en="For any inquiries about terms of use, please contact us at:">لأي استفسارات حول شروط الاستخدام، يرجى التواصل معنا على:</p>
+            <p data-ar="البريد الإلكتروني: legal@beatnarecords.store" data-en="Email: legal@beatnarecords.store">البريد الإلكتروني: legal@beatnarecords.store</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Admin credentials
+            const ADMIN_USERNAME = 'admin';
+            const ADMIN_PASSWORD = 'admin123';
+            
+            // Check if user is logged in
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            
+            // Show appropriate page based on login status
+            if (isLoggedIn) {
+                showDashboard();
+            } else {
+                showLoginPage();
+            }
+            
+            // Login functionality
+            const loginForm = document.getElementById('login-form');
+            if (loginForm) {
+                loginForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const username = document.getElementById('username').value;
+                    const password = document.getElementById('password').value;
+                    
+                    if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+                        localStorage.setItem('isLoggedIn', 'true');
+                        showDashboard();
+                    } else {
+                        alert('اسم المستخدم أو كلمة المرور غير صحيحة');
+                    }
+                });
+            }
+            
+            // Logout functionality
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    localStorage.setItem('isLoggedIn', 'false');
+                    showLoginPage();
+                });
+            }
+            
+            // Admin login button
+            const adminLoginBtn = document.getElementById('admin-login-btn');
+            if (adminLoginBtn) {
+                adminLoginBtn.addEventListener('click', function() {
+                    showLoginPage();
+                });
+            }
+            
+            // Dashboard navigation
+            const dashboardNavLinks = document.querySelectorAll('.dashboard-nav a');
+            dashboardNavLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links
+                    dashboardNavLinks.forEach(l => l.classList.remove('active'));
+                    
+                    // Add active class to clicked link
+                    this.classList.add('active');
+                    
+                    // Hide all sections
+                    const sections = document.querySelectorAll('.dashboard-section');
+                    sections.forEach(section => section.classList.remove('active'));
+                    
+                    // Show target section
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    if (targetSection) {
+                        targetSection.classList.add('active');
+                    }
+                });
+            });
+            
+            // Releases management
+            let releases = JSON.parse(localStorage.getItem('releases')) || [
+                {
+                    artist: 'دولسيكا',
+                    track: 'فاقد',
+                    image: 'https://i.ibb.co/20xpfD2c/Cover.jpg',
+                    listenUrl: '#'
+                }
+            ];
+            
+            // Save releases to localStorage
+            function saveReleases() {
+                localStorage.setItem('releases', JSON.stringify(releases));
+                updateReleasesDisplay();
+                updateStatistics();
+            }
+            
+            // Update releases display
+            function updateReleasesDisplay() {
+                const releasesContainer = document.getElementById('releases-container');
+                const dashboardReleasesContainer = document.getElementById('dashboard-releases-container');
+                
+                if (releasesContainer) {
+                    releasesContainer.innerHTML = '';
+                    releases.forEach(release => {
+                        releasesContainer.appendChild(createReleaseCard(release));
+                    });
+                }
+                
+                if (dashboardReleasesContainer) {
+                    dashboardReleasesContainer.innerHTML = '';
+                    releases.forEach((release, index) => {
+                        dashboardReleasesContainer.appendChild(createDashboardReleaseCard(release, index));
+                    });
+                }
+            }
+            
+            // Create release card for main website
+            function createReleaseCard(release) {
+                const card = document.createElement('div');
+                card.className = 'release-card';
+                card.innerHTML = `
+                    <div class="release-image">
+                        <img src="${release.image}" alt="${release.track} - ${release.artist}">
+                        <div class="release-overlay">
+                            <a href="${release.listenUrl || '#'}" class="btn btn-primary play-btn">
+                                <i class="fas fa-play"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="release-info">
+                        <h3 class="release-title">${release.track}</h3>
+                        <p class="release-artist">${release.artist}</p>
+                        <div class="release-actions">
+                            <a href="https://wa.me/201050093361?text=مرحباً، أود الاستفسار عن إصدار ${release.track} للفنان ${release.artist}" class="btn btn-outline" target="_blank">
+                                <i class="fas fa-share"></i>
+                                <span>مشاركة</span>
+                            </a>
+                            <a href="${release.listenUrl || '#'}" class="btn btn-primary">
+                                <i class="fas fa-music"></i>
+                                <span>الاستماع</span>
+                            </a>
+                        </div>
+                    </div>
+                `;
+                return card;
+            }
+            
+            // Create release card for dashboard
+            function createDashboardReleaseCard(release, index) {
+                const card = document.createElement('div');
+                card.className = 'release-card';
+                card.innerHTML = `
+                    <div class="release-image">
+                        <img src="${release.image}" alt="${release.track} - ${release.artist}">
+                        <div class="release-overlay">
+                            <a href="${release.listenUrl || '#'}" class="btn btn-primary play-btn">
+                                <i class="fas fa-play"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="release-info">
+                        <h3 class="release-title">${release.track}</h3>
+                        <p class="release-artist">${release.artist}</p>
+                        <div class="release-actions">
+                            <button class="btn btn-outline delete-release" data-index="${index}">
+                                <i class="fas fa-trash"></i>
+                                <span>حذف</span>
+                            </button>
+                            <a href="${release.listenUrl || '#'}" class="btn btn-primary">
+                                <i class="fas fa-music"></i>
+                                <span>الاستماع</span>
+                            </a>
+                        </div>
+                    </div>
+                `;
+                
+                // Add delete functionality
+                const deleteBtn = card.querySelector('.delete-release');
+                deleteBtn.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    if (confirm('هل أنت متأكد من حذف هذا الإصدار؟')) {
+                        releases.splice(index, 1);
+                        saveReleases();
+                    }
+                });
+                
+                return card;
+            }
+            
+            // Add new release
+            const addReleaseForm = document.getElementById('add-release-form');
+            if (addReleaseForm) {
+                addReleaseForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const artist = document.getElementById('artist-name').value;
+                    const track = document.getElementById('track-name').value;
+                    const image = document.getElementById('image-url').value;
+                    const listenUrl = document.getElementById('listen-url').value || '#';
+                    
+                    const newRelease = {
+                        artist: artist,
+                        track: track,
+                        image: image,
+                        listenUrl: listenUrl
+                    };
+                    
+                    releases.push(newRelease);
+                    saveReleases();
+                    
+                    // Reset form
+                    this.reset();
+                    
+                    // Show success message
+                    alert('تم إضافة الإصدار بنجاح!');
+                });
+            }
+            
+            // Update statistics
+            function updateStatistics() {
+                const totalReleases = document.getElementById('total-releases');
+                const totalArtists = document.getElementById('total-artists');
+                
+                if (totalReleases) {
+                    totalReleases.textContent = releases.length;
+                }
+                
+                if (totalArtists) {
+                    const uniqueArtists = [...new Set(releases.map(release => release.artist))];
+                    totalArtists.textContent = uniqueArtists.length;
+                }
+            }
+            
+            // Show login page
+            function showLoginPage() {
+                document.getElementById('login-page').style.display = 'flex';
+                document.getElementById('main-website').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'none';
+            }
+            
+            // Show dashboard
+            function showDashboard() {
+                document.getElementById('login-page').style.display = 'none';
+                document.getElementById('main-website').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
+                updateReleasesDisplay();
+                updateStatistics();
+            }
+            
+            // Show main website
+            function showMainWebsite() {
+                document.getElementById('login-page').style.display = 'none';
+                document.getElementById('main-website').style.display = 'block';
+                document.getElementById('dashboard').style.display = 'none';
+                updateReleasesDisplay();
+            }
+            
+            // Initialize releases display
+            updateReleasesDisplay();
+            updateStatistics();
+            
+            // Animated Counter
+            function animateCounter(elementId, targetValue, suffix = '') {
+                const element = document.getElementById(elementId);
+                if (!element) return;
+                
+                let currentValue = 0;
+                const increment = targetValue / 50;
+                const duration = 2000;
+                const stepTime = duration / 50;
+                
+                const timer = setInterval(() => {
+                    currentValue += increment;
+                    if (currentValue >= targetValue) {
+                        currentValue = targetValue;
+                        clearInterval(timer);
+                    }
+                    
+                    if (suffix === '%') {
+                        element.textContent = Math.floor(currentValue) + suffix;
+                    } else {
+                        element.textContent = Math.floor(currentValue) + suffix;
+                    }
+                }, stepTime);
+            }
+            
+            // Start counters immediately when page loads
+            setTimeout(() => {
+                animateCounter('platforms-counter', 150, '+');
+                animateCounter('artists-counter', 500, '+');
+                animateCounter('satisfaction-counter', 98, '%');
+            }, 500);
+            
+            // GFX Background Effects
+            function createGFXBackground() {
+                const gfxBackground = document.getElementById('gfx-background');
+                const colors = [
+                    'rgba(139, 92, 246, 0.1)', 
+                    'rgba(236, 72, 153, 0.1)', 
+                    'rgba(249, 115, 22, 0.1)',
+                    'rgba(16, 185, 129, 0.1)'
+                ];
+                
+                // Create floating particles
+                for (let i = 0; i < 15; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('gfx-particle');
+                    
+                    const size = Math.random() * 100 + 50;
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    const left = Math.random() * 100;
+                    const animationDelay = Math.random() * 15;
+                    const animationDuration = Math.random() * 10 + 15;
+                    
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.background = color;
+                    particle.style.left = `${left}%`;
+                    particle.style.animationDelay = `${animationDelay}s`;
+                    particle.style.animationDuration = `${animationDuration}s`;
+                    
+                    gfxBackground.appendChild(particle);
+                }
+                
+                // Create pulsing dots
+                for (let i = 0; i < 20; i++) {
+                    const dot = document.createElement('div');
+                    dot.classList.add('gfx-dot');
+                    
+                    const top = Math.random() * 100;
+                    const left = Math.random() * 100;
+                    const animationDelay = Math.random() * 2;
+                    const animationDuration = Math.random() * 1 + 2;
+                    
+                    dot.style.top = `${top}%`;
+                    dot.style.left = `${left}%`;
+                    dot.style.animationDelay = `${animationDelay}s`;
+                    dot.style.animationDuration = `${animationDuration}s`;
+                    
+                    gfxBackground.appendChild(dot);
+                }
+            }
+            
+            // Initialize GFX background
+            createGFXBackground();
+            
+            // Language switching functionality
+            const langBtns = document.querySelectorAll('.lang-btn');
+            const currentLang = localStorage.getItem('selectedLang') || 'ar';
+            
+            // Set initial language
+            document.documentElement.lang = currentLang;
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            
+            // Update active language button
+            langBtns.forEach(btn => {
+                if (btn.getAttribute('data-lang') === currentLang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            // Language switcher
+            langBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const selectedLang = btn.getAttribute('data-lang');
+                    
+                    // Update active button
+                    langBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    // Update document language and direction
+                    document.documentElement.lang = selectedLang;
+                    document.documentElement.dir = selectedLang === 'ar' ? 'rtl' : 'ltr';
+                    
+                    // Save preference
+                    localStorage.setItem('selectedLang', selectedLang);
+                    
+                    // Update all elements with data attributes
+                    document.querySelectorAll('[data-ar][data-en]').forEach(element => {
+                        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                            element.placeholder = element.getAttribute(`data-${selectedLang}`);
+                        } else {
+                            element.textContent = element.getAttribute(`data-${selectedLang}`);
+                        }
+                    });
+                    
+                    // Update page title
+                    const title = document.querySelector('title');
+                    if (title) {
+                        title.textContent = selectedLang === 'ar' 
+                            ? 'Beatna Records | توزيع موسيقى رقمي احترافي'
+                            : 'Beatna Records | Professional Digital Music Distribution';
+                    }
+                    
+                    // Update meta description
+                    const metaDesc = document.querySelector('meta[name="description"]');
+                    if (metaDesc) {
+                        metaDesc.content = selectedLang === 'ar'
+                            ? 'Beatna Records - نوّزع موسيقاك على جميع المنصات العالمية. Spotify، Apple Music، Anghami، Deezer والمزيد. إدارة حقوق وحماية فنية شاملة.'
+                            : 'Beatna Records - Distribute your music to all global platforms. Spotify, Apple Music, Anghami, Deezer and more. Comprehensive rights management and artistic protection.';
+                    }
+                });
+            });
+            
+            // Modal functionality
+            const privacyModal = document.getElementById('privacyModal');
+            const termsModal = document.getElementById('termsModal');
+            const privacyLink = document.getElementById('privacy-link');
+            const termsLink = document.getElementById('terms-link');
+            const closeBtns = document.querySelectorAll('.close');
+            
+            // Open privacy modal
+            if (privacyLink) {
+                privacyLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    privacyModal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                });
+            }
+            
+            // Open terms modal
+            if (termsLink) {
+                termsLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    termsModal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                });
+            }
+            
+            // Close modals
+            closeBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    privacyModal.style.display = 'none';
+                    termsModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                });
+            });
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', (e) => {
+                if (e.target === privacyModal) {
+                    privacyModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+                if (e.target === termsModal) {
+                    termsModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // FAQ toggle functionality
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    // Toggle active class on clicked item
+                    item.classList.toggle('active');
+                    
+                    // Close other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                });
+            });
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.querySelector('.mobile-menu');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (mobileMenuBtn && navLinks) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                });
+            }
+            
+            // Smooth scroll for anchor links
+            const anchorLinks = document.querySelectorAll('a[href^="#"]');
+            
+            anchorLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    
+                    // Skip if it's just "#"
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        const headerHeight = document.querySelector('.header').offsetHeight;
+                        const targetPosition = targetElement.offsetTop - headerHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Update URL without the hash
+                        history.pushState(null, null, window.location.pathname + window.location.search);
+                    }
+                });
+            });
+            
+            // Header scroll effect
+            const header = document.querySelector('.header');
+            
+            if (header) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 100) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                });
+            }
+            
+            // Fix header overflow issue
+            function checkNavOverflow() {
+                const nav = document.querySelector('.nav');
+                if (nav && nav.scrollWidth > nav.clientWidth) {
+                    header.style.overflowX = 'auto';
+                } else {
+                    header.style.overflowX = 'hidden';
+                }
+            }
+            
+            checkNavOverflow();
+            window.addEventListener('resize', checkNavOverflow);
+        });
+    </script>
+</body>
+</html>
