@@ -77,6 +77,13 @@
             color: var(--light);
             line-height: 1.6;
             overflow-x: hidden;
+            /* حماية من النسخ */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
         }
         .container {
             max-width: 1200px;
@@ -125,6 +132,13 @@
             transition: height 0.3s ease;
             display: block;
             object-fit: contain;
+            /* حماية الصور */
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+            pointer-events: none;
         }
         .logo-text {
             font-size: 1.8rem;
@@ -658,6 +672,13 @@
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid var(--primary-light);
+            /* حماية الصور */
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+            pointer-events: none;
         }
         .author-info h5 {
             margin-bottom: 0.25rem;
@@ -705,6 +726,13 @@
             margin: 0 auto 20px;
             border: 3px solid var(--primary-light);
             box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+            /* حماية الصور */
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+            pointer-events: none;
         }
         .ceo-name {
             font-size: 1.5rem;
@@ -1205,6 +1233,13 @@
             height: 40px;
             border-radius: 50%;
             object-fit: cover;
+            /* حماية الصور */
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+            pointer-events: none;
         }
         
         .user-name {
@@ -1388,6 +1423,13 @@
             width: 100%;
             height: 200px;
             object-fit: cover;
+            /* حماية الصور */
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+            pointer-events: none;
         }
 
         .release-info {
@@ -1454,6 +1496,13 @@
             margin-top: 10px;
             border: 2px solid var(--primary-light);
             display: none;
+            /* حماية الصور */
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+            pointer-events: none;
         }
 
         /* قسم الإصدارات على الموقع الرئيسي - التعديلات هنا */
@@ -1489,6 +1538,13 @@
             object-fit: contain; /* تغيير من cover إلى contain لعرض الصورة كاملة */
             background-color: rgba(255, 255, 255, 0.05); /* خلفية للجزء الفارغ */
             padding: 10px; /* إضافة مسافة داخلية */
+            /* حماية الصور */
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+            pointer-events: none;
         }
 
         .release-item-content {
@@ -1519,6 +1575,32 @@
         .listen-btn:hover {
             background: var(--primary-dark);
             transform: translateY(-2px);
+        }
+
+        /* أنماط الحماية */
+        #devToolsOverlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--darker);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            font-size: 1.5rem;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(-20px); }
+            20% { opacity: 1; transform: translateY(0); }
+            80% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-20px); }
         }
 
         @media (max-width: 768px) {
@@ -1624,6 +1706,13 @@
 <body>
     <!-- GFX Background -->
     <div class="gfx-background" id="gfx-background"></div>
+    
+    <!-- طبقة الحماية لأدوات المطور -->
+    <div id="devToolsOverlay">
+        <i class="fas fa-lock" style="font-size: 4rem; margin-bottom: 2rem;"></i>
+        <h2>أدوات المطور غير مسموح بها</h2>
+        <p>لحماية محتوى الموقع، لا يمكن فتح أدوات المطور</p>
+    </div>
     
     <!-- WhatsApp Float -->
     <a href="https://wa.me/201050093361?text=مرحباً، أود الاستفسار عن خدمات توزيع الموسيقى." class="whatsapp-float" target="_blank" id="whatsapp-float">
@@ -1909,7 +1998,6 @@
             </div>
         </section>
 
-        <!-- باقي الأقسام تبقى كما هي -->
         <!-- How It Works -->
         <section class="how-it-works" id="how-it-works">
             <div class="container">
@@ -1942,7 +2030,6 @@
             </div>
         </section>
 
-        <!-- باقي الأقسام... -->
         <!-- About Section -->
         <section class="about" id="about">
             <div class="container">
@@ -1963,7 +2050,6 @@
             </div>
         </section>
 
-        <!-- باقي الأقسام... -->
         <!-- Pricing -->
         <section class="pricing" id="pricing">
             <div class="container">
@@ -2025,7 +2111,6 @@
             </div>
         </section>
 
-        <!-- باقي الأقسام... -->
         <!-- Testimonials -->
         <section class="testimonials" id="testimonials">
             <div class="container">
@@ -2068,7 +2153,6 @@
             </div>
         </section>
 
-        <!-- باقي الأقسام... -->
         <!-- FAQ -->
         <section class="faq" id="faq">
             <div class="container">
@@ -2295,6 +2379,191 @@
     </div>
 
     <script>
+        // ========== نظام الحماية ==========
+        
+        // 1. منع النقر بزر الماوس الأيمن
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            showProtectionMessage('لا يمكن استخدام النقر بزر الماوس الأيمن');
+            return false;
+        });
+        
+        // 2. منع اختصارات لوحة المفاتيح
+        document.addEventListener('keydown', function(e) {
+            // منع F12
+            if (e.key === 'F12') {
+                e.preventDefault();
+                showProtectionMessage('مفتاح F12 غير مسموح به');
+                return false;
+            }
+            
+            // منع Ctrl+U (عرض المصدر)
+            if (e.ctrlKey && e.key === 'u') {
+                e.preventDefault();
+                showProtectionMessage('لا يمكن عرض مصدر الصفحة');
+                return false;
+            }
+            
+            // منع Ctrl+Shift+I (أدوات المطور)
+            if (e.ctrlKey && e.shiftKey && e.key === 'I') {
+                e.preventDefault();
+                showProtectionMessage('أدوات المطور غير مسموحة');
+                return false;
+            }
+            
+            // منع Ctrl+Shift+C (أدوات المطور)
+            if (e.ctrlKey && e.shiftKey && e.key === 'C') {
+                e.preventDefault();
+                showProtectionMessage('أدوات المطور غير مسموحة');
+                return false;
+            }
+            
+            // منع Ctrl+Shift+J (وحدة تحكم JavaScript)
+            if (e.ctrlKey && e.shiftKey && e.key === 'J') {
+                e.preventDefault();
+                showProtectionMessage('وحدة التحكم غير مسموحة');
+                return false;
+            }
+            
+            // منع Ctrl+C (نسخ)
+            if (e.ctrlKey && e.key === 'c') {
+                // السماح بالنسخ في الحقول النصية فقط
+                const activeElement = document.activeElement;
+                const isInput = activeElement.tagName === 'INPUT' || 
+                               activeElement.tagName === 'TEXTAREA' || 
+                               activeElement.isContentEditable;
+                
+                if (!isInput) {
+                    e.preventDefault();
+                    showProtectionMessage('لا يمكن نسخ النص من هذه الصفحة');
+                    return false;
+                }
+            }
+        });
+        
+        // 3. كشف فتح أدوات المطور
+        let devToolsOpen = false;
+        
+        // طريقة 1: كشف تغيير حجم النافذة
+        const threshold = 160;
+        const checkDevTools = function() {
+            const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+            const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+            
+            if ((widthThreshold || heightThreshold) && !devToolsOpen) {
+                devToolsOpen = true;
+                showDevToolsOverlay();
+            }
+        };
+        
+        setInterval(checkDevTools, 500);
+        
+        // طريقة 2: كشف التصحيح (debugger)
+        function checkDebugger() {
+            const start = new Date().getTime();
+            debugger;
+            const end = new Date().getTime();
+            
+            if (end - start > 100) {
+                showDevToolsOverlay();
+            }
+        }
+        
+        setInterval(checkDebugger, 1000);
+        
+        // 4. منع سحب وإفلات الصور
+        document.addEventListener('dragstart', function(e) {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+                return false;
+            }
+        });
+        
+        document.addEventListener('drop', function(e) {
+            e.preventDefault();
+            return false;
+        });
+        
+        document.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            return false;
+        });
+        
+        // 5. حماية الصور من الحفظ
+        document.addEventListener('mousedown', function(e) {
+            if (e.target.tagName === 'IMG') {
+                // منع القائمة السياقية للصورة
+                e.preventDefault();
+                return false;
+            }
+        });
+        
+        // 6. وظائف مساعدة
+        function showProtectionMessage(message) {
+            // إنشاء عنصر للرسالة
+            const messageEl = document.createElement('div');
+            messageEl.textContent = message;
+            messageEl.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: rgba(239, 68, 68, 0.9);
+                color: white;
+                padding: 10px 20px;
+                border-radius: 8px;
+                z-index: 10000;
+                font-family: 'Tajawal', sans-serif;
+                font-weight: 500;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                animation: fadeInOut 3s ease-in-out;
+            `;
+            
+            document.body.appendChild(messageEl);
+            
+            // إزالة الرسالة بعد 3 ثواني
+            setTimeout(() => {
+                if (messageEl.parentNode) {
+                    messageEl.parentNode.removeChild(messageEl);
+                }
+            }, 3000);
+        }
+        
+        function showDevToolsOverlay() {
+            const overlay = document.getElementById('devToolsOverlay');
+            overlay.style.display = 'flex';
+            
+            // منع التمرير
+            document.body.style.overflow = 'hidden';
+            
+            // إعادة تحميل الصفحة بعد 3 ثواني
+            setTimeout(() => {
+                location.reload();
+            }, 3000);
+        }
+        
+        // 7. حماية إضافية: منع فتح وحدة التحكم
+        (function() {
+            const noop = () => {};
+            Object.defineProperty(window, 'console', {
+                get: function() {
+                    return {
+                        log: noop,
+                        warn: noop,
+                        error: noop,
+                        info: noop,
+                        debug: noop
+                    };
+                },
+                set: function() {}
+            });
+        })();
+        
+        // 8. حماية من محاولات التلاعب بالكود
+        Object.freeze(document);
+        Object.freeze(window);
+        
+        // ========== نهاية نظام الحماية ==========
+
         // بيانات الإصدارات المخزنة محلياً
         let releases = JSON.parse(localStorage.getItem('beatnaReleases')) || [];
 
