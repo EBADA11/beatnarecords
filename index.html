@@ -1456,7 +1456,7 @@
             display: none;
         }
 
-        /* قسم الإصدارات على الموقع الرئيسي */
+        /* قسم الإصدارات على الموقع الرئيسي - التعديلات هنا */
         .releases-section {
             padding: 100px 0;
             background: var(--darker);
@@ -1482,10 +1482,13 @@
             box-shadow: var(--shadow-xl);
         }
 
+        /* التعديلات على صورة الفنان */
         .release-item img {
             width: 100%;
-            height: 250px;
-            object-fit: cover;
+            height: 280px; /* زيادة الارتفاع لاستيعاب الصورة كاملة */
+            object-fit: contain; /* تغيير من cover إلى contain لعرض الصورة كاملة */
+            background-color: rgba(255, 255, 255, 0.05); /* خلفية للجزء الفارغ */
+            padding: 10px; /* إضافة مسافة داخلية */
         }
 
         .release-item-content {
@@ -1595,6 +1598,11 @@
             .releases-container {
                 grid-template-columns: 1fr;
             }
+            
+            /* تعديلات الصور على الموبايل */
+            .release-item img {
+                height: 250px; /* تقليل الارتفاع قليلاً على الموبايل */
+            }
         }
         @media (max-width: 480px) {
             .hero h1 {
@@ -1605,6 +1613,10 @@
             }
             .section-header h2 {
                 font-size: 2rem;
+            }
+            
+            .release-item img {
+                height: 220px; /* تقليل الارتفاع أكثر على الشاشات الصغيرة */
             }
         }
     </style>
