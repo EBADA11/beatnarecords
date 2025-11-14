@@ -297,6 +297,113 @@
             font-size: 1rem;
             opacity: 0.8;
         }
+
+        /* Latest Releases Section */
+        .latest-releases {
+            padding: 80px 0;
+            background: var(--darker);
+            position: relative;
+        }
+
+        .latest-releases::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary-light), transparent);
+        }
+
+        .releases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .release-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .release-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .release-cover {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1 / 1;
+        }
+
+        .release-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .release-card:hover .release-img {
+            transform: scale(1.05);
+        }
+
+        .release-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .release-card:hover .release-overlay {
+            opacity: 1;
+        }
+
+        .release-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .release-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+        }
+
+        .release-artist {
+            color: var(--primary-light);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .releases-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .release-title {
+                font-size: 1.2rem;
+            }
+            
+            .release-artist {
+                font-size: 1rem;
+            }
+        }
+        
         /* Platforms Section */
         .platforms {
             padding: 100px 0;
@@ -1161,6 +1268,7 @@
                 </a>
                 <ul class="nav-links">
     <li><a href="#home" data-ar="الرئيسية" data-en="Home"><span class="nav-text">الرئيسية</span></a></li>
+    <li><a href="#latest-releases" data-ar="أحدث الإصدارات" data-en="Latest Releases"><span class="nav-text">أحدث الإصدارات</span></a></li>
     <li><a href="#services" data-ar="خدماتنا" data-en="Our Services"><span class="nav-text">خدماتنا</span></a></li>
     <li><a href="#pricing" data-ar="الباقات" data-en="Packages"><span class="nav-text">الباقات</span></a></li>
     <li><a href="#how-it-works" data-ar="كيف تعمل" data-en="How It Works"><span class="nav-text">كيف تعمل</span></a></li>
@@ -1209,6 +1317,34 @@
             </div>
         </div>
     </section>
+    
+    <!-- Latest Releases Section -->
+    <section class="latest-releases" id="latest-releases">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-ar="أحدث الإصدارات" data-en="Latest Releases">أحدث الإصدارات</h2>
+                <p data-ar="استمتع بأحدث الأعمال الموسيقية من فنانينا" data-en="Enjoy the latest musical works from our artists">استمتع بأحدث الأعمال الموسيقية من فنانينا</p>
+            </div>
+            <div class="releases-grid">
+                <!-- Release Card 1 -->
+                <div class="release-card">
+                    <div class="release-cover">
+                        <img src="https://i.ibb.co/20xpfD2c/Cover.jpg" alt="فاقد - دولسيكا" class="release-img">
+                        <div class="release-overlay">
+                            <a href="https://wa.me/201050093361?text=مرحباً، أود الاستفسار عن تراك فاقد لدولسيكا" class="btn btn-primary" target="_blank" data-ar="استمع الآن" data-en="Listen Now"><span class="btn-text">استمع الآن</span></a>
+                        </div>
+                    </div>
+                    <div class="release-info">
+                        <h3 class="release-title">فاقد</h3>
+                        <p class="release-artist">دولسيكا</p>
+                    </div>
+                </div>
+                
+                <!-- You can add more release cards here -->
+            </div>
+        </div>
+    </section>
+
     <!-- Platforms Section -->
     <section class="platforms">
         <div class="container">
@@ -1616,348 +1752,4 @@
             <p data-ar="نستخدم معلوماتك لتقديم خدماتنا، وتحسين تجربتك، والتواصل معك بشأن حسابك وأعمالك الموسيقية، وإرسال تحديثات وعروض ترويجية ذات صلة." data-en="We use your information to provide our services, improve your experience, communicate with you about your account and music work, and send relevant updates and promotional offers.">نستخدم معلوماتك لتقديم خدماتنا، وتحسين تجربتك، والتواصل معك بشأن حسابك وأعمالك الموسيقية، وإرسال تحديثات وعروض ترويجية ذات صلة.</p>
             
             <h3 data-ar="3. مشاركة المعلومات" data-en="3. Information Sharing">3. مشاركة المعلومات</h3>
-            <p data-ar="لا نبيع أو نؤجر معلوماتك الشخصية لجهات خارجية. نشارك معلوماتك فقط مع منصات الموسيقى الشريكة لتوزيع أعمالك ومع مزودي الخدمات المعتمدين لتقديم خدماتنا." data-en="We do not sell or rent your personal information to third parties. We only share your information with partner music platforms to distribute your work and with approved service providers to deliver our services.">لا نبيع أو نؤجر معلوماتك الشخصية لجهات خارجية. نشارك معلوماتك فقط مع منصات الموسيقى الشريكة لتوزيع أعمالك ومع مزودي الخدمات المعتمدين لتقديم خدماتنا.</p>
-            
-            <h3 data-ar="4. أمان البيانات" data-en="4. Data Security">4. أمان البيانات</h3>
-            <p data-ar="نتخذ تدابير أمنية مناسبة لحماية معلوماتك من الوصول غير المصرح به أو التعديل أو الإفصاح. نستخدم تشفير SSL وبروتوكولات أمان أخرى." data-en="We take appropriate security measures to protect your information from unauthorized access, alteration, or disclosure. We use SSL encryption and other security protocols.">نتخذ تدابير أمنية مناسبة لحماية معلوماتك من الوصول غير المصرح به أو التعديل أو الإفصاح. نستخدم تشفير SSL وبروتوكولات أمان أخرى.</p>
-            
-            <h3 data-ar="5. حقوقك" data-en="5. Your Rights">5. حقوقك</h3>
-            <p data-ar="لديك الحق في الوصول إلى معلوماتك وتصحيحها وحذفها. يمكنك إدارة إعدادات الخصوصية من خلال حسابك أو التواصل معنا مباشرة." data-en="You have the right to access, correct, and delete your information. You can manage privacy settings through your account or contact us directly.">لديك الحق في الوصول إلى معلوماتك وتصحيحها وحذفها. يمكنك إدارة إعدادات الخصوصية من خلال حسابك أو التواصل معنا مباشرة.</p>
-            
-            <h3 data-ar="6. ملفات تعريف الارتباط" data-en="6. Cookies">6. ملفات تعريف الارتباط</h3>
-            <p data-ar="نستخدم ملفات تعريف الارتباط لتحسين تجربتك على موقعنا وتحليل استخدام الموقع. يمكنك تعطيل ملفات تعريف الارتباط من خلال إعدادات المتصفح." data-en="We use cookies to improve your experience on our site and analyze site usage. You can disable cookies through your browser settings.">نستخدم ملفات تعريف الارتباط لتحسين تجربتك على موقعنا وتحليل استخدام الموقع. يمكنك تعطيل ملفات تعريف الارتباط من خلال إعدادات المتصفح.</p>
-            
-            <h3 data-ar="7. الاتصال بنا" data-en="7. Contact Us">7. الاتصال بنا</h3>
-            <p data-ar="إذا كان لديك أي أسئلة حول سياسة الخصوصية الخاصة بنا، يرجى التواصل معنا على:" data-en="If you have any questions about our privacy policy, please contact us at:">إذا كان لديك أي أسئلة حول سياسة الخصوصية الخاصة بنا، يرجى التواصل معنا على:</p>
-            <p data-ar="البريد الإلكتروني: privacy@beatnarecords.store" data-en="Email: privacy@beatnarecords.store">البريد الإلكتروني: privacy@beatnarecords.store</p>
-        </div>
-    </div>
-
-    <!-- Terms of Use Modal -->
-    <div id="termsModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2 data-ar="شروط الاستخدام" data-en="Terms of Use">شروط الاستخدام</h2>
-            <p data-ar="آخر تحديث: 1 يناير 2025" data-en="Last updated: January 1, 2025">آخر تحديث: 1 يناير 2025</p>
-            
-            <h3 data-ar="1. قبول الشروط" data-en="1. Acceptance of Terms">1. قبول الشروط</h3>
-            <p data-ar="باستخدام خدمات Beatna Records، فإنك توافق على الالتزام بهذه الشروط والأحكام. إذا كنت لا توافق على هذه الشروط، يرجى عدم استخدام خدماتنا." data-en="By using Beatna Records services, you agree to comply with these terms and conditions. If you do not agree to these terms, please do not use our services.">باستخدام خدمات Beatna Records، فإنك توافق على الالتزام بهذه الشروط والأحكام. إذا كنت لا توافق على هذه الشروط، يرجى عدم استخدام خدماتنا.</p>
-            
-            <h3 data-ar="2. وصف الخدمة" data-en="2. Service Description">2. وصف الخدمة</h3>
-            <p data-ar="Beatna Records توفر خدمات توزيع موسيقى رقمي للفنانين المستقلين، بما في ذلك التوزيع على المنصات العالمية وإدارة حقوق الطبع والنشر وتحصيل الإيرادات." data-en="Beatna Records provides digital music distribution services for independent artists, including distribution to global platforms, copyright management, and revenue collection.">Beatna Records توفر خدمات توزيع موسيقى رقمي للفنانين المستقلين، بما في ذلك التوزيع على المنصات العالمية وإدارة حقوق الطبع والنشر وتحصيل الإيرادات.</p>
-            
-            <h3 data-ar="3. مسؤوليات المستخدم" data-en="3. User Responsibilities">3. مسؤوليات المستخدم</h3>
-            <p data-ar="أنت مسؤول عن تقديم محتوى أصلي لا ينتهك حقوق الطبع والنشر أو الملكية الفكرية للآخرين. يجب أن تضمن أن جميع المعلومات المقدمة دقيقة وكاملة." data-en="You are responsible for providing original content that does not infringe on others' copyright or intellectual property rights. You must ensure all provided information is accurate and complete.">أنت مسؤول عن تقديم محتوى أصلي لا ينتهك حقوق الطبع والنشر أو الملكية الفكرية للآخرين. يجب أن تضمن أن جميع المعلومات المقدمة دقيقة وكاملة.</p>
-            
-            <h3 data-ar="4. الملكية الفكرية" data-en="4. Intellectual Property">4. الملكية الفكرية</h3>
-            <p data-ar="تحتفظ بالملكية الكاملة لأعمالك الموسيقية. تمنحنا Beatna Records ترخيصاً غير حصري لتوزيع موسيقاك على المنصات الشريكة طوال فترة الاتفاقية." data-en="You retain full ownership of your musical works. You grant Beatna Records a non-exclusive license to distribute your music on partner platforms during the agreement period.">تحتفظ بالملكية الكاملة لأعمالك الموسيقية. تمنحنا Beatna Records ترخيصاً غير حصري لتوزيع موسيقاك على المنصات الشريكة طوال فترة الاتفاقية.</p>
-            
-            <h3 data-ar="5. الدفع والإيرادات" data-en="5. Payment and Revenue">5. الدفع والإيرادات</h3>
-            <p data-ar="تخضع رسوم الخدمة للباقات المختارة. يتم تحصيل الإيرادات من المنصات وتحويلها إليك بعد خصم العمولة المتفق عليها. يتم الدفع بشكل دوري حسب الجدول الزمني المحدد." data-en="Service fees are subject to selected packages. Revenue is collected from platforms and transferred to you after deducting the agreed commission. Payments are made periodically according to the specified schedule.">تخضع رسوم الخدمة للباقات المختارة. يتم تحصيل الإيرادات من المنصات وتحويلها إليك بعد خصم العمولة المتفق عليها. يتم الدفع بشكل دوري حسب الجدول الزمني المحدد.</p>
-            
-            <h3 data-ar="6. إنهاء الخدمة" data-en="6. Service Termination">6. إنهاء الخدمة</h3>
-            <p data-ar="يمكنك إنهاء الخدمة في أي وقت بإشعار مسبق 30 يوماً. الأغاني الموزعة تبقى على المنصات وتستمر في توليد الإيرادات. نحتفظ بالحق في إنهاء الخدمة في حالة انتهاك الشروط." data-en="You can terminate the service at any time with 30 days' notice. Distributed songs remain on platforms and continue to generate revenue. We reserve the right to terminate the service in case of terms violation.">يمكنك إنهاء الخدمة في أي وقت بإشعار مسبق 30 يوماً. الأغاني الموزعة تبقى على المنصات وتستمر في توليد الإيرادات. نحتفظ بالحق في إنهاء الخدمة في حالة انتهاك الشروط.</p>
-            
-            <h3 data-ar="7. تحديد المسؤولية" data-en="7. Limitation of Liability">7. تحديد المسؤولية</h3>
-            <p data-ar="لا نكون مسؤولين عن أي أضرار غير مباشرة أو عرضية أو تبعية تنشأ عن استخدام خدماتنا. مسؤوليتنا الإجمالية محدودة بمبلغ الرسوم المدفوعة للخدمة." data-en="We are not liable for any indirect, incidental, or consequential damages arising from the use of our services. Our total liability is limited to the amount of fees paid for the service.">لا نكون مسؤولين عن أي أضرار غير مباشرة أو عرضية أو تبعية تنشأ عن استخدام خدماتنا. مسؤوليتنا الإجمالية محدودة بمبلغ الرسوم المدفوعة للخدمة.</p>
-            
-            <h3 data-ar="8. تعديل الشروط" data-en="8. Terms Modification">8. تعديل الشروط</h3>
-            <p data-ar="نحتفظ بالحق في تعديل هذه الشروط من وقت لآخر. سيتم إعلامك بأي تغييرات مهمة عبر البريد الإلكتروني أو من خلال موقعنا." data-en="We reserve the right to modify these terms from time to time. You will be notified of any significant changes via email or through our website.">نحتفظ بالحق في تعديل هذه الشروط من وقت لآخر. سيتم إعلامك بأي تغييرات مهمة عبر البريد الإلكتروني أو من خلال موقعنا.</p>
-            
-            <h3 data-ar="9. القانون الحاكم" data-en="9. Governing Law">9. القانون الحاكم</h3>
-            <p data-ar="تخضع هذه الشروط لقوانين جمهورية مصر العربية. أي نزاع يتم حله من خلال المحاكم المصرية." data-en="These terms are subject to the laws of the Arab Republic of Egypt. Any dispute will be resolved through Egyptian courts.">تخضع هذه الشروط لقوانين جمهورية مصر العربية. أي نزاع يتم حله من خلال المحاكم المصرية.</p>
-            
-            <h3 data-ar="10. الاتصال بنا" data-en="10. Contact Us">10. الاتصال بنا</h3>
-            <p data-ar="لأي استفسارات حول شروط الاستخدام، يرجى التواصل معنا على:" data-en="For any inquiries about terms of use, please contact us at:">لأي استفسارات حول شروط الاستخدام، يرجى التواصل معنا على:</p>
-            <p data-ar="البريد الإلكتروني: legal@beatnarecords.store" data-en="Email: legal@beatnarecords.store">البريد الإلكتروني: legal@beatnarecords.store</p>
-        </div>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Animated Counter
-            function animateCounter(elementId, targetValue, suffix = '') {
-                const element = document.getElementById(elementId);
-                let currentValue = 0;
-                const increment = targetValue / 50;
-                const duration = 2000;
-                const stepTime = duration / 50;
-                
-                const timer = setInterval(() => {
-                    currentValue += increment;
-                    if (currentValue >= targetValue) {
-                        currentValue = targetValue;
-                        clearInterval(timer);
-                    }
-                    
-                    if (suffix === '%') {
-                        element.textContent = Math.floor(currentValue) + suffix;
-                    } else {
-                        element.textContent = Math.floor(currentValue) + suffix;
-                    }
-                }, stepTime);
-            }
-            
-            // Start counters immediately when page loads
-            setTimeout(() => {
-                animateCounter('platforms-counter', 150, '+');
-                animateCounter('artists-counter', 500, '+');
-                animateCounter('satisfaction-counter', 98, '%');
-            }, 500);
-            
-            // GFX Background Effects
-            function createGFXBackground() {
-                const gfxBackground = document.getElementById('gfx-background');
-                const colors = [
-                    'rgba(139, 92, 246, 0.1)', 
-                    'rgba(236, 72, 153, 0.1)', 
-                    'rgba(249, 115, 22, 0.1)',
-                    'rgba(16, 185, 129, 0.1)'
-                ];
-                
-                // Create floating particles
-                for (let i = 0; i < 15; i++) {
-                    const particle = document.createElement('div');
-                    particle.classList.add('gfx-particle');
-                    
-                    const size = Math.random() * 100 + 50;
-                    const color = colors[Math.floor(Math.random() * colors.length)];
-                    const left = Math.random() * 100;
-                    const animationDelay = Math.random() * 15;
-                    const animationDuration = Math.random() * 10 + 15;
-                    
-                    particle.style.width = `${size}px`;
-                    particle.style.height = `${size}px`;
-                    particle.style.background = color;
-                    particle.style.left = `${left}%`;
-                    particle.style.animationDelay = `${animationDelay}s`;
-                    particle.style.animationDuration = `${animationDuration}s`;
-                    
-                    gfxBackground.appendChild(particle);
-                }
-                
-                // Create pulsing dots
-                for (let i = 0; i < 20; i++) {
-                    const dot = document.createElement('div');
-                    dot.classList.add('gfx-dot');
-                    
-                    const top = Math.random() * 100;
-                    const left = Math.random() * 100;
-                    const animationDelay = Math.random() * 2;
-                    const animationDuration = Math.random() * 1 + 2;
-                    
-                    dot.style.top = `${top}%`;
-                    dot.style.left = `${left}%`;
-                    dot.style.animationDelay = `${animationDelay}s`;
-                    dot.style.animationDuration = `${animationDuration}s`;
-                    
-                    gfxBackground.appendChild(dot);
-                }
-            }
-            
-            // Initialize GFX background
-            createGFXBackground();
-            
-            // Language switching functionality
-            const langBtns = document.querySelectorAll('.lang-btn');
-            const currentLang = localStorage.getItem('selectedLang') || 'ar';
-            
-            // Set initial language
-            document.documentElement.lang = currentLang;
-            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-            
-            // Update active language button
-            langBtns.forEach(btn => {
-                if (btn.getAttribute('data-lang') === currentLang) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
-            
-            // Language switcher
-            langBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const selectedLang = btn.getAttribute('data-lang');
-                    
-                    // Update active button
-                    langBtns.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    
-                    // Update document language and direction
-                    document.documentElement.lang = selectedLang;
-                    document.documentElement.dir = selectedLang === 'ar' ? 'rtl' : 'ltr';
-                    
-                    // Save preference
-                    localStorage.setItem('selectedLang', selectedLang);
-                    
-                    // Update all elements with data attributes
-                    document.querySelectorAll('[data-ar][data-en]').forEach(element => {
-                        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                            element.placeholder = element.getAttribute(`data-${selectedLang}`);
-                        } else {
-                            element.textContent = element.getAttribute(`data-${selectedLang}`);
-                        }
-                    });
-                    
-                    // Update page title
-                    const title = document.querySelector('title');
-                    if (title) {
-                        title.textContent = selectedLang === 'ar' 
-                            ? 'Beatna Records | توزيع موسيقى رقمي احترافي'
-                            : 'Beatna Records | Professional Digital Music Distribution';
-                    }
-                    
-                    // Update meta description
-                    const metaDesc = document.querySelector('meta[name="description"]');
-                    if (metaDesc) {
-                        metaDesc.content = selectedLang === 'ar'
-                            ? 'Beatna Records - نوّزع موسيقاك على جميع المنصات العالمية. Spotify، Apple Music، Anghami، Deezer والمزيد. إدارة حقوق وحماية فنية شاملة.'
-                            : 'Beatna Records - Distribute your music to all global platforms. Spotify, Apple Music, Anghami, Deezer and more. Comprehensive rights management and artistic protection.';
-                    }
-                });
-            });
-            
-            // Modal functionality
-            const privacyModal = document.getElementById('privacyModal');
-            const termsModal = document.getElementById('termsModal');
-            const privacyLink = document.getElementById('privacy-link');
-            const termsLink = document.getElementById('terms-link');
-            const closeBtns = document.querySelectorAll('.close');
-            
-            // Open privacy modal
-            privacyLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                privacyModal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-            });
-            
-            // Open terms modal
-            termsLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                termsModal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-            });
-            
-            // Close modals
-            closeBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    privacyModal.style.display = 'none';
-                    termsModal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                });
-            });
-            
-            // Close modal when clicking outside
-            window.addEventListener('click', (e) => {
-                if (e.target === privacyModal) {
-                    privacyModal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }
-                if (e.target === termsModal) {
-                    termsModal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }
-            });
-            
-            // FAQ toggle functionality
-            const faqItems = document.querySelectorAll('.faq-item');
-            
-            faqItems.forEach(item => {
-                const question = item.querySelector('.faq-question');
-                
-                question.addEventListener('click', () => {
-                    // Toggle active class on clicked item
-                    item.classList.toggle('active');
-                    
-                    // Close other items
-                    faqItems.forEach(otherItem => {
-                        if (otherItem !== item) {
-                            otherItem.classList.remove('active');
-                        }
-                    });
-                });
-            });
-            
-            // Mobile menu toggle
-            const mobileMenuBtn = document.querySelector('.mobile-menu');
-            const navLinks = document.querySelector('.nav-links');
-            
-            mobileMenuBtn.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-            });
-            
-            // Smooth scroll for anchor links
-            const anchorLinks = document.querySelectorAll('a[href^="#"]');
-            
-            anchorLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    
-                    // Skip if it's just "#"
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if (targetElement) {
-                        const headerHeight = document.querySelector('.header').offsetHeight;
-                        const targetPosition = targetElement.offsetTop - headerHeight;
-                        
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                        
-                        // Update URL without the hash
-                        history.pushState(null, null, window.location.pathname + window.location.search);
-                    }
-                });
-            });
-            
-            // Header scroll effect
-            const header = document.querySelector('.header');
-            
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 100) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
-            });
-            
-            // Fix header overflow issue
-            function checkNavOverflow() {
-                if (nav.scrollWidth > nav.clientWidth) {
-                    header.style.overflowX = 'auto';
-                } else {
-                    header.style.overflowX = 'hidden';
-                }
-            }
-            
-            checkNavOverflow();
-            window.addEventListener('resize', checkNavOverflow);
-        });
-    </script>
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            <p data-ar="لا نبيع أو نؤجر معلوماتك الشخصية لجهات خارجية. نشارك معلوماتك فقط مع منصات الموسيقى الشريكة لتوزيع أعمالك ومع مزودي الخدمات المعتمدين لتقديم خدماتنا." data-en="We do not sell or rent your personal information to third parties. We only share your information with partner music platforms to distribute your work
