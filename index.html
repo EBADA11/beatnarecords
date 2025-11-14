@@ -20,6 +20,7 @@
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, getDocs, updateDoc, deleteDoc, doc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
         
         // Your web app's Firebase configuration
         const firebaseConfig = {
@@ -34,14 +35,26 @@
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
+        const db = getFirestore(app);
         const provider = new GoogleAuthProvider();
 
         // Make auth and provider available globally
         window.firebaseAuth = auth;
+        window.firebaseDb = db;
         window.googleProvider = provider;
         window.firebaseSignInWithPopup = signInWithPopup;
         window.firebaseOnAuthStateChanged = onAuthStateChanged;
         window.firebaseSignOut = signOut;
+        
+        // Firestore functions
+        window.firestoreAddDoc = addDoc;
+        window.firestoreGetDocs = getDocs;
+        window.firestoreUpdateDoc = updateDoc;
+        window.firestoreDeleteDoc = deleteDoc;
+        window.firestoreCollection = collection;
+        window.firestoreDoc = doc;
+        window.firestoreQuery = query;
+        window.firestoreOrderBy = orderBy;
     </script>
     
     <style>
@@ -2283,8 +2296,8 @@
     </div>
 
     <script>
-        // بيانات الإصدارات المخزنة محلياً
-        let releases = JSON.parse(localStorage.getItem('beatnaReleases')) || [];
+        // Firestore collection name
+        const RELEASES_COLLECTION = "releases";
 
         // عناصر DOM
         const loginModal = document.getElementById('loginModal');
@@ -2412,121 +2425,218 @@
         }
         
         // تحديث الإحصائيات
-        function updateStats() {
-            const uniqueArtists = [...new Set(releases.map(release => release.artist))];
-            document.getElementById('total-artists').textContent = uniqueArtists.length;
-            document.getElementById('total-releases').textContent = releases.length;
-            document.getElementById('active-releases').textContent = releases.length;
+        async function updateStats() {
+            try {
+                const releasesRef = window.firestoreCollection(window.firebaseDb, RELEASES_COLLECTION);
+                const querySnapshot = await window.firestoreGetDocs(releasesRef);
+                
+                const releases = [];
+                const artists = new Set();
+                
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    releases.push(data);
+                    artists.add(data.artist);
+                });
+                
+                document.getElementById('total-artists').textContent = artists.size;
+                document.getElementById('total-releases').textContent = releases.length;
+                document.getElementById('active-releases').textContent = releases.length;
+            } catch (error) {
+                console.error("خطأ في تحديث الإحصائيات:", error);
+            }
         }
         
         // عرض الإصدارات في الداشبورد
-        function displayReleases() {
+        async function displayReleases() {
             releasesContainer.innerHTML = '';
             
-            if (releases.length === 0) {
-                releasesContainer.innerHTML = '<p style="text-align: center; color: var(--gray); grid-column: 1 / -1;">لا توجد إصدارات حتى الآن</p>';
-                return;
-            }
+            try {
+                const releasesRef = window.firestoreCollection(window.firebaseDb, RELEASES_COLLECTION);
+                const q = window.firestoreQuery(releasesRef, window.firestoreOrderBy("timestamp", "desc"));
+                const querySnapshot = await window.firestoreGetDocs(q);
+                
+                if (querySnapshot.empty) {
+                    releasesContainer.innerHTML = '<p style="text-align: center; color: var(--gray); grid-column: 1 / -1;">لا توجد إصدارات حتى الآن</p>';
+                    return;
+                }
 
-            releases.forEach((release, index) => {
-                const releaseCard = document.createElement('div');
-                releaseCard.className = 'release-card';
-                releaseCard.innerHTML = `
-                    <img src="${release.image}" alt="${release.name}" class="release-image">
-                    <div class="release-info">
-                        <h3>${release.name}</h3>
-                        <p><strong>الفنان:</strong> ${release.artist}</p>
-                        <p><strong>رابط الاستماع:</strong> <a href="${release.link}" target="_blank">اضغط هنا</a></p>
-                        ${release.description ? `<p><strong>الوصف:</strong> ${release.description}</p>` : ''}
-                    </div>
-                    <div class="release-actions">
-                        <button class="btn btn-secondary btn-small" onclick="editRelease(${index})">تعديل</button>
-                        <button class="btn btn-danger btn-small" onclick="deleteRelease(${index})">حذف</button>
-                    </div>
-                `;
-                releasesContainer.appendChild(releaseCard);
-            });
+                querySnapshot.forEach((doc) => {
+                    const release = doc.data();
+                    const releaseCard = document.createElement('div');
+                    releaseCard.className = 'release-card';
+                    releaseCard.innerHTML = `
+                        <img src="${release.image}" alt="${release.name}" class="release-image">
+                        <div class="release-info">
+                            <h3>${release.name}</h3>
+                            <p><strong>الفنان:</strong> ${release.artist}</p>
+                            <p><strong>رابط الاستماع:</strong> <a href="${release.link}" target="_blank">اضغط هنا</a></p>
+                            ${release.description ? `<p><strong>الوصف:</strong> ${release.description}</p>` : ''}
+                        </div>
+                        <div class="release-actions">
+                            <button class="btn btn-secondary btn-small" onclick="editRelease('${doc.id}')">تعديل</button>
+                            <button class="btn btn-danger btn-small" onclick="deleteRelease('${doc.id}')">حذف</button>
+                        </div>
+                    `;
+                    releasesContainer.appendChild(releaseCard);
+                });
+            } catch (error) {
+                console.error("خطأ في جلب الإصدارات:", error);
+                releasesContainer.innerHTML = '<p style="text-align: center; color: var(--gray); grid-column: 1 / -1;">حدث خطأ في تحميل الإصدارات</p>';
+            }
         }
 
         // عرض الإصدارات على الموقع الرئيسي
-        function displaySiteReleases() {
+        async function displaySiteReleases() {
             siteReleasesContainer.innerHTML = '';
             
-            if (releases.length === 0) {
-                siteReleasesContainer.innerHTML = '<p style="text-align: center; color: var(--gray); grid-column: 1 / -1;">لا توجد إصدارات حتى الآن</p>';
-                return;
-            }
+            try {
+                const releasesRef = window.firestoreCollection(window.firebaseDb, RELEASES_COLLECTION);
+                const q = window.firestoreQuery(releasesRef, window.firestoreOrderBy("timestamp", "desc"));
+                const querySnapshot = await window.firestoreGetDocs(q);
+                
+                if (querySnapshot.empty) {
+                    siteReleasesContainer.innerHTML = '<p style="text-align: center; color: var(--gray); grid-column: 1 / -1;">لا توجد إصدارات حتى الآن</p>';
+                    return;
+                }
 
-            // عرض أحدث 6 إصدارات فقط
-            const recentReleases = releases.slice(-6).reverse();
-            
-            recentReleases.forEach((release) => {
-                const releaseItem = document.createElement('div');
-                releaseItem.className = 'release-item';
-                releaseItem.innerHTML = `
-                    <img src="${release.image}" alt="${release.name}">
-                    <div class="release-item-content">
-                        <h3>${release.name}</h3>
-                        <p><strong>${release.artist}</strong></p>
-                        ${release.description ? `<p>${release.description}</p>` : ''}
-                        <a href="${release.link}" target="_blank" class="listen-btn">استمع الآن</a>
-                    </div>
-                `;
-                siteReleasesContainer.appendChild(releaseItem);
-            });
+                // عرض أحدث 6 إصدارات فقط
+                const recentReleases = [];
+                querySnapshot.forEach((doc) => {
+                    if (recentReleases.length < 6) {
+                        recentReleases.push({ id: doc.id, ...doc.data() });
+                    }
+                });
+                
+                recentReleases.forEach((release) => {
+                    const releaseItem = document.createElement('div');
+                    releaseItem.className = 'release-item';
+                    releaseItem.innerHTML = `
+                        <img src="${release.image}" alt="${release.name}">
+                        <div class="release-item-content">
+                            <h3>${release.name}</h3>
+                            <p><strong>${release.artist}</strong></p>
+                            ${release.description ? `<p>${release.description}</p>` : ''}
+                            <a href="${release.link}" target="_blank" class="listen-btn">استمع الآن</a>
+                        </div>
+                    `;
+                    siteReleasesContainer.appendChild(releaseItem);
+                });
+            } catch (error) {
+                console.error("خطأ في جلب الإصدارات:", error);
+                siteReleasesContainer.innerHTML = '<p style="text-align: center; color: var(--gray); grid-column: 1 / -1;">حدث خطأ في تحميل الإصدارات</p>';
+            }
         }
 
         // إضافة إصدار جديد
-        function addRelease(releaseData) {
-            releases.push(releaseData);
-            localStorage.setItem('beatnaReleases', JSON.stringify(releases));
-            updateStats();
-            displayReleases();
-            displaySiteReleases();
-            
-            // الانتقال إلى تبويب الإصدارات
-            switchTab('releases');
+        async function addRelease(releaseData) {
+            try {
+                // إضافة timestamp للترتيب
+                releaseData.timestamp = new Date();
+                
+                const docRef = await window.firestoreAddDoc(
+                    window.firestoreCollection(window.firebaseDb, RELEASES_COLLECTION), 
+                    releaseData
+                );
+                
+                console.log("تم إضافة الإصدار بنجاح:", docRef.id);
+                updateStats();
+                displayReleases();
+                displaySiteReleases();
+                
+                // الانتقال إلى تبويب الإصدارات
+                switchTab('releases');
+            } catch (error) {
+                console.error("خطأ في إضافة الإصدار:", error);
+                alert("حدث خطأ أثناء إضافة الإصدار. يرجى المحاولة مرة أخرى.");
+            }
         }
 
         // تعديل إصدار
-        function editRelease(index) {
-            const release = releases[index];
-            
-            // تعبئة النموذج بالبيانات الحالية
-            document.getElementById('artist-name').value = release.artist;
-            document.getElementById('release-name').value = release.name;
-            document.getElementById('listen-link').value = release.link;
-            document.getElementById('release-description').value = release.description || '';
-            
-            // الانتقال إلى تبويب الإضافة
-            switchTab('add-release');
-            
-            // تغيير النموذج ليصبح للتعديل
-            releaseForm.onsubmit = function(e) {
-                e.preventDefault();
-                updateRelease(index);
-            };
-            
-            releaseForm.querySelector('button[type="submit"]').textContent = 'تحديث الإصدار';
+        async function editRelease(docId) {
+            try {
+                // جلب البيانات الحالية للإصدار
+                const releasesRef = window.firestoreCollection(window.firebaseDb, RELEASES_COLLECTION);
+                const q = window.firestoreQuery(releasesRef);
+                const querySnapshot = await window.firestoreGetDocs(q);
+                
+                let releaseData = null;
+                querySnapshot.forEach((doc) => {
+                    if (doc.id === docId) {
+                        releaseData = doc.data();
+                    }
+                });
+                
+                if (!releaseData) {
+                    alert("لم يتم العثور على الإصدار");
+                    return;
+                }
+                
+                // تعبئة النموذج بالبيانات الحالية
+                document.getElementById('artist-name').value = releaseData.artist;
+                document.getElementById('release-name').value = releaseData.name;
+                document.getElementById('listen-link').value = releaseData.link;
+                document.getElementById('release-description').value = releaseData.description || '';
+                
+                // عرض الصورة الحالية
+                imagePreview.src = releaseData.image;
+                imagePreview.style.display = 'block';
+                
+                // الانتقال إلى تبويب الإضافة
+                switchTab('add-release');
+                
+                // تغيير النموذج ليصبح للتعديل
+                releaseForm.onsubmit = function(e) {
+                    e.preventDefault();
+                    updateRelease(docId);
+                };
+                
+                releaseForm.querySelector('button[type="submit"]').textContent = 'تحديث الإصدار';
+            } catch (error) {
+                console.error("خطأ في تحرير الإصدار:", error);
+                alert("حدث خطأ أثناء تحرير الإصدار");
+            }
         }
 
         // تحديث إصدار
-        function updateRelease(index) {
-            const formData = new FormData(releaseForm);
-            const imageFile = imageInput.files[0];
-            
-            if (imageFile) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    releases[index] = {
-                        artist: document.getElementById('artist-name').value,
-                        name: document.getElementById('release-name').value,
-                        image: e.target.result,
-                        link: document.getElementById('listen-link').value,
-                        description: document.getElementById('release-description').value
+        async function updateRelease(docId) {
+            try {
+                const formData = new FormData(releaseForm);
+                const imageFile = imageInput.files[0];
+                
+                const updatedData = {
+                    artist: document.getElementById('artist-name').value,
+                    name: document.getElementById('release-name').value,
+                    link: document.getElementById('listen-link').value,
+                    description: document.getElementById('release-description').value,
+                    timestamp: new Date() // تحديث الوقت
+                };
+                
+                if (imageFile) {
+                    const reader = new FileReader();
+                    reader.onload = async function(e) {
+                        updatedData.image = e.target.result;
+                        
+                        const docRef = window.firestoreDoc(window.firebaseDb, RELEASES_COLLECTION, docId);
+                        await window.firestoreUpdateDoc(docRef, updatedData);
+                        
+                        updateStats();
+                        displayReleases();
+                        displaySiteReleases();
+                        resetForm();
+                        
+                        // العودة إلى الوضع الطبيعي للنموذج
+                        releaseForm.onsubmit = handleFormSubmit;
+                        releaseForm.querySelector('button[type="submit"]').textContent = 'إضافة الإصدار';
                     };
+                    reader.readAsDataURL(imageFile);
+                } else {
+                    // استخدام الصورة الحالية إذا لم يتم اختيار صورة جديدة
+                    updatedData.image = imagePreview.src;
                     
-                    localStorage.setItem('beatnaReleases', JSON.stringify(releases));
+                    const docRef = window.firestoreDoc(window.firebaseDb, RELEASES_COLLECTION, docId);
+                    await window.firestoreUpdateDoc(docRef, updatedData);
+                    
                     updateStats();
                     displayReleases();
                     displaySiteReleases();
@@ -2535,37 +2645,27 @@
                     // العودة إلى الوضع الطبيعي للنموذج
                     releaseForm.onsubmit = handleFormSubmit;
                     releaseForm.querySelector('button[type="submit"]').textContent = 'إضافة الإصدار';
-                };
-                reader.readAsDataURL(imageFile);
-            } else {
-                releases[index] = {
-                    ...releases[index],
-                    artist: document.getElementById('artist-name').value,
-                    name: document.getElementById('release-name').value,
-                    link: document.getElementById('listen-link').value,
-                    description: document.getElementById('release-description').value
-                };
-                
-                localStorage.setItem('beatnaReleases', JSON.stringify(releases));
-                updateStats();
-                displayReleases();
-                displaySiteReleases();
-                resetForm();
-                
-                // العودة إلى الوضع الطبيعي للنموذج
-                releaseForm.onsubmit = handleFormSubmit;
-                releaseForm.querySelector('button[type="submit"]').textContent = 'إضافة الإصدار';
+                }
+            } catch (error) {
+                console.error("خطأ في تحديث الإصدار:", error);
+                alert("حدث خطأ أثناء تحديث الإصدار");
             }
         }
 
         // حذف إصدار
-        function deleteRelease(index) {
+        async function deleteRelease(docId) {
             if (confirm('هل أنت متأكد من حذف هذا الإصدار؟')) {
-                releases.splice(index, 1);
-                localStorage.setItem('beatnaReleases', JSON.stringify(releases));
-                updateStats();
-                displayReleases();
-                displaySiteReleases();
+                try {
+                    const docRef = window.firestoreDoc(window.firebaseDb, RELEASES_COLLECTION, docId);
+                    await window.firestoreDeleteDoc(docRef);
+                    
+                    updateStats();
+                    displayReleases();
+                    displaySiteReleases();
+                } catch (error) {
+                    console.error("خطأ في حذف الإصدار:", error);
+                    alert("حدث خطأ أثناء حذف الإصدار");
+                }
             }
         }
 
