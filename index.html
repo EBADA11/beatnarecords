@@ -20,7 +20,17 @@
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, getDocs, updateDoc, deleteDoc, doc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { 
+            getFirestore, 
+            collection, 
+            addDoc, 
+            getDocs, 
+            updateDoc, 
+            deleteDoc, 
+            doc, 
+            query, 
+            orderBy 
+        } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
         
         // Your web app's Firebase configuration
         const firebaseConfig = {
@@ -38,23 +48,25 @@
         const db = getFirestore(app);
         const provider = new GoogleAuthProvider();
 
-        // Make auth and provider available globally
+        // جعل المتغيرات متاحة عالمياً بشكل صحيح
         window.firebaseAuth = auth;
         window.firebaseDb = db;
         window.googleProvider = provider;
-        window.firebaseSignInWithPopup = signInWithPopup;
-        window.firebaseOnAuthStateChanged = onAuthStateChanged;
-        window.firebaseSignOut = signOut;
         
-        // Firestore functions
+        // تصدير دوال Firestore بشكل صحيح
         window.firestoreAddDoc = addDoc;
         window.firestoreGetDocs = getDocs;
         window.firestoreUpdateDoc = updateDoc;
         window.firestoreDeleteDoc = deleteDoc;
-        window.firestoreCollection = collection;
-        window.firestoreDoc = doc;
+        window.firestoreCollection = (db, collectionName) => collection(db, collectionName);
+        window.firestoreDoc = (db, collectionName, docId) => doc(db, collectionName, docId);
         window.firestoreQuery = query;
         window.firestoreOrderBy = orderBy;
+        
+        // دوال المصادقة
+        window.firebaseSignInWithPopup = signInWithPopup;
+        window.firebaseOnAuthStateChanged = onAuthStateChanged;
+        window.firebaseSignOut = signOut;
     </script>
     
     <style>
@@ -1754,9 +1766,8 @@
                     
                     <div class="form-grid">
                         <div class="form-group">
-                            <label for="release-image">صورة الغلاف</label>
-                            <input type="file" id="release-image" accept="image/*" required>
-                            <img id="image-preview" class="image-preview" alt="معاينة الصورة">
+                            <label for="image-url">رابط صورة الغلاف</label>
+                            <input type="url" id="image-url" required placeholder="https://example.com/image.jpg">
                         </div>
                         <div class="form-group">
                             <label for="listen-link">رابط الاستماع</label>
@@ -2107,7 +2118,7 @@
                     </div>
                     <div class="faq-item">
                         <div class="faq-question">
-                            <span data-ar="هل يمكنني إلغاء الخدمة في أي وقت؟" data-en="Can I cancel the service at any time?">هل يمكنني إلغاء الخدمة في أي وقت؟</span>
+                            <span data-ar="هل يمكنني إلغاء الخدمة في أي وقت؟" data-en="Can I cancel the service at any time?">هل يمكنني إلغاء الخدمة في أي وقت？</span>
                             <i class="fas fa-chevron-down faq-toggle"></i>
                         </div>
                         <div class="faq-answer">
@@ -2312,8 +2323,6 @@
         const releasesContainer = document.getElementById('releases-container');
         const siteReleasesContainer = document.getElementById('site-releases-container');
         const releaseForm = document.getElementById('release-form');
-        const imageInput = document.getElementById('release-image');
-        const imagePreview = document.getElementById('image-preview');
         
         // البريد الإلكتروني للمدير (استبدله ببريدك الفعلي)
         const adminEmail = "ahady2190@gmail.com"; // استبدل هذا ببريدك الإلكتروني
@@ -2546,6 +2555,9 @@
                 
                 // الانتقال إلى تبويب الإصدارات
                 switchTab('releases');
+                
+                // إعادة تعيين النموذج
+                resetForm();
             } catch (error) {
                 console.error("خطأ في إضافة الإصدار:", error);
                 alert("حدث خطأ أثناء إضافة الإصدار. يرجى المحاولة مرة أخرى.");
@@ -2575,12 +2587,9 @@
                 // تعبئة النموذج بالبيانات الحالية
                 document.getElementById('artist-name').value = releaseData.artist;
                 document.getElementById('release-name').value = releaseData.name;
+                document.getElementById('image-url').value = releaseData.image;
                 document.getElementById('listen-link').value = releaseData.link;
                 document.getElementById('release-description').value = releaseData.description || '';
-                
-                // عرض الصورة الحالية
-                imagePreview.src = releaseData.image;
-                imagePreview.style.display = 'block';
                 
                 // الانتقال إلى تبويب الإضافة
                 switchTab('add-release');
@@ -2601,51 +2610,28 @@
         // تحديث إصدار
         async function updateRelease(docId) {
             try {
-                const formData = new FormData(releaseForm);
-                const imageFile = imageInput.files[0];
-                
                 const updatedData = {
                     artist: document.getElementById('artist-name').value,
                     name: document.getElementById('release-name').value,
+                    image: document.getElementById('image-url').value,
                     link: document.getElementById('listen-link').value,
                     description: document.getElementById('release-description').value,
                     timestamp: new Date() // تحديث الوقت
                 };
                 
-                if (imageFile) {
-                    const reader = new FileReader();
-                    reader.onload = async function(e) {
-                        updatedData.image = e.target.result;
-                        
-                        const docRef = window.firestoreDoc(window.firebaseDb, RELEASES_COLLECTION, docId);
-                        await window.firestoreUpdateDoc(docRef, updatedData);
-                        
-                        updateStats();
-                        displayReleases();
-                        displaySiteReleases();
-                        resetForm();
-                        
-                        // العودة إلى الوضع الطبيعي للنموذج
-                        releaseForm.onsubmit = handleFormSubmit;
-                        releaseForm.querySelector('button[type="submit"]').textContent = 'إضافة الإصدار';
-                    };
-                    reader.readAsDataURL(imageFile);
-                } else {
-                    // استخدام الصورة الحالية إذا لم يتم اختيار صورة جديدة
-                    updatedData.image = imagePreview.src;
-                    
-                    const docRef = window.firestoreDoc(window.firebaseDb, RELEASES_COLLECTION, docId);
-                    await window.firestoreUpdateDoc(docRef, updatedData);
-                    
-                    updateStats();
-                    displayReleases();
-                    displaySiteReleases();
-                    resetForm();
-                    
-                    // العودة إلى الوضع الطبيعي للنموذج
-                    releaseForm.onsubmit = handleFormSubmit;
-                    releaseForm.querySelector('button[type="submit"]').textContent = 'إضافة الإصدار';
-                }
+                const docRef = window.firestoreDoc(window.firebaseDb, RELEASES_COLLECTION, docId);
+                await window.firestoreUpdateDoc(docRef, updatedData);
+                
+                updateStats();
+                displayReleases();
+                displaySiteReleases();
+                resetForm();
+                
+                // العودة إلى الوضع الطبيعي للنموذج
+                releaseForm.onsubmit = handleFormSubmit;
+                releaseForm.querySelector('button[type="submit"]').textContent = 'إضافة الإصدار';
+                
+                alert("تم تحديث الإصدار بنجاح");
             } catch (error) {
                 console.error("خطأ في تحديث الإصدار:", error);
                 alert("حدث خطأ أثناء تحديث الإصدار");
@@ -2662,6 +2648,7 @@
                     updateStats();
                     displayReleases();
                     displaySiteReleases();
+                    alert("تم حذف الإصدار بنجاح");
                 } catch (error) {
                     console.error("خطأ في حذف الإصدار:", error);
                     alert("حدث خطأ أثناء حذف الإصدار");
@@ -2669,53 +2656,53 @@
             }
         }
 
-        // معاينة الصورة
-        imageInput.addEventListener('change', function() {
-            const file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    imagePreview.src = e.target.result;
-                    imagePreview.style.display = 'block';
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
         // إعادة تعيين النموذج
         function resetForm() {
             releaseForm.reset();
-            imagePreview.style.display = 'none';
-            imagePreview.src = '';
         }
 
         // معالجة إرسال النموذج
         function handleFormSubmit(e) {
             e.preventDefault();
             
-            const formData = new FormData(e.target);
-            const imageFile = imageInput.files[0];
+            const releaseData = {
+                artist: document.getElementById('artist-name').value,
+                name: document.getElementById('release-name').value,
+                image: document.getElementById('image-url').value,
+                link: document.getElementById('listen-link').value,
+                description: document.getElementById('release-description').value,
+                date: new Date().toLocaleDateString('ar-EG')
+            };
             
-            if (!imageFile) {
-                alert('يرجى اختيار صورة للغلاف');
+            // التحقق من صحة البيانات
+            if (!releaseData.artist || !releaseData.name || !releaseData.image || !releaseData.link) {
+                alert('يرجى ملء جميع الحقول المطلوبة');
                 return;
             }
             
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const releaseData = {
-                    artist: document.getElementById('artist-name').value,
-                    name: document.getElementById('release-name').value,
-                    image: e.target.result,
-                    link: document.getElementById('listen-link').value,
-                    description: document.getElementById('release-description').value,
-                    date: new Date().toLocaleDateString('ar-EG')
-                };
-                
-                addRelease(releaseData);
-                resetForm();
-            };
-            reader.readAsDataURL(imageFile);
+            // التحقق من صحة رابط الصورة
+            if (!isValidUrl(releaseData.image)) {
+                alert('يرجى إدخال رابط صورة صحيح');
+                return;
+            }
+            
+            // التحقق من صحة رابط الاستماع
+            if (!isValidUrl(releaseData.link)) {
+                alert('يرجى إدخال رابط استماع صحيح');
+                return;
+            }
+            
+            addRelease(releaseData);
+        }
+
+        // دالة للتحقق من صحة الرابط
+        function isValidUrl(string) {
+            try {
+                new URL(string);
+                return true;
+            } catch (_) {
+                return false;
+            }
         }
 
         // تبديل التبويبات
