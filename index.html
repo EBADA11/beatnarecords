@@ -234,7 +234,7 @@
             color: var(--light);
             cursor: pointer;
         }
-        /* Hero Section - التعديلات هنا */
+        /* Hero Section */
         .hero {
             background: linear-gradient(135deg, rgba(17, 24, 39, 0.9), rgba(3, 7, 18, 0.95)), url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
@@ -263,25 +263,21 @@
             margin: 0 auto;
         }
         .hero h1 {
-            font-size: 3.5rem; /* تقليل الحجم قليلاً */
+            font-size: 4rem;
             margin-bottom: 1.5rem;
             font-weight: 800;
-            line-height: 1.3; /* زيادة تباعد الأسطر */
+            line-height: 1.2;
             background: linear-gradient(90deg, var(--light), var(--primary-light));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             animation: fadeInUp 0.8s ease;
-            word-wrap: break-word; /* السماح بكسر الكلمات */
-            overflow-wrap: break-word; /* السماح بكسر الكلمات */
-            padding: 0 10px; /* إضافة مساحة داخلية */
         }
         .hero p {
             font-size: 1.3rem;
             margin-bottom: 2.5rem;
             opacity: 0.9;
             animation: fadeInUp 0.8s ease 0.2s both;
-            line-height: 1.6; /* زيادة تباعد الأسطر */
         }
         .hero-buttons {
             display: flex;
@@ -1460,7 +1456,7 @@
             display: none;
         }
 
-        /* قسم الإصدارات على الموقع الرئيسي - التعديلات هنا */
+        /* قسم الإصدارات على الموقع الرئيسي */
         .releases-section {
             padding: 100px 0;
             background: var(--darker);
@@ -1486,13 +1482,10 @@
             box-shadow: var(--shadow-xl);
         }
 
-        /* التعديلات على صورة الفنان */
         .release-item img {
             width: 100%;
-            height: 280px; /* زيادة الارتفاع لاستيعاب الصورة كاملة */
-            object-fit: contain; /* تغيير من cover إلى contain لعرض الصورة كاملة */
-            background-color: rgba(255, 255, 255, 0.05); /* خلفية للجزء الفارغ */
-            padding: 10px; /* إضافة مسافة داخلية */
+            height: 250px;
+            object-fit: cover;
         }
 
         .release-item-content {
@@ -1549,16 +1542,8 @@
             .mobile-menu {
                 display: block;
             }
-            /* تعديلات الـ Hero للشاشات الصغيرة */
             .hero h1 {
-                font-size: 2.2rem; /* تقليل الحجم أكثر للشاشات الصغيرة */
-                line-height: 1.4; /* زيادة تباعد الأسطر */
-                padding: 0 15px; /* زيادة المساحة الداخلية */
-            }
-            .hero p {
-                font-size: 1.1rem;
-                line-height: 1.7; /* زيادة تباعد الأسطر */
-                padding: 0 10px; /* إضافة مساحة داخلية */
+                font-size: 2.5rem;
             }
             .hero-stats {
                 gap: 2rem;
@@ -1610,32 +1595,16 @@
             .releases-container {
                 grid-template-columns: 1fr;
             }
-            
-            /* تعديلات الصور على الموبايل */
-            .release-item img {
-                height: 250px; /* تقليل الارتفاع قليلاً على الموبايل */
-            }
         }
         @media (max-width: 480px) {
             .hero h1 {
-                font-size: 1.8rem; /* تقليل الحجم أكثر للشاشات الصغيرة جداً */
-                line-height: 1.5; /* زيادة تباعد الأسطر */
-                padding: 0 20px; /* زيادة المساحة الداخلية */
-            }
-            .hero p {
-                font-size: 1rem;
-                line-height: 1.8; /* زيادة تباعد الأسطر */
-                padding: 0 15px; /* زيادة المساحة الداخلية */
+                font-size: 2rem;
             }
             .hero-buttons {
                 flex-direction: column;
             }
             .section-header h2 {
                 font-size: 2rem;
-            }
-            
-            .release-item img {
-                height: 220px; /* تقليل الارتفاع أكثر على الشاشات الصغيرة */
             }
         }
     </style>
