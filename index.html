@@ -2336,6 +2336,44 @@
         // البريد الإلكتروني للمدير (استبدله ببريدك الفعلي)
         const adminEmail = "ahady2190@gmail.com"; // استبدل هذا ببريدك الإلكتروني
         
+        // تحقق من وجود الإصدارات في localStorage
+        console.log('الإصدارات في localStorage:', JSON.parse(localStorage.getItem('beatnaReleases')));
+
+        // تأكد من عرض الإصدارات عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            displaySiteReleases();
+        });
+
+        // أضف بيانات تجريبية للاختبار إذا لم تكن هناك إصدارات
+        function addSampleReleases() {
+            if (releases.length === 0) {
+                const sampleReleases = [
+                    {
+                        artist: "فنان تجريبي",
+                        name: "أغنية تجريبية",
+                        image: "https://via.placeholder.com/300x300/8B5CF6/FFFFFF?text=Beatna+Records",
+                        link: "https://open.spotify.com",
+                        description: "هذه أغنية تجريبية لعرض الإصدارات"
+                    },
+                    {
+                        artist: "مغنية تجريبية",
+                        name: "ألبوم تجريبي",
+                        image: "https://via.placeholder.com/300x300/EC4899/FFFFFF?text=Music+Release",
+                        link: "https://apple.com/music",
+                        description: "ألبوم موسيقي تجريبي"
+                    }
+                ];
+                
+                releases = sampleReleases;
+                localStorage.setItem('beatnaReleases', JSON.stringify(releases));
+                displaySiteReleases();
+                console.log('تم إضافة إصدارات تجريبية');
+            }
+        }
+
+        // استدعاء الدالة بعد تحميل الصفحة
+        setTimeout(addSampleReleases, 1000);
+        
         // تهيئة حالة المصادقة
         function initAuth() {
             window.firebaseOnAuthStateChanged(window.firebaseAuth, (user) => {
@@ -2481,10 +2519,20 @@
 
         // عرض الإصدارات على الموقع الرئيسي
         function displaySiteReleases() {
+            console.log('محاولة عرض الإصدارات...');
+            console.log('عدد الإصدارات:', releases.length);
+            console.log('بيانات الإصدارات:', releases);
+            
             siteReleasesContainer.innerHTML = '';
             
             if (releases.length === 0) {
-                siteReleasesContainer.innerHTML = '<p style="text-align: center; color: var(--gray); grid-column: 1 / -1;">لا توجد إصدارات حتى الآن</p>';
+                siteReleasesContainer.innerHTML = `
+                    <div style="text-align: center; color: var(--gray); grid-column: 1 / -1; padding: 40px;">
+                        <i class="fas fa-music" style="font-size: 3rem; margin-bottom: 20px; opacity: 0.5;"></i>
+                        <h3>لا توجد إصدارات حتى الآن</h3>
+                        <p>سيتم عرض الإصدارات هنا بمجرد إضافتها من خلال لوحة التحكم</p>
+                    </div>
+                `;
                 return;
             }
 
@@ -2495,7 +2543,7 @@
                 const releaseItem = document.createElement('div');
                 releaseItem.className = 'release-item';
                 releaseItem.innerHTML = `
-                    <img src="${release.image}" alt="${release.name}">
+                    <img src="${release.image}" alt="${release.name}" onerror="this.src='https://via.placeholder.com/300x300/8B5CF6/FFFFFF?text=Beatna+Records'">
                     <div class="release-item-content">
                         <h3>${release.name}</h3>
                         <p><strong>${release.artist}</strong></p>
@@ -2505,6 +2553,8 @@
                 `;
                 siteReleasesContainer.appendChild(releaseItem);
             });
+            
+            console.log('تم عرض الإصدارات بنجاح');
         }
 
         // إضافة إصدار جديد
