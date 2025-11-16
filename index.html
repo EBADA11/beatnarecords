@@ -3019,23 +3019,49 @@
         updateStats();
         displaySiteReleases();
         // Typewriter effect for hero heading
+               // Infinite Typewriter + Backspace Effect
         const text = "حوّل موسيقاك إلى نجاح عالمى";
         const element = document.getElementById("typewriter");
         if (element) {
             let i = 0;
+            let isDeleting = false;
+            const typeSpeed = 70;
+            const deleteSpeed = 50;
+            const pauseDelay = 1500;
+
             function type() {
-                if (i < text.length) {
-                    element.textContent += text.charAt(i);
+                if (isDeleting) {
+                    // مسح الحروف
+                    element.textContent = text.substring(0, i - 1);
+                    i--;
+                    if (i === 0) {
+                        isDeleting = false;
+                        setTimeout(type, typeSpeed);
+                    } else {
+                        setTimeout(type, deleteSpeed);
+                    }
+                } else {
+                    // كتابة الحروف
+                    element.textContent = text.substring(0, i + 1);
                     i++;
-                    setTimeout(type, 70);
+                    if (i === text.length) {
+                        isDeleting = true;
+                        setTimeout(type, pauseDelay); // يقف شوية قبل ما يمسح
+                    } else {
+                        setTimeout(type, typeSpeed);
+                    }
                 }
             }
-            window.addEventListener("load", type);
+
+            window.addEventListener("load", () => {
+                setTimeout(type, 500); // يبدأ بعد نص ثانية من تحميل الصفحة
+            });
         }
         
     </script>
 </body>
 </html>
+
 
 
 
