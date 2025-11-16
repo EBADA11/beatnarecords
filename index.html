@@ -1796,7 +1796,7 @@
         <section class="hero" id="home">
             <div class="container">
                 <div class="hero-content">
-                    <h1 id="typewriter"></h1>
+                    <h1 data-ar="حوّل موسيقاك إلى نجاح عالمى" data-en="Transform Your Music into Global Success">حوّل موسيقاك إلى نجاح عالمى</h1>
                     <p data-ar="نوّزع أعمالك الفنية على أكثر من 150 منصة موسيقية حول العالم مع حماية حقوقك وضمان أرباحك" data-en="We distribute your artistic works on more than 150 music platforms worldwide while protecting your rights and ensuring your profits">نوّزع أعمالك الفنية على أكثر من 150 منصة موسيقية حول العالم مع حماية حقوقك وضمان أرباحك</p>
                     <div class="hero-buttons">
                         <a href="#contact" class="btn btn-light" data-ar="تواصل معنا" data-en="Contact Us"><span class="btn-text">تواصل معنا</span></a>
@@ -3018,52 +3018,9 @@
         // التهيئة الأولية
         updateStats();
         displaySiteReleases();
-        // Typewriter effect for hero heading
-               // Infinite Typewriter + Backspace Effect
-        const text = "حوّل موسيقاك إلى نجاح عالمى";
-        const element = document.getElementById("typewriter");
-        if (element) {
-            let i = 0;
-            let isDeleting = false;
-            const typeSpeed = 70;
-            const deleteSpeed = 50;
-            const pauseDelay = 1500;
-
-            function type() {
-                if (isDeleting) {
-                    // مسح الحروف
-                    element.textContent = text.substring(0, i - 1);
-                    i--;
-                    if (i === 0) {
-                        isDeleting = false;
-                        setTimeout(type, typeSpeed);
-                    } else {
-                        setTimeout(type, deleteSpeed);
-                    }
-                } else {
-                    // كتابة الحروف
-                    element.textContent = text.substring(0, i + 1);
-                    i++;
-                    if (i === text.length) {
-                        isDeleting = true;
-                        setTimeout(type, pauseDelay); // يقف شوية قبل ما يمسح
-                    } else {
-                        setTimeout(type, typeSpeed);
-                    }
-                }
-            }
-
-            window.addEventListener("load", () => {
-                setTimeout(type, 500); // يبدأ بعد نص ثانية من تحميل الصفحة
-            });
-        }
-        
     </script>
 </body>
 </html>
-
-
-
 
 
 
