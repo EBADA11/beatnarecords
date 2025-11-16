@@ -1796,7 +1796,7 @@
         <section class="hero" id="home">
             <div class="container">
                 <div class="hero-content">
-                    <h1 data-ar="حوّل موسيقاك إلى نجاح عالمى" data-en="Transform Your Music into Global Success">حوّل موسيقاك إلى نجاح عالمى</h1>
+                    <h1 id="typewriter"></h1>
                     <p data-ar="نوّزع أعمالك الفنية على أكثر من 150 منصة موسيقية حول العالم مع حماية حقوقك وضمان أرباحك" data-en="We distribute your artistic works on more than 150 music platforms worldwide while protecting your rights and ensuring your profits">نوّزع أعمالك الفنية على أكثر من 150 منصة موسيقية حول العالم مع حماية حقوقك وضمان أرباحك</p>
                     <div class="hero-buttons">
                         <a href="#contact" class="btn btn-light" data-ar="تواصل معنا" data-en="Contact Us"><span class="btn-text">تواصل معنا</span></a>
@@ -3018,9 +3018,25 @@
         // التهيئة الأولية
         updateStats();
         displaySiteReleases();
+        // Typewriter effect for hero heading
+        const text = "حوّل موسيقاك إلى نجاح عالمى";
+        const element = document.getElementById("typewriter");
+        if (element) {
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, 70);
+                }
+            }
+            window.addEventListener("load", type);
+        }
+        
     </script>
 </body>
 </html>
+
 
 
 
