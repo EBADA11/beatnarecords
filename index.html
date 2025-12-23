@@ -1545,6 +1545,84 @@
             transform: translateY(-2px);
         }
 
+        /* أنماط البحث والتصفية */
+        .search-filter-container {
+            grid-column: 1 / -1;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 12px;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .search-box button {
+            padding: 12px 24px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-box button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .filter-options {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-options select {
+            padding: 8px 15px;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--primary-light);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            cursor: pointer;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .filter-options label {
+            color: var(--light);
+            font-weight: 500;
+        }
+
+        .release-count {
+            margin-top: 20px;
+            color: var(--primary-light);
+            font-weight: 600;
+            text-align: center;
+            grid-column: 1 / -1;
+        }
+
+        .no-results {
+            text-align: center;
+            color: var(--gray);
+            grid-column: 1 / -1;
+            padding: 40px;
+        }
+
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -1621,6 +1699,15 @@
 
             .releases-container {
                 grid-template-columns: 1fr;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .filter-options {
+                flex-direction: column;
+                align-items: stretch;
             }
         }
         @media (max-width: 480px) {
@@ -1925,9 +2012,46 @@
                     <h2 data-ar="أحدث الإصدارات" data-en="Latest Releases">أحدث الإصدارات</h2>
                     <p data-ar="استمع إلى أحدث الأعمال الموسيقية التي وزعناها" data-en="Listen to the latest musical works we've distributed">استمع إلى أحدث الأعمال الموسيقية التي وزعناها</p>
                 </div>
+                
+                <!-- مربع البحث والتصفية -->
+                <div class="search-filter-container">
+                    <div class="search-box">
+                        <input type="text" id="release-search" placeholder="ابحث عن أغنية، فنان، أو وصف...">
+                        <button id="search-btn">بحث</button>
+                        <button id="reset-search" class="btn-outline">إعادة تعيين</button>
+                    </div>
+                    
+                    <div class="filter-options">
+                        <label>فرز حسب:</label>
+                        <select id="sort-by">
+                            <option value="newest">الأحدث أولاً</option>
+                            <option value="oldest">الأقدم أولاً</option>
+                            <option value="name-asc">اسم الإصدار (أ-ي)</option>
+                            <option value="name-desc">اسم الإصدار (ي-أ)</option>
+                            <option value="artist-asc">اسم الفنان (أ-ي)</option>
+                            <option value="artist-desc">اسم الفنان (ي-أ)</option>
+                        </select>
+                        
+                        <label>عرض لكل صفحة:</label>
+                        <select id="per-page">
+                            <option value="12">12</option>
+                            <option value="24">24</option>
+                            <option value="48">48</option>
+                            <option value="96">96</option>
+                            <option value="all">جميع الإصدارات</option>
+                        </select>
+                    </div>
+                </div>
+                
                 <div class="releases-container" id="site-releases-container">
                     <!-- سيتم تعبئتها ديناميكياً -->
                 </div>
+                
+                <!-- أزرار التصفح بين الصفحات -->
+                <div id="pagination-controls" style="grid-column: 1 / -1; display: flex; justify-content: center; gap: 10px; margin-top: 30px;"></div>
+                
+                <!-- عدد الإصدارات المعروضة -->
+                <div id="release-count" class="release-count"></div>
             </div>
         </section>
 
@@ -2128,7 +2252,7 @@
                     </div>
                     <div class="faq-item">
                         <div class="faq-question">
-                            <span data-ar="هل يمكنني إلغاء الخدمة في أي وقت؟" data-en="Can I cancel the service at any time?">هل يمكنني إلغاء الخدمة في أي وقت？</span>
+                            <span data-ar="هل يمكنني إلغاء الخدمة في أي وقت؟" data-en="Can I cancel the service at any time?">هل يمكنني إلغاء الخدمة في أي وقت؟</span>
                             <i class="fas fa-chevron-down faq-toggle"></i>
                         </div>
                         <div class="faq-answer">
@@ -2334,8 +2458,24 @@
         const siteReleasesContainer = document.getElementById('site-releases-container');
         const releaseForm = document.getElementById('release-form');
         
-        // البريد الإلكتروني للمدير (استبدله ببريدك الفعلي)
+        // عناصر البحث والتصفية
+        const releaseSearch = document.getElementById('release-search');
+        const searchBtn = document.getElementById('search-btn');
+        const resetSearchBtn = document.getElementById('reset-search');
+        const sortBy = document.getElementById('sort-by');
+        const perPage = document.getElementById('per-page');
+        const paginationControls = document.getElementById('pagination-controls');
+        const releaseCount = document.getElementById('release-count');
+        
+        // البريد الإلكتروني للمدير
         const adminEmail = "ahady2190@gmail.com"; // استبدل هذا ببريدك الإلكتروني
+        
+        // متغيرات البحث والتصفية
+        let allReleases = [];
+        let filteredReleases = [];
+        let currentPage = 1;
+        let itemsPerPage = 12;
+        let searchTerm = '';
         
         // تهيئة حالة المصادقة
         function initAuth() {
@@ -2440,7 +2580,7 @@
         function showMainSite() {
             adminDashboard.style.display = 'none';
             mainSite.style.display = 'block';
-            displaySiteReleases();
+            loadAndDisplayReleases();
         }
         
         // تحديث الإحصائيات
@@ -2505,45 +2645,203 @@
             }
         }
 
-        // عرض الإصدارات على الموقع الرئيسي
-        async function displaySiteReleases() {
-            siteReleasesContainer.innerHTML = '';
-            
+        // تحميل وعرض الإصدارات على الموقع الرئيسي
+        async function loadAndDisplayReleases() {
             try {
                 const releasesRef = window.firestoreCollection(window.firebaseDb, RELEASES_COLLECTION);
                 const q = window.firestoreQuery(releasesRef, window.firestoreOrderBy("timestamp", "desc"));
                 const querySnapshot = await window.firestoreGetDocs(q);
                 
-                if (querySnapshot.empty) {
-                    siteReleasesContainer.innerHTML = '<p style="text-align: center; color: var(--gray); grid-column: 1 / -1;">لا توجد إصدارات حتى الآن</p>';
-                    return;
-                }
-
-                // عرض أحدث 6 إصدارات فقط
-                const recentReleases = [];
+                allReleases = [];
                 querySnapshot.forEach((doc) => {
-                    if (recentReleases.length < 6) {
-                        recentReleases.push({ id: doc.id, ...doc.data() });
-                    }
+                    allReleases.push({ 
+                        id: doc.id, 
+                        ...doc.data(),
+                        searchableText: `${doc.data().name} ${doc.data().artist} ${doc.data().description || ''}`.toLowerCase()
+                    });
                 });
                 
-                recentReleases.forEach((release) => {
-                    const releaseItem = document.createElement('div');
-                    releaseItem.className = 'release-item';
-                    releaseItem.innerHTML = `
-                        <img src="${release.image}" alt="${release.name}">
-                        <div class="release-item-content">
-                            <h3>${release.name}</h3>
-                            <p><strong>${release.artist}</strong></p>
-                            ${release.description ? `<p>${release.description}</p>` : ''}
-                            <a href="${release.link}" target="_blank" class="listen-btn">استمع الآن</a>
-                        </div>
-                    `;
-                    siteReleasesContainer.appendChild(releaseItem);
-                });
+                applyFiltersAndDisplay();
+                
             } catch (error) {
                 console.error("خطأ في جلب الإصدارات:", error);
                 siteReleasesContainer.innerHTML = '<p style="text-align: center; color: var(--gray); grid-column: 1 / -1;">حدث خطأ في تحميل الإصدارات</p>';
+            }
+        }
+
+        // تطبيق الفلاتر وعرض النتائج
+        function applyFiltersAndDisplay() {
+            // تطبيق البحث
+            if (searchTerm) {
+                filteredReleases = allReleases.filter(release => 
+                    release.searchableText.includes(searchTerm.toLowerCase())
+                );
+            } else {
+                filteredReleases = [...allReleases];
+            }
+            
+            // تطبيق الترتيب
+            applySorting();
+            
+            // عرض النتائج
+            displayFilteredReleases();
+        }
+
+        // تطبيق الترتيب
+        function applySorting() {
+            const sortValue = sortBy.value;
+            
+            switch(sortValue) {
+                case 'newest':
+                    filteredReleases.sort((a, b) => {
+                        if (a.timestamp && b.timestamp) {
+                            return b.timestamp.toDate() - a.timestamp.toDate();
+                        }
+                        return 0;
+                    });
+                    break;
+                    
+                case 'oldest':
+                    filteredReleases.sort((a, b) => {
+                        if (a.timestamp && b.timestamp) {
+                            return a.timestamp.toDate() - b.timestamp.toDate();
+                        }
+                        return 0;
+                    });
+                    break;
+                    
+                case 'name-asc':
+                    filteredReleases.sort((a, b) => a.name.localeCompare(b.name, 'ar'));
+                    break;
+                    
+                case 'name-desc':
+                    filteredReleases.sort((a, b) => b.name.localeCompare(a.name, 'ar'));
+                    break;
+                    
+                case 'artist-asc':
+                    filteredReleases.sort((a, b) => a.artist.localeCompare(b.artist, 'ar'));
+                    break;
+                    
+                case 'artist-desc':
+                    filteredReleases.sort((a, b) => b.artist.localeCompare(a.artist, 'ar'));
+                    break;
+                    
+                default:
+                    // الترتيب الافتراضي: الأحدث أولاً
+                    filteredReleases.sort((a, b) => {
+                        if (a.timestamp && b.timestamp) {
+                            return b.timestamp.toDate() - a.timestamp.toDate();
+                        }
+                        return 0;
+                    });
+            }
+        }
+
+        // عرض الإصدارات المصفاة
+        function displayFilteredReleases() {
+            siteReleasesContainer.innerHTML = '';
+            paginationControls.innerHTML = '';
+            
+            if (filteredReleases.length === 0) {
+                siteReleasesContainer.innerHTML = `
+                    <div class="no-results" style="grid-column: 1 / -1;">
+                        <i class="fas fa-music" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.3;"></i>
+                        <h3>لا توجد نتائج</h3>
+                        <p>لم يتم العثور على إصدارات تطابق بحثك</p>
+                    </div>
+                `;
+                releaseCount.textContent = 'عرض 0 من 0 إصدار';
+                return;
+            }
+            
+            // تحديد عدد العناصر لكل صفحة
+            itemsPerPage = perPage.value === 'all' ? filteredReleases.length : parseInt(perPage.value);
+            
+            // حساب عدد الصفحات
+            const totalPages = Math.ceil(filteredReleases.length / itemsPerPage);
+            
+            // التأكد من أن الصفحة الحالية ضمن النطاق الصحيح
+            if (currentPage > totalPages) {
+                currentPage = totalPages || 1;
+            }
+            
+            // حساب بداية ونهاية العناصر للصفحة الحالية
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const pageReleases = filteredReleases.slice(startIndex, endIndex);
+            
+            // عرض الإصدارات في الصفحة الحالية
+            pageReleases.forEach((release) => {
+                const releaseItem = document.createElement('div');
+                releaseItem.className = 'release-item';
+                releaseItem.innerHTML = `
+                    <img src="${release.image}" alt="${release.name}" 
+                         onerror="this.src='https://via.placeholder.com/300x300/8B5CF6/FFFFFF?text=No+Image'">
+                    <div class="release-item-content">
+                        <h3>${release.name}</h3>
+                        <p><strong>${release.artist}</strong></p>
+                        ${release.description ? `<p>${release.description}</p>` : ''}
+                        <a href="${release.link}" target="_blank" class="listen-btn">استمع الآن</a>
+                    </div>
+                `;
+                siteReleasesContainer.appendChild(releaseItem);
+            });
+            
+            // عرض عدد الإصدارات
+            releaseCount.textContent = `عرض ${startIndex + 1} - ${Math.min(endIndex, filteredReleases.length)} من ${filteredReleases.length} إصدار`;
+            
+            // إنشاء أزرار التصفح بين الصفحات
+            createPaginationButtons(totalPages);
+        }
+
+        // إنشاء أزرار التصفح بين الصفحات
+        function createPaginationButtons(totalPages) {
+            if (totalPages <= 1) return;
+            
+            paginationControls.innerHTML = '';
+            
+            // زر الصفحة السابقة
+            if (currentPage > 1) {
+                const prevBtn = document.createElement('button');
+                prevBtn.innerHTML = '<i class="fas fa-chevron-right"></i> السابق';
+                prevBtn.className = 'btn btn-outline';
+                prevBtn.addEventListener('click', () => {
+                    currentPage--;
+                    displayFilteredReleases();
+                });
+                paginationControls.appendChild(prevBtn);
+            }
+            
+            // أرقام الصفحات
+            const maxVisiblePages = 5;
+            let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+            let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+            
+            if (endPage - startPage + 1 < maxVisiblePages) {
+                startPage = Math.max(1, endPage - maxVisiblePages + 1);
+            }
+            
+            for (let i = startPage; i <= endPage; i++) {
+                const pageBtn = document.createElement('button');
+                pageBtn.textContent = i;
+                pageBtn.className = 'btn ' + (i === currentPage ? 'btn-primary' : 'btn-outline');
+                pageBtn.addEventListener('click', () => {
+                    currentPage = i;
+                    displayFilteredReleases();
+                });
+                paginationControls.appendChild(pageBtn);
+            }
+            
+            // زر الصفحة التالية
+            if (currentPage < totalPages) {
+                const nextBtn = document.createElement('button');
+                nextBtn.innerHTML = 'التالي <i class="fas fa-chevron-left"></i>';
+                nextBtn.className = 'btn btn-outline';
+                nextBtn.addEventListener('click', () => {
+                    currentPage++;
+                    displayFilteredReleases();
+                });
+                paginationControls.appendChild(nextBtn);
             }
         }
 
@@ -2561,7 +2859,7 @@
                 console.log("تم إضافة الإصدار بنجاح:", docRef.id);
                 updateStats();
                 displayReleases();
-                displaySiteReleases();
+                loadAndDisplayReleases();
                 
                 // الانتقال إلى تبويب الإصدارات
                 switchTab('releases');
@@ -2634,7 +2932,7 @@
                 
                 updateStats();
                 displayReleases();
-                displaySiteReleases();
+                loadAndDisplayReleases();
                 resetForm();
                 
                 // العودة إلى الوضع الطبيعي للنموذج
@@ -2657,7 +2955,7 @@
                     
                     updateStats();
                     displayReleases();
-                    displaySiteReleases();
+                    loadAndDisplayReleases();
                     alert("تم حذف الإصدار بنجاح");
                 } catch (error) {
                     console.error("خطأ في حذف الإصدار:", error);
@@ -2729,6 +3027,41 @@
             btn.addEventListener('click', () => {
                 switchTab(btn.getAttribute('data-tab'));
             });
+        });
+
+        // إعداد مستمعي الأحداث للبحث والتصفية
+        searchBtn.addEventListener('click', () => {
+            searchTerm = releaseSearch.value.trim();
+            currentPage = 1;
+            applyFiltersAndDisplay();
+        });
+
+        releaseSearch.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                searchTerm = releaseSearch.value.trim();
+                currentPage = 1;
+                applyFiltersAndDisplay();
+            }
+        });
+
+        resetSearchBtn.addEventListener('click', () => {
+            releaseSearch.value = '';
+            searchTerm = '';
+            sortBy.value = 'newest';
+            perPage.value = '12';
+            currentPage = 1;
+            itemsPerPage = 12;
+            applyFiltersAndDisplay();
+        });
+
+        sortBy.addEventListener('change', () => {
+            currentPage = 1;
+            applyFiltersAndDisplay();
+        });
+
+        perPage.addEventListener('change', () => {
+            currentPage = 1;
+            applyFiltersAndDisplay();
         });
 
         releaseForm.addEventListener('submit', handleFormSubmit);
@@ -3025,18 +3358,7 @@
 
         // التهيئة الأولية
         updateStats();
-        displaySiteReleases();
+        loadAndDisplayReleases();
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
